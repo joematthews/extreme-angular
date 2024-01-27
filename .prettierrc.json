@@ -1,0 +1,8 @@
+{
+  "htmlWhitespaceSensitivity": "css",
+  "plugins": [
+    "prettier-plugin-sh",
+    "prettier-plugin-css-order",
+    "prettier-plugin-organize-imports"
+  ]
+}

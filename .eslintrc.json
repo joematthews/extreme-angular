@@ -1,0 +1,69 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "env": { "node": true },
+      "extends": ["eslint:recommended", "prettier"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.(app|spec).json"]
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        "plugin:@angular-eslint/all",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:rxjs/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          { "type": "element", "prefix": "app", "style": "kebab-case" }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          { "type": "attribute", "prefix": "app", "style": "camelCase" }
+        ],
+        "@angular-eslint/component-max-inline-declarations": [
+          "error",
+          { "template": 30, "styles": 15 }
+        ],
+        "@angular-eslint/prefer-on-push-component-change-detection": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/all", "prettier"],
+      "rules": {
+        "@angular-eslint/template/i18n": [
+          "error",
+          { "ignoreAttributes": ["content", "rel"], "checkId": false }
+        ]
+      }
+    },
+    {
+      "files": ["*.json"],
+      "extends": ["plugin:jsonc/recommended-with-jsonc", "prettier"],
+      "rules": {}
+    },
+    {
+      "files": ["*.md"],
+      "extends": ["plugin:markdown/recommended", "prettier"],
+      "rules": {}
+    },
+    {
+      "files": ["*.spec.ts"],
+      "plugins": ["jasmine"],
+      "env": { "jasmine": true },
+      "extends": ["plugin:jasmine/recommended", "prettier"],
+      "rules": {}
+    }
+  ]
+}

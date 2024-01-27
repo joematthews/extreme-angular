@@ -1,0 +1,17 @@
+{
+  "overrides": [
+    {
+      "files": ["*.css"],
+      "extends": ["stylelint-config-standard"],
+      "rules": {}
+    },
+    {
+      "files": ["*.scss"],
+      "extends": ["stylelint-config-standard-scss"],
+      "rules": {
+        "scss/double-slash-comment-empty-line-before": null,
+        "scss/at-mixin-argumentless-call-parentheses": null
+      }
+    }
+  ]
+}
