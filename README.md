@@ -1,5 +1,7 @@
 # Opinionated Angular 17
 
+![image](https://github.com/joematthews/opinionated-angular/assets/14097616/4cbcfd9a-ff9b-447c-bf73-059b1d4ba5c9)
+
 This is an opinionated 'starter project' for [Angular](https://angular.dev). This project can be used as-is for new projects or used as inspiration for existing projects.
 
 > [!NOTE]  
