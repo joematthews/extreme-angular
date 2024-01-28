@@ -1,8 +1,8 @@
 # Opinionated Angular 17
 
-![image](https://github.com/joematthews/opinionated-angular/assets/14097616/4cbcfd9a-ff9b-447c-bf73-059b1d4ba5c9)
+![image](https://github.com/joematthews/opinionated-angular/assets/14097616/bfc78560-98a8-4959-8327-4e94121bf4dd)
 
-This is an opinionated 'starter project' for [Angular](https://angular.dev). This project can be used as-is for new projects or used as inspiration for existing projects.
+This is an opinionated Angular starter project that enforces best practices and provides a robust foundation for building modern, scalable web applications using Angular and its ecosystem of tools and libraries.
 
 > [!NOTE]  
 > If you run into _any issues at all_ with the installation, upgrade, or usage of opinionated-angular, then please search through the [issues](https://github.com/joematthews/opinionated-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
@@ -10,7 +10,7 @@ This is an opinionated 'starter project' for [Angular](https://angular.dev). Thi
 ## Table of Contents
 
 - [Installation & Starting](#installation--starting)
-- [Features, Changes & Notes](#features-changes--notes)
+- [Key Features](#key-features)
   - [Angular Material & Dark Theme](#angular-material--dark-theme)
   - [SSR & Pre-rendering](#ssr--pre-rendering)
   - [Component Preferences for CLI Generation](#component-preferences-for-cli-generation)
@@ -22,7 +22,7 @@ This is an opinionated 'starter project' for [Angular](https://angular.dev). Thi
   - [VSCode](#vscode)
   - [Husky & Lint-Staged](#husky--lint-staged)
 - [Updating](#updating)
-- [Diff](#diff)
+- [Diff & Base Branch](#diff--base-branch)
 
 ## Installation & Starting
 
@@ -48,21 +48,23 @@ To start the development server run `npm start`.
 > [!NOTE]  
 > If you're using [VSCode](https://code.visualstudio.com/) and [Chrome](https://www.google.com/chrome/), then press `F5` on the keyboard to start the app in debug mode.
 
-## Features, Changes & Notes
+## Key Features
 
 The goal of these changes is to enforce 'best practices' while still being 100% compatible with the [latest Angular documentation](https://angular.io/docs).
 
 ### Angular Material & Dark Theme
 
-[Angular Material](https://material.angular.io/guide/getting-started) is installed and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS (Windows, Mac, Linux). The default theme is dark.
+Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS (Windows, Mac, Linux). The default theme is dark.
 
-Changed `density` to `-2` to make the UI (including buttons) more compact and more inline with web expectations.
+Changes `density` to `-2` to make the UI (including buttons) more compact and more inline with web expectations.
 
-The [Roboto font](https://fonts.google.com/specimen/Roboto) is used and is downloaded from the Google font api via the [index.html file](./src/index.html).
+Uses the [Roboto font](https://fonts.google.com/specimen/Roboto) which is downloaded from the Google font api via the [index.html file](./src/index.html).
+
+Enables [Animations](https://angular.io/guide/animations).
 
 ### SSR & Pre-rendering
 
-[Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) are enabled to improve SEO and user experience. To start the SSR server run the following commands:
+Enables [Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) to improve SEO and user experience. To start the SSR server run the following commands:
 
 ```sh
 npm run build
@@ -84,15 +86,18 @@ The following preferences are set in [angular.json](./angular.json) for componen
 }
 ```
 
-Inline templates and inline styles are used to encourage small component sizes. The max lines set for inline templates (30) and styles (15) can be adjusted in the [eslintrc.json file](./.eslintrc.json).
+Inline templates and inline styles encourages small component sizes. The max lines set for inline templates (30) and styles (15) can be adjusted in the [eslintrc.json file](./.eslintrc.json).
 
-SCSS is used for components to make it possible to adjust [Angular Material theming](https://v7.material.angular.io/guide/theming) for each component.
+SCSS component styles makes it possible to adjust [Angular Material theming](https://v7.material.angular.io/guide/theming) for each component.
 
 ### Internationalization (i18n)
 
-[Internationalization](https://angular.io/guide/i18n-overview) is enabled and `i18n` attributes are required on all elements that include text. Saving a document will automatically add missing `i18n` attributes.
+Enables [Internationalization](https://angular.io/guide/i18n-overview) and requires `i18n` attributes on all elements that include text.
 
 Although you may not require internationalization capabilities right now, adding `i18n` attributes as-you-go may make it less painful to use internationalization in the future.
+
+> [!NOTE]
+> Saving a document will automatically add missing `i18n` attributes.
 
 ### Typescript
 
@@ -109,9 +114,9 @@ The following compiler options have been added to the [tsconfig.json file](./tsc
 
 ### Prettier
 
-[Prettier](https://prettier.io/) is used to provide opinionated formatting so diffs contain less formatting changes and teams argue less about formatting in general.
+Uses [Prettier](https://prettier.io/) to provide opinionated formatting so diffs contain less formatting changes and teams argue less about formatting in general.
 
-In the [.prettierrc.json file](./.prettierrc.json), `htmlWhitespaceSensitivity` has been set to `css` to improve the formatting of templates. This will trim whitespace immediately before and after inline element. (If disabled, this setting will be difficult to reenable in the future.)
+In the [.prettierrc.json file](./.prettierrc.json), `htmlWhitespaceSensitivity` has been set to `css` to improve the formatting of templates. This will trim whitespace immediately before and after inline elements. (If disabled, this setting will be difficult to reenable in the future.)
 
 The following prettier plugins are used:
 
@@ -129,7 +134,7 @@ The [.eslintrc.json file](./.esltinrcjson) is set up to use [overrides](https://
 The following eslint plugins are used:
 
 - [@angular-eslint](https://github.com/angular-eslint/angular-eslint)
-  - All [rules for typescript](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/README.md) and all [rules for templates](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/README.md) are enabled unless explicitly disabled or modified.
+  - Enables all [rules for typescript](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/README.md) and all [rules for templates](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/README.md) unless explicitly disabled or modified.
 - [@typescript-eslint](https://typescript-eslint.io/)
   - Uses both [strict-type-checked](https://typescript-eslint.io/linting/configs#strict-type-checked) and [stylistic-type-checked](https://typescript-eslint.io/linting/configs#stylistic-type-checked) rule sets.
 - [eslint-plugin-rxjs](https://www.npmjs.com/package/eslint-plugin-rxjs)
@@ -145,13 +150,11 @@ The following eslint plugins are used:
 
 ### Stylelint
 
-[Stylelint](https://stylelint.io/) and the [stylelint-scss plugin](https://www.npmjs.com/package/stylelint-scss) are used to lint CSS and SCSS using the recommended rule sets for both.
-
-Rules for stylelint can be modified in the [.stylelintrc.json file](./.stylelintrc.json).
+Uses [stylelint](https://stylelint.io/) and the [stylelint-scss plugin](https://www.npmjs.com/package/stylelint-scss) to lint CSS and SCSS using the recommended rule sets for both. Rules for stylelint can be modified in the [.stylelintrc.json file](./.stylelintrc.json).
 
 ### VSCode
 
-The VSCode extensions for [Angular](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template), [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), [Intellicode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode), and [Intellicode Completions](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions) are recommended automatically via a pop-up when the project is opened for the first time. These recommendations are set in the [.vscode/extensions.json file](./vscode/extensions.json).
+Recommends VSCode extensions for [Angular](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template), [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), [Intellicode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode), and [Intellicode Completions](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions) automatically via a pop-up when the project is opened for the first time. These recommendations are set in the [.vscode/extensions.json file](./vscode/extensions.json).
 
 The following settings are configured in the [.vscode/settings.json file](.vscode/settings.json):
 
@@ -161,11 +164,11 @@ The following settings are configured in the [.vscode/settings.json file](.vscod
 
 ### Husky & Lint-staged
 
-[Husky](https://typicode.github.io/husky/) is used to help manage the [pre-commit](./.husky/pre-commit) and [pre-push](./.husky/pre-push) git hooks.
+Uses [Husky](https://typicode.github.io/husky/) to help manage the [pre-commit](./.husky/pre-commit) and [pre-push](./.husky/pre-push) git hooks.
 
-[Lint-staged](https://www.npmjs.com/package/lint-staged) is used to run prettier, eslint, stylelint, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
+Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
 
-`npm run test:ci` is ran before each push.
+Runs `npm run test:ci` before each push.
 
 ## Updating
 
@@ -207,7 +210,7 @@ git branch -d update
 
 Compare the [differences between the `main` and `base` branches](https://github.com/joematthews/opinionated-angular/compare/base...main?diff=split&w=) to see all the changes.
 
-The `base` branch was generated using version `17.1.1` of the [Angular CLI](https://angular.io/cli) and then formatted using Prettier:
+The `base` branch was generated with [Angular CLI](https://angular.io/cli) version `17.1.1` using the following command and then formatted using Prettier with all plugins enabled. This was done so that formatting differences do not show in the diff.
 
 ```sh
 ng new --inline-template --inline-style --routing --style=scss --strict --ssr --commit opinionated-angular
