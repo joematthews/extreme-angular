@@ -2,7 +2,7 @@
 
 ![image](https://github.com/joematthews/opinionated-angular/assets/14097616/bfc78560-98a8-4959-8327-4e94121bf4dd)
 
-This is an opinionated Angular starter project that enforces best practices and provides a robust foundation for building modern, scalable web applications using Angular and its ecosystem of tools and libraries.
+This is an opinionated Angular starter project that enforces best practices and provides a robust foundation for building modern, scalable web applications using Angular and its ecosystem of tools and libraries. Please feel free to use this as-is, or as inspiration, for your next Angular project ❤️
 
 > [!NOTE]  
 > If you run into _any issues at all_ with the installation, upgrade, or usage of opinionated-angular, then please search through the [issues](https://github.com/joematthews/opinionated-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
