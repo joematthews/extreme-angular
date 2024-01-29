@@ -101,7 +101,7 @@ Although you may not require internationalization capabilities right now, adding
 
 ### Typescript
 
-The following compiler options have been added to the [tsconfig.json file](./tsconfig.json) to help with writing cleaner code:
+Adds the following compiler options to the [tsconfig.json file](./tsconfig.json) to help with writing cleaner code:
 
 ```json
 {
@@ -156,10 +156,10 @@ Uses [stylelint](https://stylelint.io/) and the [stylelint-scss plugin](https://
 
 Recommends VSCode extensions for [Angular](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template), [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), [Intellicode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode), and [Intellicode Completions](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions) automatically via a pop-up when the project is opened for the first time. These recommendations are set in the [.vscode/extensions.json file](./vscode/extensions.json).
 
-The following settings are configured in the [.vscode/settings.json file](.vscode/settings.json):
+Configures the following settings in the [.vscode/settings.json file](.vscode/settings.json):
 
 - Set Prettier as default formatter
-- Format code, and fix linting errors (if possible), on save with `CTRL+S` of via menu.
+- Format code, and fix linting errors (if possible), on save with `CTRL+S` or via the menu.
 - Auto save after 2 seconds (does not automatically format code or fix errors)
 
 ### Husky & Lint-staged
