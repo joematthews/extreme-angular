@@ -9,8 +9,8 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet, MatButtonModule, UpperCasePipe],
   template: `
     <h1 i18n>Hello, {{ title }}!</h1>
-    <p i18n>
-      The theme colors are:&nbsp;
+    <p i18n>The theme colors are:</p>
+    <p>
       @for (color of colors; track color; let index = $index) {
         <button
           mat-raised-button

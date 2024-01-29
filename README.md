@@ -54,13 +54,13 @@ The goal of these changes is to enforce 'best practices' while still being 100% 
 
 ### Angular Material & Dark Theme
 
-Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS (Windows, Mac, Linux). The default theme is dark.
+Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS (Windows, Mac, Linux). _The default theme is dark._
 
 Changes `density` to `-2` to make the UI (including buttons) more compact and more inline with web expectations.
 
-Uses the [Roboto font](https://fonts.google.com/specimen/Roboto) which is downloaded from the Google font api via the [index.html file](./src/index.html).
+Downloads the [Roboto font](https://fonts.google.com/specimen/Roboto) from the Google font api in the [index.html file](./src/index.html). The font is set in the [styles.scss file](./src/styles.scss).
 
-Enables [Animations](https://angular.io/guide/animations).
+Enables [Animations](https://angular.io/guide/animations) for Angular Material and custom components.
 
 ### SSR & Pre-rendering
 
@@ -86,9 +86,9 @@ The following preferences are set in [angular.json](./angular.json) for componen
 }
 ```
 
-Inline templates and inline styles encourages small component sizes. The max lines set for inline templates (30) and styles (15) can be adjusted in the [eslintrc.json file](./.eslintrc.json).
+Inline templates and inline styles encourages small component sizes. Customize the max lines for inline-templates and styles in the [eslintrc.json file](./.eslintrc.json).
 
-SCSS component styles makes it possible to adjust [Angular Material theming](https://v7.material.angular.io/guide/theming) for each component.
+SCSS makes it possible to adjust the [Angular Material theming](https://v7.material.angular.io/guide/theming) for each component.
 
 ### Internationalization (i18n)
 
@@ -103,35 +103,31 @@ Although you may not require internationalization capabilities right now, adding
 
 Adds the following compiler options to the [tsconfig.json file](./tsconfig.json) to help with writing cleaner code:
 
-```json
-{
-  "exactOptionalPropertyTypes": true,
-  "noUnusedLocals": true,
-  "noUnusedParameters": true,
-  "noUncheckedIndexedAccess": true
-}
-```
+- [exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
+- [noUnusedLocals](https://www.typescriptlang.org/tsconfig#noUnusedLocals)
+- [noUnusedParameters](https://www.typescriptlang.org/tsconfig#noUnusedParameters)
+- [noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess)
 
 ### Prettier
 
 Uses [Prettier](https://prettier.io/) to provide opinionated formatting so diffs contain less formatting changes and teams argue less about formatting in general.
 
-In the [.prettierrc.json file](./.prettierrc.json), `htmlWhitespaceSensitivity` has been set to `ignore` to improve the formatting of templates. This will trim whitespace around and inside elements. Use `&nbsp;` (non-breaking space) to explicitly enforce spacing between inline elements. (If disabled, this setting will be difficult to reenable in the future.)
+In the [.prettierrc.json file](./.prettierrc.json), `htmlWhitespaceSensitivity` is set to `ignore` to improve the formatting of templates. This will trim whitespace around and inside elements. Use `&nbsp;` (non-breaking space) to explicitly enforce spacing between inline-elements.
 
 The following prettier plugins are used:
 
 - [prettier-plugin-sh](https://www.npmjs.com/package/prettier-plugin-sh)
   - Enables formatting of shell scripts; eg, git hooks.
 - [prettier-plugin-css-order](https://www.npmjs.com/package/prettier-plugin-css-order)
-  - Automatically orders SCSS/CSS properties using [css-declaration-sorter](https://github.com/Siilwyn/css-declaration-sorter/)
+  - Automatically orders SCSS/CSS properties using [concentric-css](https://github.com/brandon-rhodes/Concentric-CSS)
 - [prettier-plugin-organize-imports](https://www.npmjs.com/package/prettier-plugin-organize-imports)
   - Automatically orders, arranges, and removes unused imports.
 
 ### Eslint
 
-The [.eslintrc.json file](./.esltinrcjson) is set up to use [overrides](https://eslint.org/docs/latest/use/configure/configuration-files#how-do-overrides-work) for each file type: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md
+The [.eslintrc.json file](./.esltinrcjson) is set up to use [overrides](https://eslint.org/docs/latest/use/configure/configuration-files#how-do-overrides-work) for each of the following file types: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md.
 
-The following eslint plugins are used:
+To help ensure all project files are linted, the following eslint plugins are used:
 
 - [@angular-eslint](https://github.com/angular-eslint/angular-eslint)
   - Enables all [rules for typescript](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/README.md) and all [rules for templates](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/README.md) unless explicitly disabled or modified.
@@ -158,9 +154,9 @@ Recommends VSCode extensions for [Angular](https://marketplace.visualstudio.com/
 
 Configures the following settings in the [.vscode/settings.json file](.vscode/settings.json):
 
-- Set Prettier as default formatter
-- Format code, and fix linting errors (if possible), on save with `CTRL+S` or via the menu.
-- Auto save after 2 seconds (does not automatically format code or fix errors)
+- Sets Prettier as default formatter
+- Formats code, and fix linting errors (if possible), on save with `CTRL+S` or via the menu.
+- Auto saves after 2 seconds (does not automatically format code or fix errors)
 
 ### Husky & Lint-staged
 
@@ -173,7 +169,7 @@ Runs `npm run test:ci` before each push.
 ## Updating
 
 > [!CAUTION]
-> Depending on the maturity of your project, it may be better to look at the [release notes](https://github.com/joematthews/opinionated-angular/releases) and [commits](https://github.com/joematthews/opinionated-angular/commits/main/) and manually make changes instead of merging. If the Angular version has changed then follow the [instructions to update Angular](https://angular.io/guide/updating) first before attempting to merge or make changes.
+> Depending on the maturity of your project, it may be better to look at the [release notes](https://github.com/joematthews/opinionated-angular/releases) and [commits](https://github.com/joematthews/opinionated-angular/commits/main/) and manually make changes instead of merging. If the Angular version has changed, then follow the [instructions to update Angular](https://angular.io/guide/updating) first before attempting to merge or make changes.
 
 To pull in the latest changes, I recommend checking out a 'update' branch and merging the latest changes from `upstream/main`:
 
