@@ -1,5 +1,5 @@
 {
-  "htmlWhitespaceSensitivity": "css",
+  "htmlWhitespaceSensitivity": "ignore",
   "plugins": [
     "prettier-plugin-sh",
     "prettier-plugin-css-order",

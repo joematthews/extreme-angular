@@ -116,7 +116,7 @@ Adds the following compiler options to the [tsconfig.json file](./tsconfig.json)
 
 Uses [Prettier](https://prettier.io/) to provide opinionated formatting so diffs contain less formatting changes and teams argue less about formatting in general.
 
-In the [.prettierrc.json file](./.prettierrc.json), `htmlWhitespaceSensitivity` has been set to `css` to improve the formatting of templates. This will trim whitespace immediately before and after inline elements. (If disabled, this setting will be difficult to reenable in the future.)
+In the [.prettierrc.json file](./.prettierrc.json), `htmlWhitespaceSensitivity` has been set to `ignore` to improve the formatting of templates. This will trim whitespace around and inside elements. Use `&nbsp;` (non-breaking space) to explicitly enforce spacing between inline elements. (If disabled, this setting will be difficult to reenable in the future.)
 
 The following prettier plugins are used:
 
