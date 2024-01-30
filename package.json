@@ -1,5 +1,5 @@
 {
-  "name": "opinionated-angular",
+  "name": "extreme-angular",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -7,7 +7,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
-    "serve:ssr:opinionated-angular": "node dist/opinionated-angular/server/server.mjs",
+    "serve:ssr:extreme-angular": "node dist/extreme-angular/server/server.mjs",
     "lint": "eslint \"**/*.{js,ts,html,json,md}\"",
     "lint:style": "stylelint \"**/*.{css,scss}\"",
     "format": "prettier --write \"**/*.{js,ts,css,sh,html,md,json,yaml,yml}\"",

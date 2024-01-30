@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "opinionated-angular": {
+    "extreme-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -19,7 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/opinionated-angular",
+            "outputPath": "dist/extreme-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "opinionated-angular:build:production"
+              "buildTarget": "extreme-angular:build:production"
             },
             "development": {
-              "buildTarget": "opinionated-angular:build:development"
+              "buildTarget": "extreme-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "opinionated-angular:build"
+            "buildTarget": "extreme-angular:build"
           }
         },
         "test": {

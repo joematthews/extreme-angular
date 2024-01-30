@@ -29,7 +29,7 @@ import { RouterOutlet } from '@angular/router';
   styles: ``,
 })
 export class AppComponent {
-  title = 'opinionated-angular';
+  title = 'extreme-angular';
 
   colors = ['none', 'primary', 'accent', 'warn'];
 }

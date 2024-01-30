@@ -1,11 +1,11 @@
-# Opinionated Angular 17
+# Extreme Angular 17
 
-![image](https://github.com/joematthews/opinionated-angular/assets/14097616/bfc78560-98a8-4959-8327-4e94121bf4dd)
+![image](https://github.com/joematthews/extreme-angular/assets/14097616/bfc78560-98a8-4959-8327-4e94121bf4dd)
 
 This is an opinionated Angular starter project that enforces best practices and provides a robust foundation for building modern, scalable web applications using Angular and its ecosystem of tools and libraries. Please feel free to use this as-is, or as inspiration, for your next Angular project ❤️
 
 > [!NOTE]  
-> If you run into _any issues at all_ with the installation, upgrade, or usage of opinionated-angular, then please search through the [issues](https://github.com/joematthews/opinionated-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
+> If you run into _any issues at all_ with the installation, upgrade, or usage of extreme-angular, then please search through the [issues](https://github.com/joematthews/extreme-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
 
 ## Table of Contents
 
@@ -31,7 +31,7 @@ These instructions assume you have installed [git version control](https://git-s
 To create a new project, I recommend keeping only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of your project):
 
 ```sh
-git clone --depth=1 --origin=upstream git@github.com:joematthews/opinionated-angular.git new_project_name
+git clone --depth=1 --origin=upstream git@github.com:joematthews/extreme-angular.git new_project_name
 ```
 
 Change to the new project directory and install the dependencies:
@@ -41,7 +41,7 @@ cd new_project_name
 npm install
 ```
 
-Use the shortcut `CTRL+SHIFT+H` in VSCode to search and replace `opinionated-angular` with your chosen project name.
+Use the shortcut `CTRL+SHIFT+H` in VSCode to search and replace `extreme-angular` with your chosen project name.
 
 To start the development server run `npm start`.
 
@@ -169,7 +169,7 @@ Runs `npm run test:ci` before each push.
 ## Updating
 
 > [!CAUTION]
-> Depending on the maturity of your project, it may be better to look at the [release notes](https://github.com/joematthews/opinionated-angular/releases) and [commits](https://github.com/joematthews/opinionated-angular/commits/main/) and manually make changes instead of merging. If the Angular version has changed, then follow the [instructions to update Angular](https://angular.io/guide/updating) first before attempting to merge or make changes.
+> Depending on the maturity of your project, it may be better to look at the [release notes](https://github.com/joematthews/extreme-angular/releases) and [commits](https://github.com/joematthews/extreme-angular/commits/main/) and manually make changes instead of merging. If the Angular version has changed, then follow the [instructions to update Angular](https://angular.io/guide/updating) first before attempting to merge or make changes.
 
 To pull in the latest changes, I recommend checking out a 'update' branch and merging the latest changes from `upstream/main`:
 
@@ -204,10 +204,10 @@ git branch -d update
 
 ## Diff & Base Branch
 
-Compare the [differences between the `main` and `base` branches](https://github.com/joematthews/opinionated-angular/compare/base...main?diff=split&w=) to see all the changes.
+Compare the [differences between the `main` and `base` branches](https://github.com/joematthews/extreme-angular/compare/base...main?diff=split&w=) to see all the changes.
 
 The `base` branch was generated with [Angular CLI](https://angular.io/cli) version `17.1.1` using the following command and then formatted using Prettier with all plugins enabled. This was done so that formatting differences do not show in the diff.
 
 ```sh
-ng new --inline-template --inline-style --routing --style=scss --strict --ssr --commit opinionated-angular
+ng new --inline-template --inline-style --routing --style=scss --strict --ssr --commit extreme-angular
 ```
