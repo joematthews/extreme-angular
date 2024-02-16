@@ -4,6 +4,8 @@
 
 This is an opinionated Angular starter project that enforces best practices and provides a robust foundation for building modern, scalable web applications using Angular and its ecosystem of tools and libraries. Please feel free to use this as-is, or as inspiration, for your next Angular project ❤️
 
+You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/github/joematthews/extreme-angular?preset=node
+
 > [!NOTE]  
 > If you run into _any issues at all_ with the installation, upgrade, or usage of extreme-angular, then please search through the [issues](https://github.com/joematthews/extreme-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
 
