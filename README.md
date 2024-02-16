@@ -125,7 +125,7 @@ The following prettier plugins are used:
 
 ### Eslint
 
-The [.eslintrc.json file](./.esltinrcjson) is set up to use [overrides](https://eslint.org/docs/latest/use/configure/configuration-files#how-do-overrides-work) for each of the following file types: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md.
+The [.eslintrc.json file](./.esltinrc.json) is set up to use [overrides](https://eslint.org/docs/latest/use/configure/configuration-files#how-do-overrides-work) for each of the following file types: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md.
 
 To help ensure all project files are linted, the following eslint plugins are used:
 
