@@ -56,7 +56,7 @@ The goal of these changes is to enforce 'best practices' while still being 100% 
 
 ### Angular Material & Dark Theme
 
-Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS (Windows, Mac, Linux). _The default theme is dark._
+Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS. _The default theme is dark._
 
 Changes `density` to `-2` to make the UI (including buttons) more compact and more inline with web expectations.
 
