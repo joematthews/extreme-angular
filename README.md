@@ -98,8 +98,16 @@ Enables [Internationalization](https://angular.io/guide/i18n-overview) and requi
 
 Although you may not require internationalization capabilities right now, adding `i18n` attributes as-you-go may make it less painful to use internationalization in the future.
 
+To disable i18n enforcement, set `"@angular-eslint/template/i18n"` to `"off"` within the `*.html` section of the [.eslintrc.json file](./.eslintrc.json):
+
+```
+"rules": {
+  "@angular-eslint/template/i18n": "off"
+}
+```
+
 > [!NOTE]
-> Saving a document will automatically add missing `i18n` attributes.
+> Saving a document using VSCode will automatically add missing `i18n` attributes using `eslint --fix`.
 
 ### Typescript
 
