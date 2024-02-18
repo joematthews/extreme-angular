@@ -23,6 +23,7 @@ This is an opinionated Angular starter project that enforces best practices and 
   - [Stylelint](#stylelint)
   - [VSCode](#vscode)
   - [Husky & Lint-Staged](#husky--lint-staged)
+  - [Commitizen](#commitizen)
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
 - [Diff & Base Branch](#diff--base-branch)
@@ -171,11 +172,28 @@ Configures the following settings in the [.vscode/settings.json file](.vscode/se
 
 ### Husky & Lint-staged
 
-Uses [Husky](https://typicode.github.io/husky/) to help manage the [pre-commit](./.husky/pre-commit) and [pre-push](./.husky/pre-push) git hooks.
+Uses [Husky](https://typicode.github.io/husky/) to help manage the [pre-commit](./.husky/pre-commit), [pre-push](./.husky/pre-push), and [prepare-commit-msg](./.husky/prepare-commit-msg) git hooks.
 
 Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
 
 Runs `npm run test:ci` before each push.
+
+### Commitizen
+
+Uses [Commitizen](https://commitizen.github.io/cz-cli) to suggest consistent formatting of commit messages.
+
+On commit, a interactive prompt wil appear:
+
+```
+? Select the type of change that you're committing: (Use arrow keys)
+❯ feat:     A new feature
+  fix:      A bug fix
+  docs:     Documentation only changes
+  style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+  refactor: A code change that neither fixes a bug nor adds a feature
+  perf:     A code change that improves performance
+  test:     Adding missing tests or correcting existing tests
+```
 
 ### Notes directory
 
