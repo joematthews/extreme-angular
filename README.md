@@ -23,6 +23,7 @@ This is an opinionated Angular starter project that enforces best practices and 
   - [Stylelint](#stylelint)
   - [VSCode](#vscode)
   - [Husky & Lint-Staged](#husky--lint-staged)
+  - [Notes directory](#notes-directory)
 - [Updating](#updating)
 - [Diff & Base Branch](#diff--base-branch)
 
@@ -175,6 +176,16 @@ Uses [Husky](https://typicode.github.io/husky/) to help manage the [pre-commit](
 Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
 
 Runs `npm run test:ci` before each push.
+
+### Notes directory
+
+Files in the `./notes` directory are ignored by git but are searchable within VSCode.
+
+This may be useful for keeping personal markdown files for notes or reference including:
+
+- Notes about clients
+- Todo lists
+- Code snippets & notebooks (iTypescript, tslab, etc)
 
 ## Updating
 
