@@ -23,8 +23,8 @@ This is an opinionated Angular starter project that enforces best practices and 
   - [Stylelint](#stylelint)
   - [VSCode](#vscode)
   - [Code Spell Checker](#code-spell-checker)
-  - [Husky & Lint-Staged](#husky--lint-staged)
   - [Commitizen](#commitizen)
+  - [Husky & Lint-Staged](#husky--lint-staged)
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
 - [Diff & Base Branch](#diff--base-branch)
@@ -171,19 +171,11 @@ Configures the following settings in the [.vscode/settings.json file](.vscode/se
 
 Enforces correct spelling.
 
-Add unique project specific words to [.cspell.json](.cspell.json).
+Add project specific words to [.cspell.json](.cspell.json).
 
 I highly recommend installing [Code Spell Checker for VSCode](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker). With this extension you can select "Add to config: extreme-angular/.cspell.json" from the 'Quick Fix' menu of misspelled words.
 
 Use `npm run check-spelling` to look for misspelled words in the project.
-
-### Husky & Lint-staged
-
-Uses [Husky](https://typicode.github.io/husky/) to help manage the [pre-commit](./.husky/pre-commit) and [pre-push](./.husky/pre-push) git hooks.
-
-Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
-
-Runs `npm run test:ci` before each push.
 
 ### Commitizen & Commitlint
 
@@ -202,7 +194,17 @@ On `git commit`, a interactive prompt will appear:
   test:     Adding missing tests or correcting existing tests
 ```
 
-Uses [Commitlint](https://commitlint.js.org/#/) and [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) to enforce good commit messages.
+Uses [Commitlint](https://commitlint.js.org/#/) and [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) to enforce good commit messages. Commitlint can be configured in [commitlint.config.js](./commitlint.config.js).
+
+### Husky & Lint-staged
+
+Uses [Husky](https://typicode.github.io/husky/) to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), [prepare-commit-msg](.husky/prepare-commit-msg), and [commit-msg](.husky/commit-msg) git hooks.
+
+Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
+
+Runs `npm run test:ci` before each push.
+
+Runs commitizen wizard in the `prepare-commit-msg` hook and runs commitlint in the `commit-msg` hook.
 
 ### Notes directory
 
