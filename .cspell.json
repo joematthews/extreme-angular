@@ -6,6 +6,7 @@
   // words - list of words to be always considered correct
   "words": [
     "Catppuccin",
+    "commitlint",
     "Darcula",
     "Fira",
     "Intellicode",
@@ -25,6 +26,7 @@
   "ignorePaths": [
     ".stylelintrc.json",
     ".vscode/*",
+    ".husky/*",
     "angular.json",
     "package.json"
   ]

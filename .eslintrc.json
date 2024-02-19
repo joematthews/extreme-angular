@@ -4,6 +4,7 @@
   "overrides": [
     {
       "files": ["*.js"],
+      "parserOptions": { "ecmaVersion": "latest" },
       "env": { "node": true },
       "extends": ["eslint:recommended", "prettier"],
       "rules": {}

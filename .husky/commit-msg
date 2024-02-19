@@ -1,0 +1,3 @@
+#!/bin/bash
+
+npx --no -- commitlint --edit ${1}
