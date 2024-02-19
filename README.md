@@ -24,6 +24,7 @@ This is an opinionated Angular starter project that enforces best practices and 
   - [VSCode](#vscode)
   - [Code Spell Checker](#code-spell-checker)
   - [Husky & Lint-Staged](#husky--lint-staged)
+  - [Commitizen](#commitizen)
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
 - [Diff & Base Branch](#diff--base-branch)
@@ -183,6 +184,23 @@ Uses [Husky](https://typicode.github.io/husky/) to help manage the [pre-commit](
 Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
 
 Runs `npm run test:ci` before each push.
+
+### Commitizen
+
+Uses [Commitizen](https://commitizen.github.io/cz-cli) to suggest consistent formatting of commit messages.
+
+On commit, a interactive prompt wil appear:
+
+```
+? Select the type of change that you're committing: (Use arrow keys)
+❯ feat:     A new feature
+  fix:      A bug fix
+  docs:     Documentation only changes
+  style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+  refactor: A code change that neither fixes a bug nor adds a feature
+  perf:     A code change that improves performance
+  test:     Adding missing tests or correcting existing tests
+```
 
 ### Notes directory
 
