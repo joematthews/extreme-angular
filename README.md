@@ -15,7 +15,6 @@ This is an opinionated Angular starter project that enforces best practices and 
 - [Key Features](#key-features)
   - [Angular Material & Dark Theme](#angular-material--dark-theme)
   - [SSR & Pre-rendering](#ssr--pre-rendering)
-  - [Component Preferences for CLI Generation](#component-preferences-for-cli-generation)
   - [Internationalization (i18n)](#internationalization-i18n)
   - [Typescript](#typescript)
   - [Prettier](#prettier)
