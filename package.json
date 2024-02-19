@@ -14,6 +14,7 @@
     "lint": "eslint \"**/*.{js,ts,html,json,md}\"",
     "lint:style": "stylelint \"**/*.{css,scss}\"",
     "format": "prettier --write \"**/*.{js,ts,css,sh,html,md,json,yaml,yml}\"",
+    "check-selling": "cspell \"**/*\"",
     "prepare": "husky install"
   },
   "private": true,
@@ -50,6 +51,7 @@
     "@types/node": "^18.18.0",
     "@typescript-eslint/eslint-plugin": "6.19.0",
     "@typescript-eslint/parser": "6.19.0",
+    "cspell": "^8.4.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jasmine": "^4.1.3",
