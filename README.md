@@ -278,7 +278,7 @@ Use `CTRL + ALT` (or `CTRL + OPTION` on Mac) to temporarily disable hints -- Or,
 
 ### Code Spell Checker
 
-I recommend using [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) for VSCode and adding project specific words to `cSpell.words` in [.vscode/settings.json](./vscode/settings.json):
+I recommend using [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) for VSCode and adding project specific words to `cSpell.words` in [.vscode/settings.json](.vscode/settings.json):
 
 ```json
 {
