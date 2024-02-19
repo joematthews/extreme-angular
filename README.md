@@ -157,7 +157,11 @@ To help ensure all project files are linted, the following eslint plugins are us
 
 ### Stylelint
 
-Uses [stylelint](https://stylelint.io/) and the [stylelint-scss plugin](https://www.npmjs.com/package/stylelint-scss) to lint CSS and SCSS using the recommended rule sets for both. Rules for stylelint can be modified in the [.stylelintrc.json file](./.stylelintrc.json).
+Uses [Stylelint](https://stylelint.io/) to lint CSS and SCSS using the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) and [stylelint-config-standard-scss](https://github.com/stylelint-scss/stylelint-config-standard-scss) configurations.
+
+Rules for stylelint are split between \*.css & \*.scss overrides and can be modified in the [.stylelintrc.json file](./.stylelintrc.json).
+
+Use `npm run lint:style` to lint all styles within the project.
 
 ### VSCode
 
