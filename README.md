@@ -282,7 +282,7 @@ I recommend using [Code Spell Checker](https://marketplace.visualstudio.com/item
 
 ```json
 {
-  "cSpell.userWords": ["VeryUniqueAppName"]
+  "cSpell.words": ["VeryUniqueAppName"]
 }
 ```
 
