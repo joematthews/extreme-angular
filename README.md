@@ -134,6 +134,8 @@ The following prettier plugins are used:
 - [prettier-plugin-organize-imports](https://www.npmjs.com/package/prettier-plugin-organize-imports)
   - Automatically orders, arranges, and removes unused imports.
 
+Use `npm run format` to format all relevant files within the project.
+
 ### Eslint
 
 The [.eslintrc.json file](./.eslintrc.json) is set up to use [overrides](https://eslint.org/docs/latest/use/configure/configuration-files#how-do-overrides-work) for each of the following file types: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md.
@@ -154,6 +156,8 @@ To help ensure all project files are linted, the following eslint plugins are us
   - Uses recommended rule set.
 - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier)
   - Removes any rules that may conflict with prettier formatting.
+
+Use `npm run lint` to lint all relevant files within the project.
 
 ### Stylelint
 
