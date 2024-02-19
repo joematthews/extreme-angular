@@ -82,22 +82,6 @@ npm run serve:ssr:new_project_name
 > [!NOTE]
 > Replace `new_project_name` above with the name of your project.
 
-### Component Preferences for CLI Generation
-
-The following preferences are set in [angular.json](./angular.json) for component generation:
-
-```json
-{
-  "inlineTemplate": true,
-  "inlineStyle": true,
-  "style": "scss"
-}
-```
-
-Inline templates and inline styles encourages small component sizes. Customize the max lines for inline-templates and styles in the [eslintrc.json file](./.eslintrc.json).
-
-SCSS makes it possible to adjust the [Angular Material theming](https://v7.material.angular.io/guide/theming) for each component.
-
 ### Internationalization (i18n)
 
 Enables [Internationalization](https://angular.io/guide/i18n-overview) and requires `i18n` attributes on all elements that include text.

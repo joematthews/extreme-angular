@@ -1,0 +1,18 @@
+<h1 i18n>Hello, {{ title }}!</h1>
+<p i18n>The theme colors are:</p>
+<p>
+  @for (color of colors; track color; let index = $index) {
+    <button
+      mat-raised-button
+      type="button"
+      [color]="color === 'none' ? '' : color"
+    >
+      {{ color | uppercase }} {{ index }}
+    </button>
+    @if (index < colors.length - 1) {
+      &nbsp;
+    }
+  }
+</p>
+
+<router-outlet />
