@@ -7,7 +7,7 @@ This is an opinionated Angular starter project that enforces best practices and 
 <!-- You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/github/joematthews/extreme-angular?preset=node -->
 
 > [!NOTE]  
-> If you run into _any issues at all_ with the installation, upgrade, or usage of extreme-angular, then please search through the [issues](https://github.com/joematthews/extreme-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
+> If you run into _any issues at all_ with installing, updating, or using extreme-angular, then please search through the [issues](https://github.com/joematthews/extreme-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
 
 ## Table of Contents
 
@@ -252,7 +252,7 @@ These are tips and tricks I feel are too opinionated to include in the repositor
 
 ### Inlay Hints
 
-I _highly_ recommend enabling [inlay hints](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints) in VSCode. They give me the confidence to use Typescript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) feature without feeling the need specify types 'for visibility'.
+I _highly_ recommend enabling [inlay hints](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints) in VSCode. They give me the confidence to use Typescript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
 
 Add the following to your user settings to enable inlay hints for javascript & typescript:
 
@@ -292,7 +292,7 @@ You can also select "Add to workspace settings" from the 'Quick Fix' menu of mis
 
 VSCode is capable of using 'font ligatures' -- not everyone likes font ligatures, but I really enjoy them.
 
-The two most popular fonts (that I know of) that support font ligatures are [Fira Code](https://github.com/tonsky/FiraCode) and [Jet Brains Mono](https://www.jetbrains.com/lp/mono/). I typically use the 'Regular' `*.ttf` variant of each font.
+The two most popular fonts that support font ligatures are [Fira Code](https://github.com/tonsky/FiraCode) and [Jet Brains Mono](https://www.jetbrains.com/lp/mono/). I typically use the 'Regular' `*.ttf` variant of each font.
 
 After you've downloaded and installed the font of your choice, you can set the font and enable font ligatures in your settings:
 
@@ -304,6 +304,8 @@ After you've downloaded and installed the font of your choice, you can set the f
 ```
 
 These are excellent fonts for readability even if you choose to leave `editor.fontLigatures` disabled.
+
+The fira code repository maintains [a list of alternative fonts with ligatures](https://github.com/tonsky/FiraCode#alternatives).
 
 ### Catppuccin
 
