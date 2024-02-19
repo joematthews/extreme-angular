@@ -27,7 +27,6 @@ This is an opinionated Angular starter project that enforces best practices and 
   - [Husky & Lint-Staged](#husky--lint-staged)
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
-- [Diff & Base Branch](#diff--base-branch)
 - [Tips & Tricks](#tips--tricks)
   - [Inlay Hints](#inlay-hints)
   - [Font Ligatures](#font-ligatures)
@@ -250,16 +249,6 @@ Finally, delete the update branch:
 
 ```sh
 git branch -d update
-```
-
-## Diff & Base Branch
-
-Compare the [differences between the `main` and `base` branches](https://github.com/joematthews/extreme-angular/compare/base...main?diff=split&w=) to see all the changes.
-
-The `base` branch was generated with [Angular CLI](https://angular.io/cli) version `17.1.1` using the following command and then formatted using Prettier with all plugins enabled. This was done so that formatting differences do not show in the diff.
-
-```sh
-ng new --inline-template --inline-style --routing --style=scss --strict --ssr --commit extreme-angular
 ```
 
 ## Tips & Tricks
