@@ -22,13 +22,13 @@ This is an opinionated Angular starter project that enforces best practices and 
   - [Eslint](#eslint)
   - [Stylelint](#stylelint)
   - [VSCode](#vscode)
+  - [Code Spell Checker](#code-spell-checker)
   - [Husky & Lint-Staged](#husky--lint-staged)
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
 - [Diff & Base Branch](#diff--base-branch)
 - [Tips & Tricks](#tips--tricks)
   - [Inlay Hints](#inlay-hints)
-  - [Code Spell Checker](#code-spell-checker)
   - [Font Ligatures](#font-ligatures)
   - [Catppuccin](#catppuccin)
 
@@ -158,7 +158,7 @@ Use `npm run lint:style` to lint all styles within the project.
 
 ### VSCode
 
-Recommends VSCode extensions for [Angular](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template), [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), [Intellicode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode), and [Intellicode Completions](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions) automatically via a pop-up when the project is opened for the first time. These recommendations are set in the [.vscode/extensions.json file](.vscode/extensions.json).
+Recommends VSCode extensions for [Angular](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template), [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker), [Intellicode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode), and [Intellicode Completions](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions) automatically via a pop-up when the project is opened for the first time. These recommendations are set in the [.vscode/extensions.json file](.vscode/extensions.json).
 
 Configures the following settings in the [.vscode/settings.json file](.vscode/settings.json):
 
@@ -166,11 +166,21 @@ Configures the following settings in the [.vscode/settings.json file](.vscode/se
 - Formats code, and fix linting errors (if possible), on save with `CTRL+S` or via the menu.
 - Auto saves after 2 seconds (does not automatically format code or fix errors)
 
+### Code Spell Checker
+
+Enforces correct spelling.
+
+Add unique project specific words to [.cspell.json](.cspell.json).
+
+I highly recommend installing [Code Spell Checker for VSCode](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker). With this extension you can select "Add to config: extreme-angular/.cspell.json" from the 'Quick Fix' menu of misspelled words.
+
+Use `npm run check-spelling` to look for misspelled words in the project.
+
 ### Husky & Lint-staged
 
 Uses [Husky](https://typicode.github.io/husky/) to help manage the [pre-commit](./.husky/pre-commit) and [pre-push](./.husky/pre-push) git hooks.
 
-Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
+Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
 
 Runs `npm run test:ci` before each push.
 
@@ -259,18 +269,6 @@ Add the following to your user settings to enable inlay hints for javascript & t
 ```
 
 Use `CTRL + ALT` (or `CTRL + OPTION` on Mac) to temporarily disable hints -- Or, change `editor.inlayHints.enabled` to `offUnlessPressed` to reverse this behavior.
-
-### Code Spell Checker
-
-I recommend using [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) for VSCode and adding project specific words to `cSpell.words` in [.vscode/settings.json](.vscode/settings.json):
-
-```json
-{
-  "cSpell.words": ["VeryUniqueAppName"]
-}
-```
-
-You can also select "Add to workspace settings" from the 'Quick Fix' menu of misspelled words.
 
 ### Font Ligatures
 
