@@ -185,11 +185,11 @@ Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, e
 
 Runs `npm run test:ci` before each push.
 
-### Commitizen
+### Commitizen & Commitlint
 
 Uses [Commitizen](https://commitizen.github.io/cz-cli) to suggest consistent formatting of commit messages.
 
-On commit, a interactive prompt wil appear:
+On `git commit`, a interactive prompt will appear:
 
 ```
 ? Select the type of change that you're committing: (Use arrow keys)
@@ -201,6 +201,8 @@ On commit, a interactive prompt wil appear:
   perf:     A code change that improves performance
   test:     Adding missing tests or correcting existing tests
 ```
+
+Uses [Commitlint](https://commitlint.js.org/#/) and [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) to enforce good commit messages.
 
 ### Notes directory
 
