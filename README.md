@@ -26,6 +26,11 @@ This is an opinionated Angular starter project that enforces best practices and 
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
 - [Diff & Base Branch](#diff--base-branch)
+- [Tips & Tricks](#tips--tricks)
+  - [Inlay Hints](#inlay-hints)
+  - [Code Spell Checker](#code-spell-checker)
+  - [Font Ligatures](#font-ligatures)
+  - [Catppuccin](#catppuccin)
 
 ## Installation & Starting
 
@@ -240,3 +245,74 @@ The `base` branch was generated with [Angular CLI](https://angular.io/cli) versi
 ```sh
 ng new --inline-template --inline-style --routing --style=scss --strict --ssr --commit extreme-angular
 ```
+
+## Tips & Tricks
+
+These are tips and tricks I feel are too opinionated to include in the repository. If this section gets out of hand I will probably move it into a separate repository.
+
+### Inlay Hints
+
+I _highly_ recommend enabling [inlay hints](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints) in VSCode. They give me the confidence to use Typescript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) feature without feeling the need specify types 'for visibility'.
+
+Add the following to your user settings to enable inlay hints for javascript & typescript:
+
+```json
+{
+  "editor.inlayHints.enabled": "onUnlessPressed",
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true
+}
+```
+
+Use `CTRL + ALT` (or `CTRL + OPTION` on Mac) to temporarily disable hints -- Or, change `editor.inlayHints.enabled` to `offUnlessPressed` to reverse this behavior.
+
+### Code Spell Checker
+
+I recommend using [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) for VSCode and adding project specific words to `cSpell.words` in [.vscode/settings.json](./vscode/settings.json):
+
+```json
+{
+  "cSpell.userWords": ["VeryUniqueAppName"]
+}
+```
+
+You can also select "Add to workspace settings" from the 'Quick Fix' menu of misspelled words.
+
+### Font Ligatures
+
+VSCode is capable of using 'font ligatures' -- not everyone likes font ligatures, but I really enjoy them.
+
+The two most popular fonts (that I know of) that support font ligatures are [Fira Code](https://github.com/tonsky/FiraCode) and [Jet Brains Mono](https://www.jetbrains.com/lp/mono/). I typically use the 'Regular' `*.ttf` variant of each font.
+
+After you've downloaded and installed the font of your choice, you can set the font and enable font ligatures in your settings:
+
+```json
+{
+  "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true
+}
+```
+
+These are excellent fonts for readability even if you choose to leave `editor.fontLigatures` disabled.
+
+### Catppuccin
+
+Looking for a new theme to try? [Catppuccin](https://github.com/catppuccin) is great theme that I describe as 'modern Darcula'.
+
+Catppuccin has 4 flavours: 🌻 Latte, 🪴 Frappé, 🌺 Macchiato, & 🌿 Mocha.
+
+[Catppuccin is everywhere](https://github.com/catppuccin/catppuccin?tab=readme-ov-file#-ports-and-more). I also use it for the macOS terminal.
+
+VSCode has two extensions: [Catppuccin for VSCode](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc) and [Catppuccin Icons for VSCode](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc-icons).
+
+My favorite is 🪴 Frappé.
