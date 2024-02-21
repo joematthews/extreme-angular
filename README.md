@@ -167,11 +167,11 @@ Configures the following settings in the [.vscode/settings.json file](.vscode/se
 
 ### Code Spell Checker
 
-Enforces correct spelling.
+Enables spell checking for all project files.
 
 Add project specific words to [.cspell.json](.cspell.json).
 
-I highly recommend installing [Code Spell Checker for VSCode](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker). With this extension you can select "Add to config: extreme-angular/.cspell.json" from the 'Quick Fix' menu of misspelled words.
+I highly recommend installing [Code Spell Checker for VSCode](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker). With this extension you can select "Add to config: .cspell.json" from the 'Quick Fix' menu of misspelled words.
 
 Use `npm run check-spelling` to look for misspelled words in the project.
 
