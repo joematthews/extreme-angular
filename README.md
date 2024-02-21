@@ -35,7 +35,7 @@ This is an opinionated Angular starter project that enforces best practices and 
 
 These instructions assume you have installed [git version control](https://git-scm.com/) and the latest version of [Node.js LTS](https://nodejs.org/en/download).
 
-To create a new project, I recommend keeping only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of your project):
+To create a new project, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of your project):
 
 ```sh
 git clone --depth=1 --origin=upstream git@github.com:joematthews/extreme-angular.git new_project_name
