@@ -8,6 +8,7 @@
     "Catppuccin",
     "commitlint",
     "Darcula",
+    "devkit",
     "Fira",
     "Intellicode",
     "joematthews",
@@ -22,12 +23,5 @@
   // This is useful for offensive words and common spelling errors.
   // For example "hte" should be "the"
   "flagWords": [],
-  "caseSensitive": false,
-  "ignorePaths": [
-    ".stylelintrc.json",
-    ".vscode/*",
-    ".husky/*",
-    "angular.json",
-    "package.json"
-  ]
+  "caseSensitive": false
 }
