@@ -14,7 +14,7 @@
     "lint": "eslint \"**/*.{js,ts,html,json,md}\"",
     "lint:style": "stylelint \"**/*.{css,scss}\"",
     "format": "prettier --write \"**/*.{js,ts,css,sh,html,md,json,yaml,yml}\"",
-    "check-selling": "cspell \"**/*\"",
+    "check-spelling": "cspell \"**/*\"",
     "prepare": "husky install"
   },
   "private": true,
