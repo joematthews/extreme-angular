@@ -2,7 +2,7 @@
 
 ![image](https://github.com/joematthews/extreme-angular/assets/14097616/bfc78560-98a8-4959-8327-4e94121bf4dd)
 
-This is an opinionated Angular starter project that enforces best practices and provides a robust foundation for building modern, scalable web applications using Angular and its ecosystem of tools and libraries. Please feel free to use this as-is, or as inspiration, for your next Angular project ❤️
+This is an opinionated Angular starter project that enforces best practices and provides a robust foundation for building modern, accessible web applications using Angular and its ecosystem of tools and libraries. Please feel free to use this as-is, or as inspiration, for your next Angular project ❤️
 
 You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/github/joematthews/extreme-angular?preset=node
 
@@ -13,9 +13,10 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
 
 - [Installation & Starting](#installation--starting)
 - [Key Features](#key-features)
-  - [Angular Material & Dark Theme](#angular-material--dark-theme)
-  - [SSR & Pre-rendering](#ssr--pre-rendering)
+  - [Accessibility (a11y)](#accessibility-a11y)
   - [Internationalization (i18n)](#internationalization-i18n)
+  - [Angular Material & Dark Theme](#angular-material--dark-theme)
+  - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering)
   - [Typescript](#typescript)
   - [Prettier](#prettier)
   - [Eslint](#eslint)
@@ -59,27 +60,17 @@ To start the development server run `npm start`.
 
 The goal of these changes is to enforce 'best practices' while still being 100% compatible with the [latest Angular documentation](https://angular.io/docs).
 
-### Angular Material & Dark Theme
+### Accessibility (a11y)
 
-Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS. _The default theme is dark._
+extreme-angular enables _all_ of the accessibility rules from [angular-eslint](https://github.com/angular-eslint/angular-eslint) by default including image alt text, form labels, no autofocus, valid ARIA, and more.
 
-Changes `density` to `-2` to make the UI (including buttons) more compact and more inline with web expectations.
+In my experience these rules are easy to work with if enabled _early_ in the development process and early adoption of these rules is also very helpful for avoiding common accessibility anti-patterns.
 
-Downloads the [Roboto font](https://fonts.google.com/specimen/Roboto) from the Google font api in the [index.html file](./src/index.html). The font is set in the [styles.scss file](./src/styles.scss).
+If you run into a problem with any of these accessibility rules I encourage you to open up an [issue](https://github.com/joematthews/extreme-angular/issues) so we can troubleshoot the the errors or concerns together.
 
-Enables [Animations](https://angular.io/guide/animations) for Angular Material and custom components.
+For a full list of accessibility-centric rules, check out the [angular-eslint template rules](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/README.md)
 
-### SSR & Pre-rendering
-
-Enables [Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) to improve SEO and user experience. To start the SSR server run the following commands:
-
-```sh
-npm run build
-npm run serve:ssr:new_project_name
-```
-
-> [!NOTE]
-> Replace `new_project_name` above with the name of your project.
+Please let me know if more can be done to improve the accessibility of extreme-angular. Thank you.
 
 ### Internationalization (i18n)
 
@@ -97,6 +88,28 @@ To disable i18n enforcement, set `"@angular-eslint/template/i18n"` to `"off"` wi
 
 > [!NOTE]
 > Saving a document using VSCode will automatically add missing `i18n` attributes using `eslint --fix`.
+
+### Angular Material & Dark Theme
+
+Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS. _The default theme is dark._
+
+Changes `density` to `-2` to make the UI (including buttons) more compact and more inline with web expectations.
+
+Downloads the [Roboto font](https://fonts.google.com/specimen/Roboto) from the Google font api in the [index.html file](./src/index.html). The font is set in the [styles.scss file](./src/styles.scss).
+
+Enables [Animations](https://angular.io/guide/animations) for Angular Material and custom components.
+
+### Server-side-rendering & Pre-rendering
+
+Enables [Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) to improve SEO and user experience. To start the SSR server run the following commands:
+
+```sh
+npm run build
+npm run serve:ssr:new_project_name
+```
+
+> [!NOTE]
+> Replace `new_project_name` above with the name of your project.
 
 ### Typescript
 
