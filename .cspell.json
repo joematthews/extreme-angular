@@ -14,6 +14,7 @@
     "joematthews",
     "Macchiato",
     "Menlo",
+    "prerender",
     "Roboto",
     "stylelint",
     "stylelintrc",
@@ -23,5 +24,6 @@
   // This is useful for offensive words and common spelling errors.
   // For example "hte" should be "the"
   "flagWords": [],
-  "caseSensitive": false
+  "caseSensitive": false,
+  "ignorePaths": ["dist", "node_modules"]
 }
