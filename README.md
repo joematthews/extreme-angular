@@ -9,6 +9,8 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
 > [!NOTE]  
 > If you run into _any issues at all_ with installing, updating, or using extreme-angular, then please search through the [issues](https://github.com/joematthews/extreme-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
 
+If you are looking for a full featured, robust, and enterprise-ready Typescript backend framework that pairs well Angular, then checkout the [NestJS web framework project](https://nestjs.com/). NestJS has features similar to Springboot, .NET and other enterprise web frameworks.
+
 ## Table of Contents
 
 - [Installation & Starting](#installation--starting)
