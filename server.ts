@@ -31,6 +31,11 @@ export function app(): express.Express {
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
 
+    if (!headers.host)
+      throw new Error(
+        'cannot execute commonEngine.render: headers.host is undefined',
+      );
+
     commonEngine
       .render({
         bootstrap,
@@ -40,7 +45,7 @@ export function app(): express.Express {
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
       })
       .then((html) => res.send(html))
-      .catch((err) => {
+      .catch((err: unknown) => {
         next(err);
       });
   });
@@ -54,7 +59,9 @@ function run(): void {
   // Start up the Node server
   const server = app();
   server.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
+    console.log(
+      `Node Express server listening on http://localhost:${port.toString()}`,
+    );
   });
 }
 
