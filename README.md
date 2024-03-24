@@ -9,8 +9,6 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
 > [!NOTE]  
 > If you run into _any issues at all_ with installing, updating, or using extreme-angular, then please search through the [issues](https://github.com/joematthews/extreme-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
 
-If you are looking for a full featured, robust, and enterprise-ready Typescript backend framework that pairs well Angular, then checkout the [NestJS web framework project](https://nestjs.com/). NestJS has features similar to Springboot, .NET and other enterprise web frameworks.
-
 ## Table of Contents
 
 - [Installation & Starting](#installation--starting)
@@ -30,6 +28,7 @@ If you are looking for a full featured, robust, and enterprise-ready Typescript 
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
 - [Tips & Tricks](#tips--tricks)
+  - [NestJS](#nestjs)
   - [Inlay Hints](#inlay-hints)
   - [Font Ligatures](#font-ligatures)
   - [Catppuccin](#catppuccin)
@@ -270,6 +269,10 @@ git branch -d update
 ## Tips & Tricks
 
 These are tips and tricks I feel are too opinionated to include in the repository. If this section gets out of hand I will probably move it into a separate repository.
+
+### NestJS
+
+If you are looking for a full featured, robust, and enterprise-ready Typescript backend framework that pairs well Angular, then checkout the [NestJS web framework project](https://nestjs.com/). NestJS has features similar to Spring Boot, .NET and other enterprise web frameworks.
 
 ### Inlay Hints
 
