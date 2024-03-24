@@ -72,7 +72,9 @@ If you run into a problem with any of these accessibility rules I encourage you 
 
 For a full list of accessibility-centric rules, check out the [angular-eslint template rules](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/README.md)
 
-Please let me know if more can be done to improve the accessibility of extreme-angular. Thank you.
+The [Accessibility in Angular guide](https://angular.io/guide/accessibility) is a great place to start learning about accessibility in Angular and it provides resources on the topic of accessibility.
+
+Please let me know if more can be done to improve the accessibility of extreme-angular by creating an issue. Thank you.
 
 ### Internationalization (i18n)
 
