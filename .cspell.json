@@ -4,26 +4,11 @@
   // language - current active spelling language
   "language": "en",
   // words - list of words to be always considered correct
-  "words": [
-    "Catppuccin",
-    "commitlint",
-    "Darcula",
-    "devkit",
-    "Fira",
-    "Intellicode",
-    "joematthews",
-    "Macchiato",
-    "Menlo",
-    "prerender",
-    "Roboto",
-    "stylelint",
-    "stylelintrc",
-    "tslab"
-  ],
+  "words": [],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
   // For example "hte" should be "the"
   "flagWords": [],
   "caseSensitive": false,
-  "ignorePaths": ["dist", "node_modules"]
+  "useGitignore": true
 }
