@@ -270,10 +270,6 @@ git branch -d update
 
 These are tips and tricks I feel are too opinionated to include in the repository. If this section gets out of hand I will probably move it into a separate repository.
 
-### NestJS
-
-If you are looking for a full featured, robust, and enterprise-ready Typescript backend framework that pairs well Angular, then checkout the [NestJS web framework project](https://nestjs.com/). NestJS has features similar to Spring Boot, .NET and other enterprise web frameworks.
-
 ### Inlay Hints
 
 I _highly_ recommend enabling [inlay hints](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints) in VSCode. They give me the confidence to use Typescript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
