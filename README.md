@@ -11,7 +11,6 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
 
 ## Table of Contents
 
-- [Installation & Starting](#installation--starting)
 - [Key Features](#key-features)
   - [Accessibility (a11y)](#accessibility-a11y)
   - [Internationalization (i18n)](#internationalization-i18n)
@@ -26,36 +25,13 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
   - [Commitizen & Commitlint](#commitizen--commitlint)
   - [Husky & Lint-Staged](#husky--lint-staged)
   - [Notes directory](#notes-directory)
+- [Installation & Starting](#installation--starting)
 - [Updating](#updating)
 - [Tips & Tricks](#tips--tricks)
   - [NestJS](#nestjs)
   - [Inlay Hints](#inlay-hints)
   - [Font Ligatures](#font-ligatures)
   - [Catppuccin](#catppuccin)
-
-## Installation & Starting
-
-These instructions assume you have installed [git version control](https://git-scm.com/) and the latest version of [Node.js LTS](https://nodejs.org/en/download).
-
-To create a new project, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of your project):
-
-```sh
-git clone --depth=1 --origin=upstream git@github.com:joematthews/extreme-angular.git new_project_name
-```
-
-Change to the new project directory and install the dependencies:
-
-```sh
-cd new_project_name
-npm install
-```
-
-Use the shortcut `CTRL+SHIFT+H` in VSCode to search and replace `extreme-angular` with your chosen project name.
-
-To start the development server run `npm start`.
-
-> [!NOTE]  
-> If you're using [VSCode](https://code.visualstudio.com/) and [Chrome](https://www.google.com/chrome/), then press `F5` on the keyboard to start the app in debug mode.
 
 ## Key Features
 
@@ -229,6 +205,30 @@ This may be useful for keeping personal markdown files for notes or reference in
 - Notes about clients
 - Todo lists
 - Code snippets & notebooks (iTypescript, tslab, etc)
+
+## Installation & Starting
+
+These instructions assume you have installed [git version control](https://git-scm.com/) and the latest version of [Node.js LTS](https://nodejs.org/en/download).
+
+To create a new project, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of your project):
+
+```sh
+git clone --depth=1 --origin=upstream git@github.com:joematthews/extreme-angular.git new_project_name
+```
+
+Change to the new project directory and install the dependencies:
+
+```sh
+cd new_project_name
+npm install
+```
+
+Use the shortcut `CTRL+SHIFT+H` in VSCode to search and replace `extreme-angular` with your chosen project name.
+
+To start the development server run `npm start`.
+
+> [!NOTE]  
+> If you're using [VSCode](https://code.visualstudio.com/) and [Chrome](https://www.google.com/chrome/), then press `F5` on the keyboard to start the app in debug mode.
 
 ## Updating
 
