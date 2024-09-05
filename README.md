@@ -141,7 +141,7 @@ Use `npm run format` to format all relevant files within the project.
 
 ### Eslint
 
-The [.eslintrc.json file](./.eslintrc.json) is set up to use [overrides](https://eslint.org/docs/latest/use/configure/configuration-files#how-do-overrides-work) for each of the following file types: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md.
+The [.eslintrc.json file](./.eslintrc.json) is set up to use overrides for each of the following file types: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md.
 
 To help ensure all project files are linted, the following eslint plugins are used:
 
@@ -267,7 +267,7 @@ git branch -d update
 
 ## Tips & Tricks
 
-These are tips and tricks I feel are too opinionated to include in the repository. If this section gets out of hand I will probably move it into a separate repository.
+These are tips and tricks I feel are too opinionated to include in the repository. If this section gets out of hand I will probably move it into a separate gist.
 
 ### Inlay Hints
 
