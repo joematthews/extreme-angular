@@ -316,7 +316,7 @@ The fira code repository maintains [a list of alternative fonts with ligatures](
 
 ### Catppuccin
 
-Looking for a new theme to try? [Catppuccin](https://catppuccin.com/) is great theme that I describe as 'modern Darcula'.
+Looking for a new theme to try? [Catppuccin](https://catppuccin.com/) is great theme.
 
 Catppuccin has 4 flavours: 🌻 Latte, 🪴 Frappé, 🌺 Macchiato, & 🌿 Mocha.
 
