@@ -4,8 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
+  selector: 'app-root',
   imports: [RouterOutlet, MatButtonModule, UpperCasePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
