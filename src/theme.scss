@@ -2,24 +2,24 @@
 @include mat.core();
 
 // Define a dark theme
-$dark-theme: mat.define-dark-theme(
+$dark-theme: mat.m2-define-dark-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$blue-palette),
-      accent: mat.define-palette(mat.$blue-gray-palette),
+      primary: mat.m2-define-palette(mat.$m2-blue-palette),
+      accent: mat.m2-define-palette(mat.$m2-blue-gray-palette),
     ),
     // Only include `typography` and `density` in the default dark theme.
-    typography: mat.define-typography-config(),
+    typography: mat.m2-define-typography-config(),
     density: -2,
   )
 );
 
 // Define a light theme
-$light-theme: mat.define-light-theme(
+$light-theme: mat.m2-define-light-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$blue-palette),
-      accent: mat.define-palette(mat.$blue-gray-palette),
+      primary: mat.m2-define-palette(mat.$m2-blue-palette),
+      accent: mat.m2-define-palette(mat.$m2-blue-gray-palette),
     ),
   )
 );
