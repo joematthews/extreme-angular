@@ -1,3 +1,11 @@
 #!/bin/bash
 
-npx --no -- commitlint --edit ${1}
+npx --no -- commitlint --edit ${1} || {
+  # Print if commit message fails
+  echo -e 'Example conventional-commit messages:'
+  echo -e '- "feat: add user service for authentication"'
+  echo -e '- "fix(auth): correct validation error in login form"'
+  echo -e '- "chore(ci): update CI configuration to use Node 22"'
+  echo -e ''
+  exit 1
+}

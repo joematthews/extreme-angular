@@ -1,4 +1,0 @@
-/dist
-/node-modules
-package-lock.json
-!.cspell.json

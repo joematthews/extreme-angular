@@ -15,11 +15,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'extreme-angular' title`, () => {
+  it(`should have the 'extreme-angular-2' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
 
-    expect(app.title).toEqual('extreme-angular');
+    expect(app.title).toEqual('extreme-angular-2');
   });
 
   it('should render title', () => {
@@ -28,7 +28,7 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Hello, extreme-angular',
+      'Hello, extreme-angular-2',
     );
   });
 });

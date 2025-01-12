@@ -5,7 +5,8 @@
     "source.fixAll": "explicit"
   },
   "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 2000,
-  "search.useIgnoreFiles": true,
+  "files.autoSaveDelay": 3000,
+  "css.validate": false,
+  "scss.validate": false,
   "stylelint.validate": ["css", "scss"]
 }

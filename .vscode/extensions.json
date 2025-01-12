@@ -8,6 +8,7 @@
     "stylelint.vscode-stylelint",
     "streetsidesoftware.code-spell-checker",
     "VisualStudioExptTeam.vscodeintellicode",
-    "VisualStudioExptTeam.vscodeintellicode-completions"
+    "VisualStudioExptTeam.vscodeintellicode-completions",
+    "bierner.github-markdown-preview"
   ]
 }
