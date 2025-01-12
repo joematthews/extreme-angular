@@ -1,4 +1,4 @@
-# Extreme Angular 17
+# Extreme Angular 18
 
 ![image](https://github.com/joematthews/extreme-angular/assets/14097616/bfc78560-98a8-4959-8327-4e94121bf4dd)
 
@@ -10,6 +10,7 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
 > If you run into _any issues at all_ with installing, updating, or using extreme-angular, then please search through the [issues](https://github.com/joematthews/extreme-angular/issues). If you do not see a similar issue, then please create a new issue -- thank you! 🙏
 
 ## Table of Contents
+
 - [Installation & Starting](#installation--starting)
 - [Key Features](#key-features)
   - [Accessibility (a11y)](#accessibility-a11y)
