@@ -30,7 +30,7 @@ Thank you for your contributions!
 
 - [Getting Started](#getting-started)
 - [Dev Tools Implemented](#dev-tools-implemented)
-  - [Typescript Configuration](#typescript-configuration)
+  - [Typescript](#typescript)
   - [Eslint](#eslint)
     - [Accessibility (a11y)](#accessibility-a11y) :accessibility:
   - [Stylelint](#stylelint)
@@ -90,7 +90,7 @@ Use this script to run all checks against all project files:
 npm run lint:all
 ```
 
-### Typescript Configuration
+### Typescript
 
 In addition to setting `"strict": true` in the TypeScript configuration, Angular's template checking is enabled with Strict Mode as defined in the [tsconfig.json file](tsconfig.json).
 
