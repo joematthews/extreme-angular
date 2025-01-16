@@ -9,6 +9,8 @@
     "streetsidesoftware.code-spell-checker",
     "VisualStudioExptTeam.vscodeintellicode",
     "VisualStudioExptTeam.vscodeintellicode-completions",
-    "bierner.github-markdown-preview"
+    "bierner.github-markdown-preview",
+    "github.vscode-github-actions",
+    "GitHub.vscode-pull-request-github"
   ]
 }
