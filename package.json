@@ -15,7 +15,7 @@
     "lint:style": "stylelint \"**/*.{css,scss}\"",
     "lint:spelling": "cspell --quiet \"**/*\"",
     "lint:all": "npm run lint && npm run lint:style && npm run lint:spelling",
-    "format:base": "prettier \"**/*.{js,ts,css,scss,sh,html,md,json,yaml,yml}\"",
+    "format:base": "prettier --ignore-file=./.gitignore  \"**/*.{js,ts,css,scss,sh,html,md,json,yaml,yml}\"",
     "format": "npm run format:base -- --write",
     "format:ci": "npm run format:base -- --check --log-level warn",
     "prepare": "husky install"
