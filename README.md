@@ -39,6 +39,10 @@ Thank you for your contributions!
   - [VSCode](#vscode)
   - [Husky, Commitlint, tsc-files & Lint-Staged (Git Hooks)](#husky-commitlint-tsc-files--lint-staged-git-hooks)
   - [Continuous Integration (CI) Using Github Actions](#continuous-integration-ci-using-github-actions)
+- [Opt-in Angular Schematics](#opt-in-angular-schematics)
+  - [Angular Material & Angular CDK](#angular-material--angular-cdk)
+  - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering)
+  - [Internationalization (i18n)](#internationalization-i18n)
 - [Tips & Tricks](#tips--tricks)
   - [Use VSCode as Git's Editor](#use-vscode-as-gits-editor)
   - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
@@ -46,10 +50,6 @@ Thank you for your contributions!
   - [Catppuccin Theme](#catppuccin)
   - [Oh My Bash / Oh My Zsh / Oh My Posh](#oh-my-zsh--oh-my-bash--oh-my-posh)
   - [JetBrains Webstorm & Rider](#jetbrains-webstorm--rider)
-- [Opt-in Angular Schematics](#opt-in-angular-schematics)
-  - [Angular Material & Angular CDK](#angular-material--angular-cdk)
-  - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering)
-  - [Internationalization (i18n)](#internationalization-i18n)
 - [Updating](#updating)
 
 ## Getting Started
@@ -229,6 +229,38 @@ The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow is exe
 
 The pull request cannot be merged if there are any errors. The output of these workflows can from the 'Actions' tab on the github repository.
 
+## Opt-in Angular Schematics
+
+### Angular Material & Angular CDK
+
+Looking for an a11y-friendly, MIT-licensed, Angular component library that strictly adheres to the [Material Design language](https://m3.material.io/) and integrates well with Angular's core libraries, and comes with animations? Then check out [Angular Material](https://material.angular.io/).
+
+The Angular Material documentation is very good and covers many topics including [Supporting Light and Dark Mode](https://material.angular.io/guide/theming#supporting-light-and-dark-mode)
+
+For design-agnostic template utility, consider using the [Angular CDK](https://material.angular.io/cdk/categories) by itself.
+
+### Server-side-rendering & Pre-rendering (SSR)
+
+Consider enabling [Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) to improve SEO and user experience at the cost of increased deployment complexity.
+
+### Internationalization (i18n)
+
+Angular has powerful [Internationalization](https://angular.dev/guide/i18n) capabilities.
+
+If you plan to implement internationalization in the future, adding i18n attributes early on can make the process easier to scale naturally.
+
+To enable the i18n ESLint rule, simply remove or configure the following rule from the \*.html section of the eslint.config.js file: [eslint.config.js file](./eslint.config.js):
+
+```json
+  "@angular-eslint/template/i18n": "off"
+```
+
+> [!NOTE]
+> You may also need to configure the [@angular-eslint/template/i18n](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/i18n.md) rule according to your project's needs.
+
+> [!TIP]
+> Using `eslint --fix` can automatically add i18n tags in many cases.
+
 ## Tips & Tricks
 
 These are tips and tricks that are too opinionated or situational to include in the repository configuration or are not related to Angular project configuration.
@@ -309,9 +341,9 @@ These are great frameworks for managing shell configuration. They include helpfu
 
 Shell configuration frameworks are a quick way to add git branch & status information to the shell prompt.
 
-### JetBrains Webstorm & Rider
+### JetBrains IDEs
 
-[Webstorm and Rider are now free to use for non-commercial use!](https://blog.jetbrains.com/blog/2024/10/24/webstorm-and-rider-are-now-free-for-non-commercial-use/)
+[Webstorm, Rider & RustRover are now free to use for non-commercial use!](https://sales.jetbrains.com/hc/en-gb/articles/18950890312210-The-free-non-commercial-licensing-FAQ)
 
 Here are some tips for configuring the dev tools for this project in JetBrains IDEs:
 
@@ -324,38 +356,6 @@ Here are some tips for configuring the dev tools for this project in JetBrains I
 - (Optional) Set keymap to 'VSCode' or 'VSCode (macOS)' for an easier transition
 - (Optional) Install Catppuccin Theme & Catppuccin Icons to be one of the cool kids.
 - (Optional) Search for 'ligatures' in the settings to enable font ligatures. JetBrainsMono is capable of displaying ligatures and is installed with the IDE
-
-## Opt-in Angular Schematics
-
-### Angular Material & Angular CDK
-
-Looking for an a11y-friendly, MIT-licensed, Angular component library that strictly adheres to the [Material Design language](https://m3.material.io/) and integrates well with Angular's core libraries, and comes with animations? Then check out [Angular Material](https://material.angular.io/).
-
-The Angular Material documentation is very good and covers many topics including [Supporting Light and Dark Mode](https://material.angular.io/guide/theming#supporting-light-and-dark-mode)
-
-For design-agnostic template utility, consider using the [Angular CDK](https://material.angular.io/cdk/categories) by itself.
-
-### Server-side-rendering & Pre-rendering (SSR)
-
-Consider enabling [Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) to improve SEO and user experience at the cost of increased deployment complexity.
-
-### Internationalization (i18n)
-
-Angular has powerful [Internationalization](https://angular.dev/guide/i18n) capabilities.
-
-If you plan to implement internationalization in the future, adding i18n attributes early on can make the process easier to scale.
-
-To enable the i18n ESLint rule, simply remove the following from the \*.html section of the eslint.config.js file: [eslint.config.js file](./eslint.config.js):
-
-```json
-  "@angular-eslint/template/i18n": "off"
-```
-
-> [!NOTE]
-> You may also need to customize the [@angular-eslint/template/i18n](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/i18n.md) rule according to your project's needs.
-
-> [!TIP]
-> Using `eslint --fix` can automatically add i18n tags in many cases.
 
 ## Updating
 
