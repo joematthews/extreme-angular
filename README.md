@@ -16,11 +16,13 @@ This project is not a fully-featured application or a component library. In othe
 
 The underlying Angular project was created using `ng new --strict --styles=scss --ssr=false` with only minor modifications to the files in `src/` to comply with the dev tool configuration.
 
+Check out [Opt-in Angular Schematics](#opt-in-angular-schematics) for information about helpful functionality that can be added to your project.
+
 ## Contributions, Issues, & Suggestions
 
 If you have a suggestion or run in to any issues _at all_ then please first search through the [issues](https://github.com/joematthews/extreme-angular/issues), and then create a new issue! :mega:
 
-To contribute,[fork the repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo), check out a new branch, create a new branch, make your changes, and then [submit a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). :octopus:
+To contribute, [fork the repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo), check out a new branch, make your changes, and then [submit a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). :octopus:
 
 Thank you for your contributions!
 
@@ -31,7 +33,6 @@ Thank you for your contributions!
   - [Typescript Configuration](#typescript-configuration)
   - [Eslint](#eslint)
     - [Accessibility (a11y)](#accessibility-a11y) :accessibility:
-    - [Internationalization (i18n)](#internationalization-i18n)
   - [Stylelint](#stylelint)
   - [Prettier](#prettier)
   - [Code Spell Checker](#code-spell-checker)
@@ -48,6 +49,7 @@ Thank you for your contributions!
 - [Opt-in Angular Schematics](#opt-in-angular-schematics)
   - [Angular Material & Angular CDK](#angular-material--angular-cdk)
   - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering)
+  - [Internationalization (i18n)](#internationalization-i18n)
 - [Updating](#updating)
 
 ## Getting Started
@@ -135,29 +137,11 @@ These rules are easier to work with if enabled _early_ in the development proces
 
 The [Accessibility in Angular guide](https://angular.io/guide/accessibility) is a great place to start learning about accessibility in Angular, and it provides resources on the topic of accessibility.
 
-#### Internationalization (i18n)
-
-Angular has powerful [Internationalization](https://angular.dev/guide/i18n) capabilities.
-
-If you plan to implement internationalization in the future, adding i18n attributes early on can make the process easier to scale.
-
-To enable the i18n ESLint rule, simply remove the following from the \*.html section of the eslint.config.js file: [eslint.config.js file](./eslint.config.js):
-
-```json
-  "@angular-eslint/template/i18n": "off"
-```
-
-> [!NOTE]
-> You may also need to customize the [@angular-eslint/template/i18n](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/i18n.md) rule according to your project's needs.
-
-> [!TIP]
-> Using `eslint --fix` can automatically add i18n tags in many cases.
-
 ### Stylelint
 
 [Stylelint](https://stylelint.io/) is used to lint CSS and SCSS files in the project. It is configured with the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) and [stylelint-config-standard-scss](https://github.com/stylelint-scss/stylelint-config-standard-scss) configurations.
 
-Rules for linting are applied separately to _.css and _.scss files, and can be customized in the in the [.stylelintrc.json file](./.stylelintrc.json).
+Rules for linting are applied separately to `.css` and `.scss` files, and can be customized in the in the [.stylelintrc.json file](./.stylelintrc.json).
 
 To lint all CSS and SCSS files, run:
 
@@ -176,7 +160,6 @@ The following Prettier plugins are used:
 - [prettier-plugin-sh](https://www.npmjs.com/package/prettier-plugin-sh): Formats shell scripts, such as Git hooks.
 - [prettier-plugin-css-order](https://www.npmjs.com/package/prettier-plugin-css-order): Automatically organizes SCSS/CSS properties using [concentric-css](https://github.com/brandon-rhodes/Concentric-CSS)
 - [prettier-plugin-organize-imports](https://github.com/trivago/prettier-plugin-sort-imports): Automatically organizes, arranges, and removes unused imports.
-- [prettier-plugin-organize-attributes](https://github.com/NiklasPor/prettier-plugin-organize-attributes): Automatically organizes html element attributes.
 
 To format _all_ relevant files within the project run:
 
@@ -227,7 +210,7 @@ Files in the `./notes` directory are ignored in [.gitignore](.gitignore) but rem
 
 [Commitlint](https://commitlint.js.org/#/) is used to enforce good commit messages according to the [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) configuration in the commit-msg git hook. Additional Commitlint configuration is kept in [commitlint.config.js](./commitlint.config.js).
 
-[Lint-staged](https://www.npmjs.com/package/lint-staged) is used to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) in pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
+[Lint-staged](https://www.npmjs.com/package/lint-staged) is used to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
 
 ### Continuous Integration (CI) Using Github Actions
 
@@ -313,6 +296,12 @@ VSCode has two extensions: [Catppuccin for VSCode](https://marketplace.visualstu
 
 ### Oh My Zsh / Oh My Bash / Oh My Posh
 
+- [Oh My Zsh](https://ohmyz.sh/): Popular on macOS, where zsh is now default.
+- [Oh My Bash](https://github.com/ohmybash/oh-my-bash): Popular on Linux, where bash is usually default.
+- [Oh My Posh](https://ohmyposh.dev/): Popular on Windows. Works with many shells.
+
+The theme `robbyrussel` (default on oh-my-zsh) is an excellent, minimal theme.
+
 These are great frameworks for managing shell configuration. They include helpful functions, plugins, helpers, and themes.
 
 Shell configuration frameworks are a quick way to add git branch & status information to the shell prompt.
@@ -343,9 +332,27 @@ The Angular Material documentation is very good and covers many topics including
 
 For design-agnostic template utility, consider using the [Angular CDK](https://material.angular.io/cdk/categories) by itself.
 
-### Server-side-rendering & Pre-rendering
+### Server-side-rendering & Pre-rendering (SSR)
 
 Consider enabling [Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) to improve SEO and user experience at the cost of increased deployment complexity.
+
+### Internationalization (i18n)
+
+Angular has powerful [Internationalization](https://angular.dev/guide/i18n) capabilities.
+
+If you plan to implement internationalization in the future, adding i18n attributes early on can make the process easier to scale.
+
+To enable the i18n ESLint rule, simply remove the following from the \*.html section of the eslint.config.js file: [eslint.config.js file](./eslint.config.js):
+
+```json
+  "@angular-eslint/template/i18n": "off"
+```
+
+> [!NOTE]
+> You may also need to customize the [@angular-eslint/template/i18n](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/i18n.md) rule according to your project's needs.
+
+> [!TIP]
+> Using `eslint --fix` can automatically add i18n tags in many cases.
 
 ## Updating
 

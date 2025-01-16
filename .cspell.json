@@ -6,11 +6,12 @@
   // words - list of words to be always considered correct
   "words": [
     "Catppuccin",
-    "Webstorm",
-    "joematthews",
     "Intellicode",
+    "joematthews",
+    "lintstagedrc",
     "Macchiato",
-    "lintstagedrc"
+    "robbyrussel",
+    "Webstorm"
   ],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
