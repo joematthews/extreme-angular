@@ -38,6 +38,7 @@ Thank you for your contributions!
   - [Code Spell Checker](#code-spell-checker)
   - [VSCode](#vscode)
   - [Husky, Commitlint, tsc-files & Lint-Staged (Git Hooks)](#husky-commitlint-tsc-files--lint-staged-git-hooks)
+  - [Shove Progress](#shove-progress)
   - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
 - [Opt-in Angular Schematics](#opt-in-angular-schematics)
   - [Angular Material & Angular CDK](#angular-material--angular-cdk)
@@ -83,6 +84,12 @@ To start the development server run `npm start`.
 
 The section outlines how each tool is configured, and how they can be leveraged to ensure clean and maintainable code.
 
+Use this script to run all checks against all project files:
+
+```sh
+npm run lint:all
+```
+
 ### Typescript Configuration
 
 In addition to setting `"strict": true` in the TypeScript configuration, Angular's template checking is enabled with Strict Mode as defined in the [tsconfig.json file](tsconfig.json).
@@ -95,6 +102,18 @@ The following TypeScript compiler options have been added to enforce cleaner and
 - [noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess)
 
 These options help ensure stricter type-checking and eliminate unused or potentially unsafe code.
+
+To check for errors in \*.ts files run:
+
+```
+npm run lint:tsc:app
+```
+
+To check for errors in \*.spec.ts files run:
+
+```
+npm run lint:tsc:spec
+```
 
 ### Eslint
 
@@ -161,10 +180,16 @@ The following Prettier plugins are used:
 - [prettier-plugin-css-order](https://www.npmjs.com/package/prettier-plugin-css-order): Automatically organizes SCSS/CSS properties using [concentric-css](https://github.com/brandon-rhodes/Concentric-CSS)
 - [prettier-plugin-organize-imports](https://github.com/trivago/prettier-plugin-sort-imports): Automatically organizes, arranges, and removes unused imports.
 
-To format _all_ relevant files within the project run:
+To format files within the project run:
 
 ```sh
 npm run format
+```
+
+To check if all files are property formatted run:
+
+```sh
+npm run lint:format
 ```
 
 ### Code Spell Checker
@@ -213,19 +238,33 @@ VSCode settings in [.vscode/settings.json](.vscode/settings.json):
 
 [Lint-staged](https://www.npmjs.com/package/lint-staged) is used to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
 
+### Shove Progress
+
+The git hooks can be bypassed using `git commit --no-verify` and `git push --no-verify`. Or, use the `shove` script in emergencies when progress needs to be backed up quickly:
+
+```sh
+npm run shove
+```
+
+This will set the remote, stage all files, commit with the commit message `wip: shoved`, and then push.
+
+> [!WARNING]
+> The shove script sets [git config push.autoSetupRemote true](https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote) to increase likelihood that the push will be successful.
+
+> [!WARNING]
+> The `--no-verify` flag cannot be disabled! To protect against untested code use a Continuous Integration solution.
+
 ### Continuous Integration (CI) Using GitHub Actions
 
-The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow is executed when pushing to a pull request branch. Then the sub-workflow [validate-code.yml](.github/workflows/validate-code.yml) is executed and runs the following commands:
+The [on-pull-request.yml](.github/workflows/on-pull-request.yml) check all files and run tests when a branch associated with a GitHub pull request is pushed.
 
-```
-- run: npm ci
-- run: npm run format:ci
-- run: npm run lint:all
-- run: npm run test:ci
-- run: npm run build
-```
+The pull request cannot be merged until all checks and tests pass. The output of these workflows can found in the 'Actions' tab on the GitHub repository.
 
-The pull request cannot be merged if there are any errors. The output of these workflows can from the 'Actions' tab on the GitHub repository.
+To execute these checks and tests yourself run:
+
+```sh
+npm run ci:all
+```
 
 ## Opt-in Angular Schematics
 
@@ -327,9 +366,9 @@ VSCode has two extensions: [Catppuccin for VSCode](https://marketplace.visualstu
 
 - [Oh My Zsh](https://ohmyz.sh/): Popular on macOS, where zsh is now default.
 - [Oh My Bash](https://github.com/ohmybash/oh-my-bash): Popular on Linux, where bash is usually default.
-- [Oh My Posh](https://ohmyposh.dev/): Popular on Windows. Works with many shells.
+- [Oh My Posh](https://ohmyposh.dev/): Cross-platform. Works with many shells.
 
-The theme `robbyrussel` (default on oh-my-zsh) is an excellent, minimal theme.
+The theme `robbyrussel` (default on oh-my-zsh) is an excellent, minimal theme that is available for all three.
 
 These are great frameworks for managing shell configuration. They include helpful functions, plugins, helpers, and themes.
 
@@ -354,7 +393,7 @@ Here are some tips for configuring the dev tools for this project in JetBrains I
 ## Updating
 
 > [!WARNING]
-> Depending on the maturity of the project, it may be better to look at the current configuration files for extreme-angular, [release notes](https://github.com/joematthews/extreme-angular/releases) and [commits](https://github.com/joematthews/extreme-angular/commits/main/) and manually make changes instead of merging. If the Angular version has changed, then follow the [instructions to update Angular](https://angular.io/guide/updating) first before attempting to merge or make changes.
+> Depending on the maturity of the project, it may be better to look at the current configuration files for extreme-angular & [release notes](https://github.com/joematthews/extreme-angular/releases) and then manually make changes instead of merging. If the Angular version has changed, then follow the [instructions to update Angular](https://angular.io/guide/updating) first before attempting to merge or make changes.
 
 To pull in the latest changes, check out an 'update' branch and merging the latest changes from `upstream/main`:
 
@@ -371,7 +410,5 @@ There may be [merge conflicts](https://code.visualstudio.com/docs/sourcecontrol/
 
 ```sh
 npm install
-npm run format
-npm run lint:all
-npm run test
+npm run ci:all
 ```
