@@ -38,10 +38,10 @@ Thank you for your contributions!
   - [Code Spell Checker](#code-spell-checker)
   - [VSCode](#vscode)
   - [Husky, Commitlint, tsc-files & Lint-Staged (Git Hooks)](#husky-commitlint-tsc-files--lint-staged-git-hooks)
-  - [Continuous Integration (CI) Using Github Actions](#continuous-integration-ci-using-github-actions)
+  - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
 - [Opt-in Angular Schematics](#opt-in-angular-schematics)
   - [Angular Material & Angular CDK](#angular-material--angular-cdk)
-  - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering)
+  - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering-ssr)
   - [Internationalization (i18n)](#internationalization-i18n)
 - [Tips & Tricks](#tips--tricks)
   - [Use VSCode as Git's Editor](#use-vscode-as-gits-editor)
@@ -49,12 +49,12 @@ Thank you for your contributions!
   - [Font Ligatures](#font-ligatures)
   - [Catppuccin Theme](#catppuccin)
   - [Oh My Bash / Oh My Zsh / Oh My Posh](#oh-my-zsh--oh-my-bash--oh-my-posh)
-  - [JetBrains Webstorm & Rider](#jetbrains-webstorm--rider)
+  - [JetBrains Webstorm & Rider](#jetbrains-ides)
 - [Updating](#updating)
 
 ## Getting Started
 
-If you have a github account, an easy way to get started is to select "Use this template" in the top right corner of the [extreme-angular github page](https://github.com/joematthews/extreme-angular) and then select "Create a new repository". This will allow you to rename your repository and set it to private.
+If you have a GitHub account, an easy way to get started is to select "Use this template" in the top right corner of the [extreme-angular GitHub page](https://github.com/joematthews/extreme-angular) and then select "Create a new repository". This will allow you to rename your repository and set it to private.
 
 To use this project as a template in a git-neutral way, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of _your_ project):
 
@@ -85,7 +85,7 @@ The section outlines how each tool is configured, and how they can be leveraged 
 
 ### Typescript Configuration
 
-In addition to setting `"strict": true` in the TypeScript configuration, Angular's template checking is enabled with Strict Mode as defined in the in the [tsconfig.json file](tsconfig.json).
+In addition to setting `"strict": true` in the TypeScript configuration, Angular's template checking is enabled with Strict Mode as defined in the [tsconfig.json file](tsconfig.json).
 
 The following TypeScript compiler options have been added to enforce cleaner and more maintainable code:
 
@@ -133,7 +133,7 @@ This project enables _all_ the accessibility rules provided by angular-eslint by
 
 Includes rules for image alt text, form labels, no autofocus, valid ARIA, and more.
 
-These rules are easier to work with if enabled _early_ in the development process and early adoption of these rules is also very helpful for avoiding common accessibility anti-patterns.
+These rules are easier to work with if enabled _early_ in the development process and early adoption of these rules is also very helpful for avoiding common accessibility antipatterns.
 
 The [Accessibility in Angular guide](https://angular.io/guide/accessibility) is a great place to start learning about accessibility in Angular, and it provides resources on the topic of accessibility.
 
@@ -141,7 +141,7 @@ The [Accessibility in Angular guide](https://angular.io/guide/accessibility) is 
 
 [Stylelint](https://stylelint.io/) is used to lint CSS and SCSS files in the project. It is configured with the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) and [stylelint-config-standard-scss](https://github.com/stylelint-scss/stylelint-config-standard-scss) configurations.
 
-Rules for linting are applied separately to `.css` and `.scss` files, and can be customized in the in the [.stylelintrc.json file](./.stylelintrc.json).
+Rules for linting are applied separately to `.css` and `.scss` files, and can be customized in the [.stylelintrc.json file](./.stylelintrc.json).
 
 To lint all CSS and SCSS files, run:
 
@@ -215,7 +215,7 @@ Files in the `./notes` directory are ignored in [.gitignore](.gitignore) but rem
 
 [Lint-staged](https://www.npmjs.com/package/lint-staged) is used to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
 
-### Continuous Integration (CI) Using Github Actions
+### Continuous Integration (CI) Using GitHub Actions
 
 The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow is executed when pushing to a pull request branch. Then the sub-workflow [validate-code.yml](.github/workflows/validate-code.yml) is executed and runs the following commands:
 
@@ -227,7 +227,7 @@ The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow is exe
 - run: npm run build
 ```
 
-The pull request cannot be merged if there are any errors. The output of these workflows can from the 'Actions' tab on the github repository.
+The pull request cannot be merged if there are any errors. The output of these workflows can from the 'Actions' tab on the GitHub repository.
 
 ## Opt-in Angular Schematics
 
@@ -251,10 +251,6 @@ If you plan to implement internationalization in the future, adding i18n attribu
 
 To enable the i18n ESLint rule, simply remove or configure the following rule from the \*.html section of the eslint.config.js file: [eslint.config.js file](./eslint.config.js):
 
-```json
-  "@angular-eslint/template/i18n": "off"
-```
-
 > [!NOTE]
 > You may also need to configure the [@angular-eslint/template/i18n](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/i18n.md) rule according to your project's needs.
 
@@ -274,13 +270,13 @@ git config --global core.editor "code --wait"
 ```
 
 > [!CAUTION]
-> This will only work if the [code command](https://code.visualstudio.com/docs/editor/command-line) in the PATH. Follow these [instructions to setup the vscode cli on macOS](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) if it is not already set up.
+> This will only work if the [code command](https://code.visualstudio.com/docs/editor/command-line) in the PATH. Follow these [instructions to set up the vscode cli on macOS](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) if it is not already set up.
 
 ### Inlay Hints in VSCode
 
 I _highly_ recommend enabling [inlay hints in vscode](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They give me the confidence to use Typescript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
 
-Add the following to to the vscode user settings to enable all inlay hints for javascript & typescript:
+Add the following to the vscode user settings to enable all inlay hints for javascript & typescript:
 
 ```json
 {
