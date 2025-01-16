@@ -205,8 +205,6 @@ VSCode settings in [.vscode/settings.json](.vscode/settings.json):
 - [Disable VSCode's default CSS/SCSS linters](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#disable-vs-codes-built-in-linters-optional).
 - [Stylelint configured to lint CSS & SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#%EF%B8%8F-only-css-and-postcss-are-validated-by-default).
 
-Files in the `./notes` directory are ignored in [.gitignore](.gitignore) but remain searchable in VSCode for personal notes or reference.
-
 ### Husky, Commitlint, tsc-files & Lint-Staged (Git Hooks)
 
 [Husky](https://typicode.github.io/husky/) is used to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), and [commit-msg](.husky/commit-msg) git hooks.
