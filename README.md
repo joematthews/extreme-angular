@@ -2,7 +2,7 @@
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE LINTERS TO WORK TOGETHER'](https://github.com/user-attachments/assets/1a2cbde4-45dc-4c10-920a-5a238e19f59b)
 
-Extreme Angular is a highly opinionated starter template designed to help developers quickly set up modern, maintainable Angular applications. It comes pre-configured with a strict set of development tools—including TypeScript, ESLint, Prettier, and Stylelint—to enforce best practices, ensure consistent code quality, and promote accessibility from the start. This template provides a solid foundation for your project while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
+Extreme Angular is a highly opinionated starter template designed to help developers quickly set up modern, maintainable Angular applications. It comes pre-configured with a strict and opinionated set of development tools—including TypeScript, ESLint, Prettier, and Stylelint—to enforce best practices, ensure consistent code quality, and promote accessibility from the start. This template provides a solid foundation for your project while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
 
 However, Extreme Angular is not a fully-featured application or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project, created using the following `ng new` command:
 
