@@ -2,21 +2,15 @@
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE LINTERS TO WORK TOGETHER'](https://github.com/user-attachments/assets/1a2cbde4-45dc-4c10-920a-5a238e19f59b)
 
-Extreme Angular is a starter template designed to help you build modern, accessible web applications. It comes with a pre-configured set of opinionated, strict development tools that enforce best practices and ensure consistent, high-quality code, while remaining fully compatible with the [Angular documentation](https://angular.dev/overview).
+Extreme Angular is a highly opinionated starter template designed to help developers quickly set up modern, maintainable Angular applications. It comes pre-configured with a strict set of development tools—including TypeScript, ESLint, Prettier, and Stylelint—to enforce best practices, ensure consistent code quality, and promote accessibility from the start. This template provides a solid foundation for your project while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
 
-## What It Is
+However, Extreme Angular is not a fully-featured application or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project, created using the following `ng new` command:
 
-Extreme Angular is a highly opinionated and strict starter template with pre-configured development tools. It helps developers quickly start an Angular project that follows best practices for accessibility, code quality, and maintainability.
+```sh
+ng new --strict --styles=scss --ssr=false
+```
 
-The project is built with strict settings that promote clean, error-free code, using a combination of TypeScript, ESLint, Prettier, Stylelint, and other tools.
-
-## What It Is Not
-
-This project is not a fully-featured application or a component library. In other words, it contains no custom application logic, components, or complex modifications — just a clean, fully configured foundation for your Angular app.
-
-The underlying Angular project was created using `ng new --strict --styles=scss --ssr=false` with only minor modifications to the files in `src/` to comply with the dev tool configuration.
-
-Check out [Opt-in Angular Schematics](#opt-in-angular-schematics) for information about helpful functionality that can be added to your project.
+For additional functionality like Angular Material, server-side rendering (SSR), or internationalization (i18n), check out the [Opt-in Angular Schematics](#opt-in-angular-schematics) section for more information on how to add more utility to the project to suit your needs.
 
 ## Contributions, Issues, & Suggestions
 
