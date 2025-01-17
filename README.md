@@ -29,6 +29,7 @@ Thank you for your contributions!
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+  - [LICENSE.md](#licensemd)
 - [Dev Tools Implemented](#dev-tools-implemented)
   - [Typescript](#typescript)
   - [Eslint](#eslint)
@@ -42,7 +43,7 @@ Thank you for your contributions!
   - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
 - [Opt-in Angular Schematics](#opt-in-angular-schematics)
   - [Angular Material & Angular CDK](#angular-material--angular-cdk)
-  - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering-ssr)
+  - [Server-side & hybrid rendering (SSR)](#server-side--hybrid-rendering-ssr)
   - [Internationalization (i18n)](#internationalization-i18n)
 - [Tips & Tricks](#tips--tricks)
   - [Git Config](#git-config)
@@ -57,7 +58,7 @@ Thank you for your contributions!
 
 If you have a GitHub account, an easy way to get started is to select "Use this template" in the top right corner of the [GitHub page](https://github.com/joematthews/extreme-angular) and then select "Create a new repository". This will allow you to rename your repository and set it to private.
 
-Alternatively, if you do not have a github account, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `extreme-angular` with the name of _your_ project):
+Alternatively, if you do not have a github account, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of _your_ project):
 
 ```sh
 git clone --depth=1 --origin=upstream git@github.com:joematthews/extreme-angular.git new_project_name
@@ -80,6 +81,28 @@ To start the development server run `npm start`.
 > [!TIP]
 > The "Dev Tools Implemented" section below is project-agnostic -- consider adding it to your project's README.md or CONTRIBUTING.md!
 
+### LICENSE.md
+
+The documentation and configuration files in this project is licensed under the [MIT license](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide).
+
+I keep the copyright from [Angular's license](https://angular.dev/license) and add my own copyright out of respect and clarity.
+
+If your project also uses the MIT license, then please consider adding a new copyright line to the [LICENSE.md file](LICENSE.md):
+
+```
+...
+Copyright (c) 2010-2024 Google LLC. https://angular.dev/license
+
+Copyright (c) 2024-2025 Joe Matthews, et al. https://github.com/joematthews/extreme-angular
+
+Copyright (c) 2025 Your Name or Company
+...
+```
+
+If your project is [closed source](https://simple.wikipedia.org/wiki/Closed_source) or uses a [different license](https://opensource.org/licenses), then please consider renaming the file to `LICENSE-Angular.md` or include the original license in another document.
+
+Thank you!
+
 ## Dev Tools Implemented
 
 The section outlines how each tool is configured, and how they can be leveraged to ensure clean and maintainable code.
@@ -89,6 +112,9 @@ Use this script to run all checks against all project files:
 ```sh
 npm run lint:all
 ```
+
+> [!CAUTION]
+> These tools are not perfect and they are not a substitute for learning and utilizing the best practices outlined in the Angular guides for [Style](https://angular.dev/style-guide), [Security](https://angular.dev/best-practices/security), [Accessibility](https://angular.dev/best-practices/a11y), and [Performance](https://angular.dev/best-practices/runtime-performance).
 
 ### Typescript
 
@@ -249,18 +275,18 @@ npm run shove
 The shove script will stage all files, commit with the commit message `wip: shoved`, and then push.
 
 > [!INFO]
-> The shove script sets [git config push.autoSetupRemote true](https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote) to increase likelihood that the push will be successful. You will need to set this back to `false` if you prefer to set the remote branch name manually.
+> The shove script sets [git config push.autoSetupRemote true](https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote) to increase likelihood that the push will be successful. If you prefer to set the remote branch names manually you will need to set this back to `false`.
 
 > [!WARNING]
 > The `--no-verify` flag cannot be disabled! To protect against untested code use a Continuous Integration solution.
 
 ### Continuous Integration (CI) Using GitHub Actions
 
-The [on-pull-request.yml](.github/workflows/on-pull-request.yml) checks all files and run tests when a branch associated with a GitHub pull request is pushed.
+The [on-pull-request.yml](.github/workflows/on-pull-request.yml) checks all files and run tests when a branch pushed that is associated with a GitHub pull request.
 
-The pull request cannot be merged until all checks and tests pass. The output of these workflows can found in the 'Actions' tab on the GitHub repository.
+Pull requests on GitHub cannot be merged until all checks and tests pass. The output of these workflows can found in the 'Actions' tab on the GitHub repository.
 
-To execute these checks and tests yourself run:
+To execute these checks and tests locally, run:
 
 ```sh
 npm run ci:all
@@ -274,11 +300,17 @@ Looking for an a11y-friendly, MIT-licensed, Angular component library that stric
 
 The Angular Material documentation is very good and covers many topics including [Supporting Light and Dark Mode](https://material.angular.io/guide/theming#supporting-light-and-dark-mode)
 
-For design-agnostic template utility, consider using the [Angular CDK](https://material.angular.io/cdk/categories) by itself.
+For design-agnostic template utilities, consider installing the [Angular CDK](https://material.angular.io/cdk/categories), run:
 
-### Server-side-rendering & Pre-rendering (SSR)
+```sh
+ng add @angular/cdk
+```
 
-Consider enabling [Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) to improve SEO and user experience at the cost of increased deployment complexity.
+To add animations to your own components, check out [Introduction to Angular animations](https://angular.dev/guide/animations)
+
+### Server-side & hybrid rendering (SSR)
+
+Consider enabling [Server-side & hybrid rendering](https://angular.dev/guide/performance) to improve SEO and user experience (at the cost of increased deployment complexity).
 
 ### Internationalization (i18n)
 
