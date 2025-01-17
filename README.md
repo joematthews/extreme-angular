@@ -276,7 +276,7 @@ The shove script will stage all files, commit with the commit message `wip: shov
 
 ### Continuous Integration (CI) Using GitHub Actions
 
-The [on-pull-request.yml](.github/workflows/on-pull-request.yml) checks all files and run tests when a branch pushed that is associated with a GitHub pull request.
+The [on-pull-request.yml](.github/workflows/on-pull-request.yml) action checks all files and run tests when a branch is pushed that is associated with a GitHub pull request.
 
 Pull requests on GitHub cannot be merged until all checks and tests pass. The output of these workflows can found in the 'Actions' tab on the GitHub repository.
 
