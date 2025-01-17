@@ -10,7 +10,7 @@ However, Extreme Angular is not a fully-featured dashboard or a component librar
 ng new --strict --styles=scss --ssr=false
 ```
 
-For additional utility like Angular Material, server-side rendering (SSR), or internationalization (i18n), check out the [Optional Angular Schematics](#optional-angular-schematics) section for more information on how to add more utility to the project to suit your needs.
+For additional utility like Angular Material, server-side rendering (SSR), or internationalization (i18n), check out the [Optional Angular Schematics](#optional-angular-schematics) section.
 
 ## Contributions, Issues, & Suggestions
 
@@ -286,7 +286,7 @@ To execute these checks and tests locally:
 npm run ci:all
 ```
 
-## Opt-in Angular Schematics
+## Optional Angular Schematics
 
 ### Angular Material & Angular CDK
 
