@@ -6,11 +6,6 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "stylelint.vscode-stylelint",
-    "streetsidesoftware.code-spell-checker",
-    "VisualStudioExptTeam.vscodeintellicode",
-    "VisualStudioExptTeam.vscodeintellicode-completions",
-    "bierner.github-markdown-preview",
-    "github.vscode-github-actions",
-    "GitHub.vscode-pull-request-github"
+    "streetsidesoftware.code-spell-checker"
   ]
 }
