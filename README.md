@@ -228,7 +228,7 @@ npm run lint:spelling
 
 ### VSCode
 
-The following recommended VSCode extensions from [.vscode/extensions.json](.vscode/extensions.json) will be suggested upon opening the project:
+The following VSCode extensions will be recommended when opening the project ([.vscode/extensions.json](.vscode/extensions.json)):
 
 - [Angular](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
 - [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
@@ -237,7 +237,7 @@ The following recommended VSCode extensions from [.vscode/extensions.json](.vsco
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 
-VSCode settings in [.vscode/settings.json](.vscode/settings.json):
+The following VSCode settings have been set in [.vscode/settings.json](.vscode/settings.json):
 
 - Prettier set as default formatter.
 - Auto format and [fix linting errors on save](https://github.com/microsoft/vscode-eslint?tab=readme-ov-file#version-204).
