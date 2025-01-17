@@ -56,12 +56,12 @@ Thank you for your contributions!
 
 ## Getting Started
 
-If you have a GitHub account, an easy way to get started is to select "Use this template" in the top right corner of the [GitHub page](https://github.com/joematthews/extreme-angular) and then select "Create a new repository". This will allow you to rename your repository and set it to private.
+If you have a GitHub account, an easy way to get started is to select "Use this template" in the top right corner of the [GitHub page for Extreme Angular](https://github.com/joematthews/extreme-angular) and then select "Create a new repository". This will allow you to rename your repository and set it to private.
 
 Alternatively, if you do not have a github account, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of _your_ project):
 
 ```sh
-git clone --depth=1 --origin=upstream git@github.com:joematthews/extreme-angular.git new_project_name
+git clone --depth=1 --origin=upstream https://github.com/joematthews/extreme-angular.git new_project_name
 ```
 
 Change to the new project directory and install the dependencies:
@@ -105,7 +105,7 @@ Thank you!
 
 ## Dev Tools Implemented
 
-The section outlines how each tool is configured, and how they can be leveraged to ensure clean and maintainable code.
+This section outlines how each tool is configured, and how they can be leveraged to ensure clean and maintainable code.
 
 Use this script to run all checks against all project files:
 
