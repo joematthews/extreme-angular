@@ -83,7 +83,7 @@ To start the development server run `npm start`.
 
 ### LICENSE.md
 
-The documentation and configuration files in this project is licensed under the [MIT license](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide).
+The documentation and configuration files in this project are licensed under the [MIT license](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide).
 
 I keep the copyright from [Angular's license](https://angular.dev/license) and add my own copyright out of respect and clarity.
 
