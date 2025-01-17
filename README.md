@@ -214,7 +214,7 @@ npm run lint:format
 
 ### Code Spell Checker
 
-[CSpell](https://github.com/streetsidesoftware/cspell) iss used for spell checking for all project files.
+[CSpell](https://github.com/streetsidesoftware/cspell) is used for spell checking for all project files.
 
 To add project-specific words, update the [.cspell.json file](.cspell.json).
 
