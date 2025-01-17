@@ -274,7 +274,7 @@ npm run shove
 
 The shove script will stage all files, commit with the commit message `wip: shoved`, and then push.
 
-> [!INFO]
+> [!NOTE]
 > The shove script sets [git config push.autoSetupRemote true](https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote) to increase likelihood that the push will be successful. If you prefer to set the remote branch names manually you will need to set this back to `false`.
 
 > [!WARNING]
@@ -350,7 +350,7 @@ If you use GitHub, and you'd prefer to not show your email in public commits, se
 git config user.email "14097616+joematthews@users.noreply.github.com
 ```
 
-> ![TIP]
+> [!TIP]
 > You can add the `--global` flag to these commands to make them the default for all projects.
 
 ### Inlay Hints in VSCode
