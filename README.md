@@ -174,7 +174,7 @@ Includes rules for image alt text, form labels, no autofocus, valid ARIA, and mo
 
 These rules are easier to work with if enabled _early_ in the development process and early adoption of these rules is also very helpful for avoiding common accessibility antipatterns.
 
-The [Accessibility in Angular guide](https://angular.io/guide/accessibility) is a great place to start learning about accessibility in Angular, and it provides resources on the topic of accessibility.
+The [Accessibility in Angular guide](https://angular.dev/best-practices/a11y) is a great place to start learning about accessibility in Angular, and it provides resources on the topic of accessibility.
 
 ### Stylelint
 
