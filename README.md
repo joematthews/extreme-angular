@@ -2,7 +2,7 @@
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE LINTERS TO WORK TOGETHER'](https://github.com/user-attachments/assets/1a2cbde4-45dc-4c10-920a-5a238e19f59b)
 
-Extreme Angular is an Angular starter template designed to help you build modern, accessible web applications. It comes with a pre-configured set of opinionated, strict development tools that enforce best practices and ensure consistent, high-quality code, while remaining fully compatible with the [Angular documentation](https://angular.dev/overview).
+Extreme Angular is a starter template designed to help you build modern, accessible web applications. It comes with a pre-configured set of opinionated, strict development tools that enforce best practices and ensure consistent, high-quality code, while remaining fully compatible with the [Angular documentation](https://angular.dev/overview).
 
 ## What It Is
 
@@ -45,7 +45,7 @@ Thank you for your contributions!
   - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering-ssr)
   - [Internationalization (i18n)](#internationalization-i18n)
 - [Tips & Tricks](#tips--tricks)
-  - [Use VSCode as Git's Editor](#use-vscode-as-gits-editor)
+  - [Git Config](#git-config)
   - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
   - [Font Ligatures](#font-ligatures)
   - [Catppuccin Theme](#catppuccin)
@@ -55,9 +55,9 @@ Thank you for your contributions!
 
 ## Getting Started
 
-If you have a GitHub account, an easy way to get started is to select "Use this template" in the top right corner of the [extreme-angular GitHub page](https://github.com/joematthews/extreme-angular) and then select "Create a new repository". This will allow you to rename your repository and set it to private.
+If you have a GitHub account, an easy way to get started is to select "Use this template" in the top right corner of the [GitHub page](https://github.com/joematthews/extreme-angular) and then select "Create a new repository". This will allow you to rename your repository and set it to private.
 
-To use this project as a template in a git-neutral way, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of _your_ project):
+Alternatively, if you do not have a github account, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `extreme-angular` with the name of _your_ project):
 
 ```sh
 git clone --depth=1 --origin=upstream git@github.com:joematthews/extreme-angular.git new_project_name
@@ -148,7 +148,7 @@ npm run lint
 
 #### Accessibility (a11y)
 
-This project enables _all_ the accessibility rules provided by angular-eslint by default (denoted by :accessibility: in the @angular-eslint/template rules configuration matrix linked above).
+This project enables all the accessibility rules provided by angular-eslint by default (denoted by :accessibility: in the @angular-eslint/template rules configuration matrix linked above).
 
 Includes rules for image alt text, form labels, no autofocus, valid ARIA, and more.
 
@@ -200,7 +200,7 @@ To add project-specific words, update the [.cspell.json file](.cspell.json).
 
 The [Code Spell Checker Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) allows you to quickly add misspelled words to the configuration by selecting "Add to config: .cspell.json" from the 'Quick Fix' menu.
 
-To find misspelled words in _all_ files within the project, run:
+To find misspelled words in all files within the project, run:
 
 ```sh
 npm run lint:spelling
@@ -246,17 +246,17 @@ The git hooks can be bypassed using `git commit --no-verify` and `git push --no-
 npm run shove
 ```
 
-This will set the remote, stage all files, commit with the commit message `wip: shoved`, and then push.
+The shove script will stage all files, commit with the commit message `wip: shoved`, and then push.
 
-> [!WARNING]
-> The shove script sets [git config push.autoSetupRemote true](https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote) to increase likelihood that the push will be successful.
+> [!INFO]
+> The shove script sets [git config push.autoSetupRemote true](https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote) to increase likelihood that the push will be successful. You will need to set this back to `false` if you prefer to set the remote branch name manually.
 
 > [!WARNING]
 > The `--no-verify` flag cannot be disabled! To protect against untested code use a Continuous Integration solution.
 
 ### Continuous Integration (CI) Using GitHub Actions
 
-The [on-pull-request.yml](.github/workflows/on-pull-request.yml) check all files and run tests when a branch associated with a GitHub pull request is pushed.
+The [on-pull-request.yml](.github/workflows/on-pull-request.yml) checks all files and run tests when a branch associated with a GitHub pull request is pushed.
 
 The pull request cannot be merged until all checks and tests pass. The output of these workflows can found in the 'Actions' tab on the GitHub repository.
 
@@ -298,22 +298,34 @@ To enable the i18n ESLint rule, simply remove or configure the following rule fr
 
 These are tips and tricks that are too opinionated or situational to include in the repository configuration or are not related to Angular project configuration.
 
-### Use VSCode as Git's Editor
+### Git Config
 
-I prefer using vs code as my editor when using commands like `git commit` and `git rebase`. Run this command to set it up!
+To automatically set the remote branch name to match the local branch name on push run:
 
 ```
-git config --global core.editor "code --wait"
+git config push.autoSetupRemote true
 ```
 
-> [!CAUTION]
-> This will only work if the [code command](https://code.visualstudio.com/docs/editor/command-line) in the PATH. Follow these [instructions to set up the vscode cli on macOS](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) if it is not already set up.
+You can use VSCode to edit commit messages when using commands like `git commit`, `git rebase`, and `git commit --amend`. This will only work if the [code command](https://code.visualstudio.com/docs/editor/command-line) in the PATH. Follow these [instructions to set up the vscode cli on macOS](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) if it is not already set up. Run this command to set it up:
+
+```
+git config core.editor "code --wait"
+```
+
+If you use GitHub, and you'd prefer to not show your email in public commits, set your email to the one found on your GitHub account settings under the 'Email' tab. This is the same email used by GitHub Desktop, and when edits are made directly on the GitHub site.
+
+```
+git config user.email "14097616+joematthews@users.noreply.github.com
+```
+
+> ![TIP]
+> You can add the `--global` flag to these commands to make them the default for all projects.
 
 ### Inlay Hints in VSCode
 
 I _highly_ recommend enabling [inlay hints in vscode](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They give me the confidence to use Typescript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
 
-Add the following to the vscode user settings to enable all inlay hints for javascript & typescript:
+Add the following to the vscode user settings to enable all inlay hints for JavaScript & Typescript:
 
 ```json
 {
@@ -333,7 +345,14 @@ Add the following to the vscode user settings to enable all inlay hints for java
 }
 ```
 
-Use `CTRL + ALT` (or `CTRL + OPTION` on Mac) to temporarily disable hints -- Or, change `editor.inlayHints.enabled` to `offUnlessPressed` to reverse this behavior.
+To temporarily disable inlay hints use `CTRL + ALT` (or `CTRL + OPTION` on Mac) -- Or, to reverse this behavior use:
+
+```json
+{
+  "editor.inlayHints.enabled": "offUnlessPressed"`
+  ...
+}
+```
 
 ### Font Ligatures
 
