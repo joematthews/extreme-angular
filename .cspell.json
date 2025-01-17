@@ -38,5 +38,6 @@
     "python",
     "softwareTerms",
     "typescript"
-  ]
+  ],
+  "ignorePaths": []
 }
