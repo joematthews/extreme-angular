@@ -2,7 +2,7 @@
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE DEV TOOLS TO WORK TOGETHER'](https://github.com/user-attachments/assets/1a2cbde4-45dc-4c10-920a-5a238e19f59b)
 
-Extreme Angular is a starter template designed to help developers quickly set up modern, maintainable Angular applications. It comes pre-configured with a strict and opinionated set of development tools—including TypeScript, ESLint, Prettier, Stylelint, and CSpell—to enforce best practices, ensure consistent code quality, and promote accessibility from the start. This template provides a solid foundation for your project while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
+Extreme Angular is pre-configured with a strict and opinionated set of development tools—including TypeScript, ESLint, Prettier, Stylelint, and CSpell—to enforce best practices, ensure consistent code quality, and promote accessibility while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
 
 However, Extreme Angular is not a fully-featured dashboard or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project, created using the following `ng new` command:
 
@@ -10,7 +10,7 @@ However, Extreme Angular is not a fully-featured dashboard or a component librar
 ng new --strict --style=scss --ssr=false
 ```
 
-For additional utility like Angular Material, server-side rendering (SSR), or internationalization (i18n), check out the [Optional Angular Schematics](#optional-angular-schematics) section.
+For additional utility like Angular Material, server-side rendering (SSR), internationalization (i18n), or End to End Testing (e2e) check out the [Optional Angular Schematics](#optional-angular-schematics) section.
 
 ## Contributions, Issues, & Suggestions
 
@@ -39,6 +39,7 @@ Thank you for your contributions!
   - [Angular Material & Angular CDK](#angular-material--angular-cdk)
   - [Server-side & hybrid rendering (SSR)](#server-side--hybrid-rendering-ssr)
   - [Internationalization (i18n)](#internationalization-i18n)
+  - [End to End Testing (e2e)](#end-to-end-testing-e2e)
 - [Tips & Tricks](#tips--tricks)
   - [Git Config](#git-config)
   - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
@@ -315,6 +316,29 @@ To enable the i18n ESLint rule, simply remove or configure the following rule fr
 > [!TIP]
 > Using `eslint --fix` can automatically add i18n tags in many cases.
 
+## End to End Testing (e2e)
+
+Angular has schematics available for several end to end testing frameworks. The [Angular End to End Testing guide](https://angular.dev/tools/cli/end-to-end) will walk you through the steps to set one up.
+
+To install a e2e testing framework in your project run this command:
+
+```sh
+ng e2e
+```
+
+The package [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) supports ESlint 9 has rules for the popular [Playwright](https://playwright.dev/) framework. To incorporate these rules, import the plugin and then add a new config object that targets `e2e/**/*.spec.ts` files to [eslint.config.js](eslint.config.js):
+
+```js
+const playwright = require("eslint-plugin-playwright");
+...
+  {
+    files: ["e2e/**/*.spec.ts"],
+    extends: [...playwright.configs["flat/recommended"], eslintConfigPrettier],
+    rules: { ...playwright.configs["flat/recommended"].rules },
+  },
+}
+```
+
 ## Tips & Tricks
 
 These are tips and tricks that are too opinionated or situational to include in the repository configuration or are not related to Angular project configuration.
@@ -392,16 +416,6 @@ After downloading and installing the font of choice, add the font to the `fontFa
 
 The fira code repository maintains [a list of alternative fonts with ligatures](https://github.com/tonsky/FiraCode#alternatives).
 
-### Catppuccin
-
-Looking for a new theme to try? [Catppuccin](https://catppuccin.com/) is great theme.
-
-Catppuccin has 4 flavours: 🌻 Latte, 🪴 Frappé, 🌺 Macchiato, & 🌿 Mocha.
-
-[Catppuccin is everywhere](https://github.com/catppuccin/catppuccin?tab=readme-ov-file#-ports-and-more). I also use it for my [macOS terminal theme](https://github.com/catppuccin/Terminal.app).
-
-VSCode has two extensions: [Catppuccin for VSCode](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc) and [Catppuccin Icons for VSCode](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc-icons).
-
 ### Oh My Zsh / Oh My Bash / Oh My Posh
 
 - [Oh My Zsh](https://ohmyz.sh/): Popular on macOS, where zsh is now default.
@@ -427,7 +441,6 @@ Here are some tips for configuring the dev tools for this project in JetBrains I
   - (Optional) Set "Run on save" for each plugin if preferred.
 - Install the "CSpell Check" plugin to reduce conflicts with JetBrains' built-in spell-checking.
 - (Optional) Set keymap to 'VSCode' or 'VSCode (macOS)' for an easier transition
-- (Optional) Install Catppuccin Theme & Catppuccin Icons to be one of the cool kids.
 - (Optional) Search for 'ligatures' in the settings to enable font ligatures. JetBrainsMono is capable of displaying ligatures and is installed with the IDE
 
 ## Updating
