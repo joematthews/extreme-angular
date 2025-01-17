@@ -7,7 +7,7 @@ Extreme Angular is a starter template designed to help developers quickly set up
 However, Extreme Angular is not a fully-featured dashboard or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project, created using the following `ng new` command:
 
 ```sh
-ng new --strict --styles=scss --ssr=false
+ng new --strict --style=scss --ssr=false
 ```
 
 For additional utility like Angular Material, server-side rendering (SSR), or internationalization (i18n), check out the [Optional Angular Schematics](#optional-angular-schematics) section.
