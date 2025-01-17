@@ -438,7 +438,7 @@ Here are some tips for configuring the dev tools for this project in JetBrains I
 ## Updating
 
 > [!WARNING]
-> Depending on the maturity of the project, it may be better to look at the current configuration files for extreme-angular & [release notes](https://github.com/joematthews/extreme-angular/releases) and then manually make changes instead of merging. If the Angular version has changed, then follow the [instructions to update Angular](https://angular.io/guide/updating) first before attempting to merge or make changes.
+> Depending on the maturity of the project, it may be better to look at the current configuration files for extreme-angular & [release notes](https://github.com/joematthews/extreme-angular/releases) and then manually make changes instead of merging. If the Angular version has changed, then follow the [guide to update Angular](https://angular.dev/update) first before attempting to merge or make changes.
 
 To pull in the latest changes, check out an 'update' branch and merging the latest changes from `upstream/main`:
 
