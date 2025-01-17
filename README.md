@@ -137,7 +137,7 @@ npm run lint:tsc:spec
 
 ### Eslint
 
-[ESlint](https://eslint.org/) is used for linting JavaScript, TypeScript, HTML, and JSON files in the project. The linting configuration is set in [eslint.config.js file](./eslint.config.js), with specific overrides for the following file types: `*.js`, `*.ts`, `*.spec.ts`, `*.html`, and `*.json`.
+[ESlint](https://eslint.org/) is used for linting JavaScript, TypeScript, HTML, and JSON files in the project. The linting configuration is set in [eslint.config.js](./eslint.config.js), with specific overrides for the following file types: `*.js`, `*.ts`, `*.spec.ts`, `*.html`, and `*.json`.
 
 To ensure effective linting for all project files, the following ESLint plugins are used:
 
@@ -428,7 +428,7 @@ Here are some tips for configuring the dev tools for this project in JetBrains I
 - Eslint, Stylelint, Prettier
   - Search for each name in the settings to easily find all relevant configuration.
   - Double check all three plugins are installed.
-  - Set configuration to 'Automatic' for each and match the file extensions that are found in scripts section [package.json file](./package.json).
+  - Set configuration to 'Automatic' for each and match the file extensions that are found in scripts section of [package.json](./package.json).
   - (Optional) Set "Run on save" for each plugin if preferred.
 - Install the "CSpell Check" plugin to reduce conflicts with JetBrains' built-in spell-checking.
 - (Optional) Set keymap to 'VSCode' or 'VSCode (macOS)' for an easier transition
