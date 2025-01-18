@@ -2,7 +2,7 @@
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE DEV TOOLS TO WORK TOGETHER'](https://github.com/user-attachments/assets/1a2cbde4-45dc-4c10-920a-5a238e19f59b)
 
-Extreme Angular is pre-configured with a strict and opinionated set of development tools—including TypeScript, ESLint, Prettier, Stylelint, and CSpell—to enforce best practices, ensure consistent code quality, and promote accessibility while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
+Extreme Angular is pre-configured with a strict and opinionated set of development tools that enforce best practices, ensure consistent code quality, and promote accessibility while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
 
 However, Extreme Angular is not a fully-featured dashboard or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project.
 
@@ -10,7 +10,7 @@ For additional utility like Angular Material, server-side rendering (SSR), inter
 
 ## Contributions, Issues, & Suggestions
 
-If you have a suggestion or run into any issues _at all_ then first search through the [issues](https://github.com/joematthews/extreme-angular/issues), and then create a new one if necessary! :mega:
+If you have a suggestion or run into any issues then first search through the [issues](https://github.com/joematthews/extreme-angular/issues), and then create a new one if necessary! :mega:
 
 To contribute, [fork the repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo), check out a new branch, make your changes, and then [submit a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). :octopus:
 
@@ -22,11 +22,11 @@ Thank you for your contributions!
   - [License Considerations](#license-considerations)
 - [Dev Tools Implemented](#dev-tools-implemented)
   - [Typescript](#typescript)
-  - [Eslint](#eslint)
+  - [ESLint](#eslint)
     - [Accessibility (a11y)](#accessibility-a11y) :accessibility:
   - [Stylelint](#stylelint)
   - [Prettier](#prettier)
-  - [Code Spell Checker](#code-spell-checker)
+  - [CSpell](#cspell)
   - [VSCode](#vscode)
   - [Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)](#husky-commitlint-tsc-files-and-lint-staged-git-hooks)
   - [Shove Progress](#shove-progress)
@@ -40,8 +40,7 @@ Thank you for your contributions!
   - [Git Config](#git-config)
   - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
   - [Font Ligatures](#font-ligatures)
-  - [Catppuccin Theme](#catppuccin)
-  - [Oh My Bash / Oh My Zsh / Oh My Posh](#oh-my-zsh--oh-my-bash--oh-my-posh)
+  - [Oh My Zsh / Oh My Bash / Oh My Posh](#oh-my-zsh--oh-my-bash--oh-my-posh)
   - [JetBrains Webstorm & Rider](#jetbrains-ides)
 - [Updating](#updating)
 
@@ -130,9 +129,9 @@ To check for errors in \*.spec.ts files:
 npm run lint:tsc:spec
 ```
 
-### Eslint
+### ESLint
 
-[ESlint](https://eslint.org/) is used for linting JavaScript, TypeScript, HTML, and JSON files in the project. The linting configuration is set in [eslint.config.js](./eslint.config.js), with specific overrides for the following file types: `*.js`, `*.ts`, `*.spec.ts`, `*.html`, and `*.json`.
+[ESLint](https://eslint.org/) is used for linting JavaScript, TypeScript, HTML, and JSON files in the project. The linting configuration is set in [eslint.config.js](./eslint.config.js), with specific overrides for the following file types: `*.js`, `*.ts`, `*.spec.ts`, `*.html`, and `*.json`.
 
 To ensure effective linting for all project files, the following ESLint plugins are used:
 
@@ -207,13 +206,15 @@ To check if all files are properly formatted:
 npm run lint:format
 ```
 
-### Code Spell Checker
+### CSpell
 
 [CSpell](https://github.com/streetsidesoftware/cspell) is used for spell checking for all project files.
 
 To add project-specific words, update [.cspell.json](.cspell.json).
 
 The [Code Spell Checker Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) allows you to quickly add misspelled words to the configuration by selecting "Add to config: .cspell.json" from the 'Quick Fix' menu.
+
+The following dictionaries have been enabled: bash, companies, cpp, csharp, css, filetypes, fonts, go, html, latex, misc, node,npm, php, powershell, python,softwareTerms, and typescript.
 
 To find misspelled words in all files within the project:
 
@@ -228,7 +229,7 @@ The following VSCode extensions will be recommended when opening the project ([.
 - [Angular](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
 - [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 
@@ -247,7 +248,7 @@ The following VSCode settings have been set in [.vscode/settings.json](.vscode/s
 
 [Commitlint](https://commitlint.js.org/#/) is used to enforce good commit messages according to the [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) configuration in the commit-msg git hook. Additional Commitlint configuration is kept in [commitlint.config.js](./commitlint.config.js).
 
-[Lint-staged](https://www.npmjs.com/package/lint-staged) is used to run Prettier, ESlint, Stylelint, CSpell, and [tsc-files](https://www.npmjs.com/package/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
+[Lint-staged](https://www.npmjs.com/package/lint-staged) is used to run Prettier, ESLint, Stylelint, CSpell, and [tsc-files](https://www.npmjs.com/package/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
 
 ### Shove Progress
 
@@ -353,7 +354,7 @@ git config user.email "14097616+joematthews@users.noreply.github.com
 ```
 
 > [!TIP]
-> You can add the `--global` flag to these commands to make them the default for all projects.
+> You can add the `--global` flag to these commands to make them the default for all new projects.
 
 ### Inlay Hints in VSCode
 
@@ -411,7 +412,7 @@ The fira code repository maintains [a list of alternative fonts with ligatures](
 - [Oh My Bash](https://github.com/ohmybash/oh-my-bash): Popular on Linux, where bash is usually default.
 - [Oh My Posh](https://ohmyposh.dev/): Cross-platform. Works with many shells.
 
-The theme `robbyrussel` (default on oh-my-zsh) is an excellent, minimal theme that is available for all three.
+The theme `robbyrussel` is an excellent, minimal theme that is available for all three.
 
 These are great frameworks for managing shell configuration. They include helpful functions, plugins, helpers, and themes.
 
@@ -423,7 +424,7 @@ Shell configuration frameworks are a quick way to add git branch & status inform
 
 Here are some tips for configuring the dev tools for this project in JetBrains IDEs:
 
-- Eslint, Stylelint, Prettier
+- ESLint, Stylelint, Prettier
   - Search for each name in the settings to easily find all relevant configuration.
   - Double check all three plugins are installed.
   - Set configuration to 'Automatic' for each and match the file extensions that are found in scripts section of [package.json](./package.json).
