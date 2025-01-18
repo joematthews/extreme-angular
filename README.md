@@ -360,15 +360,15 @@ And then add the tabWidth and printWidth properties in [.prettierrc.json](.prett
 }
 ```
 
-To use double quotes for Typescript files, change these properties in [.editorconfig](.editorconfig):
+To use double quotes for JS/TS files, change these properties in [.editorconfig](.editorconfig):
 
 ```ini
-[*.ts]
+[*.{js,ts}]
 quote_type = double
 ij_typescript_use_double_quotes = true
 ```
 
-And then add the singleQuote property to [.prettierrc.json](.prettierrc.json):
+And then set the singleQuote property to false in [.prettierrc.json](.prettierrc.json):
 
 ```json
 {
@@ -377,6 +377,13 @@ And then add the singleQuote property to [.prettierrc.json](.prettierrc.json):
 ```
 
 Finally, run `npm run format` to re-format all files, and check the result.
+
+Here are some reasons for not changing the indention, line width, and quote style:
+
+- The Angular documentation and libraries use 2 space indention and single quotes.
+- [2 space indention is traditional for various reasons](https://www.google.com/search?client=firefox-b-1-d&q=2+or+4+space+indention+for+typescript).
+- 4 space indention can look pretty bad in JS/TS with an 80 character line limit.
+- Changing the line width can make it more difficult to view editors side-by-side.
 
 ### Git Config
 
