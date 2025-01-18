@@ -37,6 +37,7 @@ Thank you for your contributions!
   - [Internationalization (i18n)](#internationalization-i18n)
   - [End to End Testing (e2e)](#end-to-end-testing-e2e)
 - [Tips & Tricks](#tips--tricks)
+  - [Custom Formatting](#custom-formatting)
   - [Git Config](#git-config)
   - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
   - [Font Ligatures](#font-ligatures)
@@ -341,6 +342,42 @@ const playwright = require("eslint-plugin-playwright");
 
 These are tips and tricks that are too opinionated or situational to include in the repository configuration or are not related to Angular project configuration.
 
+### Custom Formatting
+
+To customize the indentation and line width, change the indent_size property in [.editorconfig](.editorconfig):
+
+```ini
+[*.{js,ts,css,scss,sh,html,json}]
+indent_size = 2
+```
+
+And then add the tabWidth and printWidth properties in [.prettierrc.json](.prettierrc.json):
+
+```json
+{
+  "tabWidth": 2,
+  "printWidth": 80
+}
+```
+
+To use double quotes for Typescript files, change these properties in [.editorconfig](.editorconfig):
+
+```ini
+[*.ts]
+quote_type = double
+ij_typescript_use_double_quotes = true
+```
+
+And then add the singleQuote property to [.prettierrc.json](.prettierrc.json):
+
+```json
+{
+  "singleQuote": false
+}
+```
+
+Finally, run `npm run format` to re-format all files, and check the result.
+
 ### Git Config
 
 To automatically set the remote branch name to match the local branch name on push:
@@ -375,13 +412,13 @@ Add the following to the vscode user settings to enable all inlay hints for Java
   "editor.inlayHints.enabled": "onUnlessPressed",
   "javascript.inlayHints.enumMemberValues.enabled": true,
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.parameterNames.enabled": "literals",
   "javascript.inlayHints.parameterTypes.enabled": true,
   "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
   "javascript.inlayHints.variableTypes.enabled": true,
   "typescript.inlayHints.enumMemberValues.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   "typescript.inlayHints.variableTypes.enabled": true
