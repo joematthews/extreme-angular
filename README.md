@@ -328,12 +328,12 @@ Angular has schematics available for several end to end testing frameworks. The 
 The [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) package has rules for the popular [Playwright](https://playwright.dev/) framework. To incorporate these rules, import the plugin in the [eslint.config.js](eslint.config.js) file and then add a new config object that targets `e2e/**/*.spec.ts` files:
 
 ```js
-const playwright = require("eslint-plugin-playwright");
+import { playwright } from 'eslint-plugin-playwright';
 ...
   {
-    files: ["e2e/**/*.spec.ts"],
-    extends: [...playwright.configs["flat/recommended"], eslintConfigPrettier],
-    rules: { ...playwright.configs["flat/recommended"].rules },
+    files: ['e2e/**/*.spec.ts'],
+    extends: [...playwright.configs['flat/recommended'], prettierConfig],
+    rules: { ...playwright.configs['flat/recommended'].rules },
   },
 }
 ```

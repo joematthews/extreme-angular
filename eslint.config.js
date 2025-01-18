@@ -70,7 +70,7 @@ export default config(
     rules: {},
   },
   {
-    files: ['**/*.spec.ts'],
+    files: ['src/**/*.spec.ts'],
     extends: [jasminePlugin.configs.recommended, prettierConfig],
     languageOptions: {
       globals: {
