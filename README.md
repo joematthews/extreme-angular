@@ -306,6 +306,14 @@ If you plan to implement internationalization in the future, adding i18n attribu
 
 To enable the i18n ESLint rule, simply remove or configure the following rule from the \*.html section of [eslint.config.js](./eslint.config.js):
 
+```json
+...
+rules: {
+  "@angular-eslint/template/i18n": "off",
+},
+...
+```
+
 > [!NOTE]
 > You may also need to configure the [@angular-eslint/template/i18n](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/i18n.md) rule according to your project's needs.
 
