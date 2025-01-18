@@ -12,6 +12,9 @@ trim_trailing_whitespace = true
 quote_type = single
 ij_typescript_use_double_quotes = false
 
+[*.{js,cjs}]
+quote_type = single
+
 [*.md]
 max_line_length = off
 trim_trailing_whitespace = false
