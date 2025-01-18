@@ -378,11 +378,11 @@ And then set the singleQuote property to false in [.prettierrc.json](.prettierrc
 
 Finally, run `npm run format` to re-format all files, and check the result.
 
-Here are some reasons for not changing the indention, line width, and quote style:
+Here are some reasons for not changing the indentation, line width, and quote style:
 
-- The Angular documentation and libraries use 2 space indention and single quotes.
-- [2 space indention is traditional for various reasons](https://www.google.com/search?client=firefox-b-1-d&q=2+or+4+space+indention+for+typescript).
-- 4 space indention can look pretty bad in JS/TS with an 80 character line limit.
+- The Angular documentation and libraries use 2 space indentation and single quotes.
+- [2 space indentation is traditional for various reasons](https://www.google.com/search?q=why+use+2+space+indentation+in+typescript).
+- 4 space indentation can look pretty bad in JS/TS with an 80 character line limit.
 - Changing the line width can make it more difficult to view editors side-by-side.
 
 ### Git Config
