@@ -3,6 +3,7 @@
   "engines": {
     "node": "^22.0.0"
   },
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
