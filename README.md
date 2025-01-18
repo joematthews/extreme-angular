@@ -4,11 +4,7 @@
 
 Extreme Angular is pre-configured with a strict and opinionated set of development tools—including TypeScript, ESLint, Prettier, Stylelint, and CSpell—to enforce best practices, ensure consistent code quality, and promote accessibility while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
 
-However, Extreme Angular is not a fully-featured dashboard or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project, created using the following `ng new` command:
-
-```sh
-ng new --strict --style=scss --ssr=false
-```
+However, Extreme Angular is not a fully-featured dashboard or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project.
 
 For additional utility like Angular Material, server-side rendering (SSR), internationalization (i18n), or End to End Testing (e2e) check out the [Optional Angular Schematics](#optional-angular-schematics) section.
 
@@ -23,7 +19,7 @@ Thank you for your contributions!
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-  - [LICENSE.md](#licensemd)
+  - [License Considerations](#license-considerations)
 - [Dev Tools Implemented](#dev-tools-implemented)
   - [Typescript](#typescript)
   - [Eslint](#eslint)
@@ -76,11 +72,11 @@ To start the development server run `npm start`.
 > [!TIP]
 > The "Dev Tools Implemented" section below is project-agnostic -- consider adding it to your project's README.md or CONTRIBUTING.md!
 
-### LICENSE.md
+### License Considerations
 
 The documentation and configuration files in this project are licensed under the [MIT license](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide).
 
-I keep the copyright from [Angular's license](https://angular.dev/license) and add my own copyright out of respect and clarity.
+I keep the copyright from [Angular's license](https://angular.dev/license) and add my own copyright.
 
 If your project also uses the MIT license, then please consider adding a new copyright line to [LICENSE.md](LICENSE.md):
 
@@ -94,9 +90,7 @@ Copyright (c) 2025 Your Name or Company
 ...
 ```
 
-If your project is [closed source](https://simple.wikipedia.org/wiki/Closed_source) or uses a [different license](https://opensource.org/licenses), then please consider renaming the file to `LICENSE-Angular.md` or include the original license in another document.
-
-Thank you!
+If your project is [closed source](https://simple.wikipedia.org/wiki/Closed_source) or uses a [different license](https://opensource.org/licenses), then please consider renaming the file to `LICENSE-Angular.md`.
 
 ## Dev Tools Implemented
 
@@ -240,11 +234,12 @@ The following VSCode extensions will be recommended when opening the project ([.
 
 The following VSCode settings have been set in [.vscode/settings.json](.vscode/settings.json):
 
-- Prettier set as default formatter.
-- Auto format and [fix linting errors on save](https://github.com/microsoft/vscode-eslint?tab=readme-ov-file#version-204).
-- Auto-save after 3 seconds (doesn't format or fix errors).
-- [Disable VSCode's default CSS/SCSS linters](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#disable-vs-codes-built-in-linters-optional).
-- [Stylelint configured to lint CSS & SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#%EF%B8%8F-only-css-and-postcss-are-validated-by-default).
+- Set Prettier as default formatter.
+- Turn on format on save
+- Turn on [fix linting errors on save](https://github.com/microsoft/vscode-eslint?tab=readme-ov-file#version-204).
+- Turn on auto-save and set delay for 3 seconds (doesn't format or fix errors).
+- [Disable VSCode linter for CSS/SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#disable-vs-codes-built-in-linters-optional).
+- [Enable Stylelint linter CSS & SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#%EF%B8%8F-only-css-and-postcss-are-validated-by-default).
 
 ### Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)
 
@@ -265,10 +260,10 @@ npm run shove
 The shove script will stage all files, commit with the commit message `wip: shoved`, and then push.
 
 > [!NOTE]
-> The shove script sets [git config push.autoSetupRemote true](https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote) to increase likelihood that the push will be successful. If you prefer to set the remote branch names manually you will need to set this back to `false`.
+> The shove script sets [git config push.autoSetupRemote true](https://git-scm.com/docs/git-push#Documentation/git-push.txt-pushautoSetupRemote) to increase the likelihood that the push will be successful. If you prefer to set the remote branch names manually you may need to set this option back to `false`.
 
 > [!WARNING]
-> The `--no-verify` flag cannot be disabled! To protect against untested code use a Continuous Integration solution.
+> The `--no-verify` flag cannot be disabled. To protect against untested code use a Continuous Integration solution.
 
 ### Continuous Integration (CI) Using GitHub Actions
 
@@ -320,13 +315,7 @@ To enable the i18n ESLint rule, simply remove or configure the following rule fr
 
 Angular has schematics available for several end to end testing frameworks. The [Angular End to End Testing guide](https://angular.dev/tools/cli/end-to-end) will walk you through the steps to set one up.
 
-To install a e2e testing framework in your project run this command:
-
-```sh
-ng e2e
-```
-
-The package [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) supports ESlint 9 has rules for the popular [Playwright](https://playwright.dev/) framework. To incorporate these rules, import the plugin and then add a new config object that targets `e2e/**/*.spec.ts` files to [eslint.config.js](eslint.config.js):
+The [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) package has rules for the popular [Playwright](https://playwright.dev/) framework. To incorporate these rules, import the plugin in the [eslint.config.js](eslint.config.js) file and then add a new config object that targets `e2e/**/*.spec.ts` files:
 
 ```js
 const playwright = require("eslint-plugin-playwright");
