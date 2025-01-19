@@ -1,7 +1,7 @@
 {
-  "**/*.{js,ts,html,json,md}": "eslint",
+  "**/*.{js,ts,html,json}": "eslint",
   "**/*.{css,scss}": "stylelint",
-  "**/*.{js,ts,html,css,md,json,sh}": "prettier --write",
-  "src/**/*": "cspell",
+  "**/*.{js,ts,css,scss,sh,html,md,json,yaml,yml}": "prettier --write --log-level warn",
+  "src/**/*": "cspell --quiet",
   "**/*.ts": "tsc-files --noEmit"
 }

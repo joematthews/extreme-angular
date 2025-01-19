@@ -4,11 +4,32 @@
   // language - current active spelling language
   "language": "en",
   // words - list of words to be always considered correct
-  "words": [],
+  "words": ["joematthews", "lintstagedrc", "robbyrussel", "Webstorm"],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
   // For example "hte" should be "the"
   "flagWords": [],
   "caseSensitive": false,
-  "useGitignore": true
+  "useGitignore": true,
+  "dictionaries": [
+    "bash",
+    "companies",
+    "cpp",
+    "csharp",
+    "css",
+    "filetypes",
+    "fonts",
+    "go",
+    "html",
+    "latex",
+    "misc",
+    "node",
+    "npm",
+    "php",
+    "powershell",
+    "python",
+    "softwareTerms",
+    "typescript"
+  ],
+  "ignorePaths": []
 }

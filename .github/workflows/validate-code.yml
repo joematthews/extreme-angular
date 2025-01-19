@@ -1,0 +1,14 @@
+name: Validate Code
+
+on: workflow_call
+
+jobs:
+  called-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+      - run: npm run ci:all
