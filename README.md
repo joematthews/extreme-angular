@@ -78,19 +78,17 @@ The documentation and configuration files in this project are licensed under the
 
 I keep the copyright from [Angular's license](https://angular.dev/license) and add my own copyright.
 
-If your project also uses the MIT license, then please consider adding a new copyright line to [LICENSE.md](LICENSE.md):
+If your project also uses the MIT license, then please consider adding a new copyright line to [LICENSE.txt](LICENSE.txt):
 
-```
-...
+```txt
 Copyright (c) 2010-2024 Google LLC. https://angular.dev/license
 
 Copyright (c) 2024-2025 Joe Matthews, et al. https://github.com/joematthews/extreme-angular
 
 Copyright (c) 2025 Your Name or Company
-...
 ```
 
-If your project is [closed source](https://simple.wikipedia.org/wiki/Closed_source) or uses a [different license](https://opensource.org/licenses), then please consider renaming the file to `LICENSE-Angular.md`.
+If your project is [closed source](https://simple.wikipedia.org/wiki/Closed_source) or uses a [different license](https://opensource.org/licenses), then please consider renaming the file to `LICENSE-Angular.txt`.
 
 ## Dev Tools Implemented
 
@@ -308,11 +306,9 @@ If you plan to implement internationalization in the future, adding i18n attribu
 To enable the i18n ESLint rule, simply remove or configure the following rule from the \*.html section of [eslint.config.js](./eslint.config.js):
 
 ```json
-...
 rules: {
   "@angular-eslint/template/i18n": "off",
 },
-...
 ```
 
 > [!NOTE]
@@ -328,14 +324,15 @@ Angular has schematics available for several end to end testing frameworks. The 
 The [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) package has rules for the popular [Playwright](https://playwright.dev/) framework. To incorporate these rules, import the plugin in the [eslint.config.js](eslint.config.js) file and then add a new config object that targets `e2e/**/*.spec.ts` files:
 
 ```js
-import { playwright } from 'eslint-plugin-playwright';
-...
+import { playwright } from "eslint-plugin-playwright";
+```
+
+```js
   {
     files: ['e2e/**/*.spec.ts'],
     extends: [...playwright.configs['flat/recommended'], prettierConfig],
     rules: { ...playwright.configs['flat/recommended'].rules },
   },
-}
 ```
 
 ## Tips & Tricks
@@ -363,9 +360,12 @@ And then add the tabWidth and printWidth properties in [.prettierrc.json](.prett
 To use double quotes for JS/TS files, change these properties in [.editorconfig](.editorconfig):
 
 ```ini
-[*.{js,ts}]
-quote_type = double
-ij_typescript_use_double_quotes = true
+[*.ts]
+quote_type = single
+ij_typescript_use_double_quotes = false
+
+[*.{js,cjs}]
+quote_type = single
 ```
 
 And then set the singleQuote property to false in [.prettierrc.json](.prettierrc.json):
@@ -436,8 +436,7 @@ To temporarily disable inlay hints use `CTRL + ALT` (or `CTRL + OPTION` on Mac) 
 
 ```json
 {
-  "editor.inlayHints.enabled": "offUnlessPressed"`
-  ...
+  "editor.inlayHints.enabled": "offUnlessPressed"
 }
 ```
 
