@@ -11,7 +11,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
-    "serve:ssr:extreme-angular": "node dist/extreme-angular/server/server.mjs",
     "format:base": "prettier --log-level warn --ignore-path=./.gitignore  \"**/*.{js,ts,css,scss,sh,html,md,json,yaml,yml}\"",
     "format": "npm run format:base -- --write",
     "lint": "eslint \"**/*.{js,ts,html,json}\"",
