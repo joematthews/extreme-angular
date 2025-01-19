@@ -42,7 +42,7 @@ Thank you for your contributions!
   - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
   - [Font Ligatures](#font-ligatures)
   - [Oh My Zsh / Oh My Bash / Oh My Posh](#oh-my-zsh--oh-my-bash--oh-my-posh)
-  - [JetBrains Webstorm & Rider](#jetbrains-ides)
+  - [JetBrains IDEs](#jetbrains-ides)
 - [Updating](#updating)
 
 ## Getting Started
