@@ -160,6 +160,12 @@ To lint all relevant files in the project (not just those in src/):
 npm run lint
 ```
 
+ESLint output is formatted using [eslint-formatter-mo](https://github.com/fengzilong/eslint-formatter-mo). To use normal formatting, remove the `-f mo` option from the `lint` script in [package.json](package.json):
+
+```json
+"lint": "eslint -f mo \"**/*.{js,ts,html,json}\"",
+```
+
 > [!TIP]
 > Suppress the urge to immediately set rules to "off" or "warn". First, look up the rule and the problem it is correcting for and discuss the rule with other developers on the project.
 
