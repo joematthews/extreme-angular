@@ -109,27 +109,32 @@ npm run lint:all
 
 ### TypeScript
 
-In addition to setting `"strict": true` in the TypeScript configuration, Angular's template checking is enabled with Strict Mode as defined in [tsconfig.json](tsconfig.json).
+In addition to setting `"strict": true`, Angular's template checking is set to 'Strict Mode' in [tsconfig.json](tsconfig.json).
 
-The following TypeScript compiler options have been added to enforce cleaner and more maintainable code:
+These compiler options have also been added to ensure strict type-checking for optional properties, eliminate unused variables
+and parameters to reduce clutter, and enforce explicit handling of potentially undefined values in arrays or objects:
 
 - [exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
 - [noUnusedLocals](https://www.typescriptlang.org/tsconfig#noUnusedLocals)
 - [noUnusedParameters](https://www.typescriptlang.org/tsconfig#noUnusedParameters)
 - [noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess)
 
-These options help ensure stricter type-checking and eliminate unused or potentially unsafe code.
-
-To check for errors in \*.ts files:
+To check for errors in \*.ts app files:
 
 ```
 npm run lint:tsc:app
 ```
 
-To check for errors in \*.spec.ts files:
+To check for errors in \*.spec.ts test files:
 
 ```
 npm run lint:tsc:spec
+```
+
+To check for errors in all TypeScript files:
+
+```
+npm run lint:tsc:all
 ```
 
 ### ESLint
