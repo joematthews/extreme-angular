@@ -45,7 +45,7 @@ Thank you for your contributions!
   - [Git Config](#git-config)
   - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
   - [Font Ligatures](#font-ligatures)
-  - [Oh My Zsh / Oh My Bash / Oh My Posh](#oh-my-zsh--oh-my-bash--oh-my-posh)
+  - [Shell Configuration Frameworks](#shell-configuration-frameworks)
   - [JetBrains IDEs](#jetbrains-ides)
 - [Updating](#updating)
 
@@ -470,13 +470,12 @@ After downloading and installing the font of choice, add the font to the `fontFa
 
 The fira code repository maintains [a list of alternative fonts with ligatures](https://github.com/tonsky/FiraCode#alternatives).
 
-### Oh My Zsh / Oh My Bash / Oh My Posh
+### Shell Configuration Frameworks
 
 - [Oh My Zsh](https://ohmyz.sh/): Popular on macOS, where zsh is now default.
 - [Oh My Bash](https://github.com/ohmybash/oh-my-bash): Popular on Linux, where bash is usually default.
-- [Oh My Posh](https://ohmyposh.dev/): Cross-platform. Works with many shells.
-
-The theme `robbyrussel` is an excellent, minimal theme that is available for all three.
+- [Oh My Posh](https://ohmyposh.dev/): Cross-platform. Popular on Windows. Works with many shells.
+- [Starship](https://starship.rs/): Cross-platform. Written in Rust.
 
 These are great frameworks for managing shell configuration. They include helpful functions, plugins, helpers, and themes.
 
