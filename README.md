@@ -21,7 +21,7 @@ Thank you for your contributions!
 - [Getting Started](#getting-started)
   - [License Considerations](#license-considerations)
 - [Dev Tools Implemented](#dev-tools-implemented)
-  - [Typescript](#typescript)
+  - [TypeScript](#typescript)
   - [ESLint](#eslint)
     - [Accessibility (a11y)](#accessibility-a11y) :accessibility:
   - [Stylelint](#stylelint)
@@ -103,7 +103,7 @@ npm run lint:all
 > [!CAUTION]
 > These tools are not perfect and they are not a substitute for learning and utilizing the best practices outlined in the Angular guides for [Style](https://angular.dev/style-guide), [Security](https://angular.dev/best-practices/security), [Accessibility](https://angular.dev/best-practices/a11y), and [Performance](https://angular.dev/best-practices/runtime-performance).
 
-### Typescript
+### TypeScript
 
 In addition to setting `"strict": true` in the TypeScript configuration, Angular's template checking is enabled with Strict Mode as defined in [tsconfig.json](tsconfig.json).
 
@@ -410,9 +410,9 @@ git config user.email "14097616+joematthews@users.noreply.github.com
 
 ### Inlay Hints in VSCode
 
-I _highly_ recommend enabling [inlay hints in vscode](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They give me the confidence to use Typescript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
+I _highly_ recommend enabling [inlay hints in vscode](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They give me the confidence to use TypeScript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
 
-Add the following to the vscode user settings to enable all inlay hints for JavaScript & Typescript:
+Add the following to the vscode user settings to enable all inlay hints for JavaScript & TypeScript:
 
 ```json
 {
