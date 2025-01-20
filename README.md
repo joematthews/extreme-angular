@@ -145,13 +145,13 @@ To ensure effective linting for all project files, the following ESLint plugins 
 - [@typescript-eslint](https://typescript-eslint.io/)
   - Uses both [strict-type-checked](https://typescript-eslint.io/linting/configs#strict-type-checked) and [stylistic-type-checked](https://typescript-eslint.io/linting/configs#stylistic-type-checked) rule sets.
   - [typescript-eslint rules configuration matrix](https://typescript-eslint.io/rules/).
-- [eslint-plugin-jasmine](https://www.npmjs.com/package/eslint-plugin-jasmine)
+- [eslint-plugin-jasmine](https://github.com/tlvince/eslint-plugin-jasmine)
   - Uses `recommended` rule set.
   - [eslint-plugin-jasmine rules configuration matrix](https://typescript-eslint.io/rules/).
-- [eslint-plugin-jsonc](https://www.npmjs.com/package/eslint-plugin-jsonc)
+- [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc)
   - Uses `recommended` rule set.
   - [eslint-plugin-jsonc rules configuration matrix](https://ota-meshi.github.io/eslint-plugin-jsonc/rules/).
-- [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier)
+- [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)
   - Disables rules that may conflict with Prettier formatting.
 
 To lint all relevant files in the project (not just those in src/):
@@ -193,8 +193,8 @@ In [.prettierrc.json](./.prettierrc.json), the `htmlWhitespaceSensitivity` optio
 
 The following Prettier plugins are used:
 
-- [prettier-plugin-sh](https://www.npmjs.com/package/prettier-plugin-sh): Formats shell scripts, such as Git hooks.
-- [prettier-plugin-css-order](https://www.npmjs.com/package/prettier-plugin-css-order): Automatically organizes SCSS/CSS properties using [concentric-css](https://github.com/brandon-rhodes/Concentric-CSS)
+- [prettier-plugin-sh](https://github.com/un-ts/prettier/tree/master/packages/sh): Formats shell scripts, such as Git hooks.
+- [prettier-plugin-css-order](https://github.com/Siilwyn/prettier-plugin-css-order): Automatically organizes SCSS/CSS properties using [concentric-css](https://github.com/brandon-rhodes/Concentric-CSS)
 - [prettier-plugin-organize-imports](https://github.com/trivago/prettier-plugin-sort-imports): Automatically organizes, arranges, and removes unused imports.
 
 To format files within the project:
@@ -249,9 +249,9 @@ The following VSCode settings have been set in [.vscode/settings.json](.vscode/s
 
 [Husky](https://typicode.github.io/husky/) is used to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), and [commit-msg](.husky/commit-msg) git hooks.
 
-[Commitlint](https://commitlint.js.org/#/) is used to enforce good commit messages according to the [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) configuration in the commit-msg git hook. Additional Commitlint configuration is kept in [commitlint.config.js](./commitlint.config.js).
+[Commitlint](https://commitlint.js.org/#/) is used to enforce good commit messages according to the [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint) configuration in the commit-msg git hook. Additional Commitlint configuration is kept in [commitlint.config.js](./commitlint.config.js).
 
-[Lint-staged](https://www.npmjs.com/package/lint-staged) is used to run Prettier, ESLint, Stylelint, CSpell, and [tsc-files](https://www.npmjs.com/package/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
+[Lint-staged](https://github.com/lint-staged/lint-staged) is used to run Prettier, ESLint, Stylelint, CSpell, and [tsc-files](https://github.com/gustavopch/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
 
 ### Shove Progress
 
@@ -310,7 +310,7 @@ If you plan to implement internationalization in the future, adding i18n attribu
 To enable the i18n ESLint rule, simply remove or configure the following rule from the \*.html section of [eslint.config.js](./eslint.config.js):
 
 ```js
-  "@angular-eslint/template/i18n": "off",
+"@angular-eslint/template/i18n": "off",
 ```
 
 > [!NOTE]
