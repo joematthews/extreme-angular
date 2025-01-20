@@ -4,7 +4,11 @@
 
 Extreme Angular is pre-configured with a strict and opinionated set of development tools that enforce best practices, ensure consistent code quality, and promote accessibility while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
 
-However, Extreme Angular is not a fully-featured dashboard or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project.
+However, Extreme Angular is not a fully-featured dashboard or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project. The underlining Angular project was generated with:
+
+```
+ng new --strict --style=scss --ssr=false
+```
 
 For additional utility like Angular Material, server-side rendering (SSR), internationalization (i18n), or End to End Testing (e2e) check out the [Optional Angular Schematics](#optional-angular-schematics) section.
 
