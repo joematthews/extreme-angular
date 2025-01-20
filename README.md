@@ -10,7 +10,7 @@ However, Extreme Angular is not a fully-featured dashboard or a component librar
 ng new --strict --style=scss --ssr=false
 ```
 
-For additional utility like Angular Material, server-side rendering (SSR), internationalization (i18n), or End to End Testing (e2e) check out the [Optional Angular Schematics](#optional-angular-schematics) section.
+For additional utility like Angular Material, Server-side & hybrid rendering (SSR, SSG, Hydration), Internationalization (i18n), or End to End testing (e2e) check out the [Optional Angular Schematics](#optional-angular-schematics) section.
 
 ## Contributions, Issues, & Suggestions
 
@@ -37,7 +37,7 @@ Thank you for your contributions!
   - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
 - [Optional Angular Schematics](#optional-angular-schematics)
   - [Angular Material & Angular CDK](#angular-material--angular-cdk)
-  - [Server-side & hybrid rendering (SSR)](#server-side--hybrid-rendering-ssr)
+  - [Server-side & hybrid rendering (SSR, SSG, Hydration)](#server-side--hybrid-rendering-ssr-ssg-hydration)
   - [Internationalization (i18n)](#internationalization-i18n)
   - [End to End Testing (e2e)](#end-to-end-testing-e2e)
 - [Tips & Tricks](#tips--tricks)
@@ -297,7 +297,7 @@ ng add @angular/cdk
 
 To add animations to your own components, check out [Introduction to Angular animations](https://angular.dev/guide/animations)
 
-### Server-side & hybrid rendering (SSR)
+### Server-side & hybrid rendering (SSR, SSG, Hydration)
 
 Consider enabling [Server-side & hybrid rendering](https://angular.dev/guide/performance) to improve SEO and user experience (at the cost of increased deployment complexity).
 
@@ -309,10 +309,8 @@ If you plan to implement internationalization in the future, adding i18n attribu
 
 To enable the i18n ESLint rule, simply remove or configure the following rule from the \*.html section of [eslint.config.js](./eslint.config.js):
 
-```json
-rules: {
+```js
   "@angular-eslint/template/i18n": "off",
-},
 ```
 
 > [!NOTE]
