@@ -18,8 +18,9 @@
     "lint:spelling": "cspell --quiet \"**/*\"",
     "lint:tsc:app": "tsc --noEmit -p tsconfig.app.json",
     "lint:tsc:spec": "tsc --noEmit -p tsconfig.spec.json",
+    "lint:tsc:all": "npm run lint:tsc:app && npm run lint:tsc:spec",
     "lint:format": "npm run format:base -- --check",
-    "lint:all": "npm run lint:tsc:app && npm run lint:tsc:spec && npm run lint && npm run lint:style && npm run lint:spelling && npm run lint:format",
+    "lint:all": "npm run lint:tsc:all && npm run lint && npm run lint:style && npm run lint:spelling && npm run lint:format",
     "ci:all": "npm run lint:all && npm run test:ci",
     "shove": "git config push.autoSetupRemote true && git add . && git commit -m 'wip: shoved' --no-verify && git push --no-verify",
     "prepare": "husky install"
