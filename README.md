@@ -45,7 +45,7 @@ Thank you for your contributions!
   - [Git Config](#git-config)
   - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
   - [Font Ligatures](#font-ligatures)
-  - [Oh My Zsh / Oh My Bash / Oh My Posh](#oh-my-zsh--oh-my-bash--oh-my-posh)
+  - [Shell Configuration Frameworks](#shell-configuration-frameworks)
   - [JetBrains IDEs](#jetbrains-ides)
 - [Updating](#updating)
 
@@ -109,27 +109,32 @@ npm run lint:all
 
 ### TypeScript
 
-In addition to setting `"strict": true` in the TypeScript configuration, Angular's template checking is enabled with Strict Mode as defined in [tsconfig.json](tsconfig.json).
+In addition to setting `"strict": true`, Angular's template checking is set to 'Strict Mode' in [tsconfig.json](tsconfig.json).
 
-The following TypeScript compiler options have been added to enforce cleaner and more maintainable code:
+These compiler options have also been added to ensure strict type-checking for optional properties, eliminate unused variables
+and parameters to reduce clutter, and enforce explicit handling of potentially undefined values in arrays or objects:
 
 - [exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
 - [noUnusedLocals](https://www.typescriptlang.org/tsconfig#noUnusedLocals)
 - [noUnusedParameters](https://www.typescriptlang.org/tsconfig#noUnusedParameters)
 - [noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess)
 
-These options help ensure stricter type-checking and eliminate unused or potentially unsafe code.
-
-To check for errors in \*.ts files:
+To check for errors in \*.ts app files:
 
 ```
 npm run lint:tsc:app
 ```
 
-To check for errors in \*.spec.ts files:
+To check for errors in \*.spec.ts test files:
 
 ```
 npm run lint:tsc:spec
+```
+
+To check for errors in all TypeScript files:
+
+```
+npm run lint:tsc:all
 ```
 
 ### ESLint
@@ -465,13 +470,12 @@ After downloading and installing the font of choice, add the font to the `fontFa
 
 The fira code repository maintains [a list of alternative fonts with ligatures](https://github.com/tonsky/FiraCode#alternatives).
 
-### Oh My Zsh / Oh My Bash / Oh My Posh
+### Shell Configuration Frameworks
 
 - [Oh My Zsh](https://ohmyz.sh/): Popular on macOS, where zsh is now default.
 - [Oh My Bash](https://github.com/ohmybash/oh-my-bash): Popular on Linux, where bash is usually default.
-- [Oh My Posh](https://ohmyposh.dev/): Cross-platform. Works with many shells.
-
-The theme `robbyrussel` is an excellent, minimal theme that is available for all three.
+- [Oh My Posh](https://ohmyposh.dev/): Cross-platform. Popular on Windows. Works with many shells.
+- [Starship](https://starship.rs/): Cross-platform. Written in Rust.
 
 These are great frameworks for managing shell configuration. They include helpful functions, plugins, helpers, and themes.
 
