@@ -85,7 +85,7 @@ I keep the copyright from [Angular's license](https://angular.dev/license) and a
 If your project also uses the MIT license, then please consider adding a new copyright line to [LICENSE.txt](LICENSE.txt):
 
 ```txt
-Copyright (c) 2010-2024 Google LLC. https://angular.dev/license
+Copyright (c) 2010-2025 Google LLC. https://angular.dev/license
 
 Copyright (c) 2024-2025 Joe Matthews, et al. https://github.com/joematthews/extreme-angular
 
