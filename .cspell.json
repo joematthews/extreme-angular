@@ -31,5 +31,5 @@
     "softwareTerms",
     "typescript"
   ],
-  "ignorePaths": []
+  "ignorePaths": ["package-lock.json"]
 }
