@@ -4,7 +4,7 @@
   // language - current active spelling language
   "language": "en",
   // words - list of words to be always considered correct
-  "words": ["joematthews", "lintstagedrc", "robbyrussel", "Webstorm"],
+  "words": ["lintstagedrc", "Webstorm"],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
   // For example "hte" should be "the"
@@ -31,5 +31,5 @@
     "softwareTerms",
     "typescript"
   ],
-  "ignorePaths": []
+  "ignorePaths": ["**/*.json", "**/*.yml", "**/*.yaml"]
 }
