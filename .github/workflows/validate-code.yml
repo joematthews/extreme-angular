@@ -2,6 +2,9 @@ name: Validate Code
 
 on: workflow_call
 
+permissions:
+  contents: read
+
 jobs:
   called-workflow:
     runs-on: ubuntu-latest
