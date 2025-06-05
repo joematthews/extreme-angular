@@ -251,8 +251,7 @@ The following VSCode settings have been set in [.vscode/settings.json](.vscode/s
 
 - Set Prettier as default formatter.
 - Turn on format on save
-- Turn on [fix linting errors on save](https://github.com/microsoft/vscode-eslint?tab=readme-ov-file#version-204).
-- Turn on auto-save and set delay for 3 seconds (doesn't format or fix errors).
+- Turn on auto-save and set delay for 3 seconds (does not format).
 - [Disable VSCode linter for CSS/SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#disable-vs-codes-built-in-linters-optional).
 - [Enable Stylelint linter CSS & SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#%EF%B8%8F-only-css-and-postcss-are-validated-by-default).
 
@@ -430,7 +429,6 @@ Add the following to the vscode user settings to enable all inlay hints for Java
 ```json
 {
   "editor.inlayHints.enabled": "onUnlessPressed",
-  "javascript.inlayHints.enumMemberValues.enabled": true,
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "javascript.inlayHints.parameterNames.enabled": "literals",
   "javascript.inlayHints.parameterTypes.enabled": true,
