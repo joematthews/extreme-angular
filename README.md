@@ -430,7 +430,6 @@ Add the following to the vscode user settings to enable all inlay hints for Java
 ```json
 {
   "editor.inlayHints.enabled": "onUnlessPressed",
-  "javascript.inlayHints.enumMemberValues.enabled": true,
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "javascript.inlayHints.parameterNames.enabled": "literals",
   "javascript.inlayHints.parameterTypes.enabled": true,
