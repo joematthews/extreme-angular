@@ -46,7 +46,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@types/jasmine": "~5.1.0",
-    "angular-eslint": "19.3.0",
+    "angular-eslint": "19.7.1",
     "cspell": "^8.17.1",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
