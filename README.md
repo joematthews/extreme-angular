@@ -1,4 +1,4 @@
-# Extreme Angular 19: A Stricter Starter Template
+# Extreme Angular 20: A Stricter Starter Template
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE DEV TOOLS TO WORK TOGETHER'](https://github.com/user-attachments/assets/b7e3a75f-a082-465b-a9cd-7557732b0589)
 
@@ -144,7 +144,7 @@ npm run lint:tsc:all
 To ensure effective linting for all project files, the following ESLint plugins are used:
 
 - [@angular-eslint](https://github.com/angular-eslint/angular-eslint)
-  - Enables all TypeScript and template rules unless explicitly disabled or modified.
+  - Uses recommended TypeScript and template rules unless explicitly disabled or modified.
   - [@angular-eslint rules configuration matrix](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/README.md).
   - [@angular-eslint/template rules configuration matrix](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/README.md).
 - [@typescript-eslint](https://typescript-eslint.io/)
@@ -254,6 +254,7 @@ The following VSCode settings have been set in [.vscode/settings.json](.vscode/s
 - Turn on auto-save and set delay for 3 seconds (does not format).
 - [Disable VSCode linter for CSS/SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#disable-vs-codes-built-in-linters-optional).
 - [Enable Stylelint linter CSS & SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#%EF%B8%8F-only-css-and-postcss-are-validated-by-default).
+- Switch to workspace version of TypeScript for IntelliSense
 
 ### Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)
 
@@ -317,10 +318,10 @@ Angular has powerful [Internationalization](https://angular.dev/guide/i18n) capa
 
 If you plan to implement internationalization in the future, adding i18n attributes early on can make the process easier to scale naturally.
 
-To enable the i18n ESLint rule, simply remove or configure the following rule from the \*.html section of [eslint.config.js](./eslint.config.js):
+To enable the i18n ESLint rule, simply add the following rule from the \*.html section of [eslint.config.js](./eslint.config.js):
 
 ```js
-"@angular-eslint/template/i18n": "off",
+"@angular-eslint/template/i18n": "error",
 ```
 
 > [!NOTE]

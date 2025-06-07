@@ -1,15 +1,15 @@
-import eslint from '@eslint/js';
-import { configs as ngConfigs, processInlineTemplates } from 'angular-eslint';
-import prettierConfig from 'eslint-config-prettier';
-import jasminePlugin from 'eslint-plugin-jasmine';
-import { configs as jsoncConfigs } from 'eslint-plugin-jsonc';
-import globals from 'globals';
-import { config, configs as tsConfigs } from 'typescript-eslint';
+import eslint from "@eslint/js";
+import { configs as ngConfigs, processInlineTemplates } from "angular-eslint";
+import prettierConfig from "eslint-config-prettier";
+import jasminePlugin from "eslint-plugin-jasmine";
+import { configs as jsoncConfigs } from "eslint-plugin-jsonc";
+import globals from "globals";
+import { config, configs as tsConfigs } from "typescript-eslint";
 
 export default config(
-  { ignores: ['.angular/*', 'dist/*'] },
+  { ignores: [".angular/*", "dist/*"] },
   {
-    files: ['**/*.js'],
+    files: ["**/*.js"],
     extends: [eslint.configs.recommended, prettierConfig],
     languageOptions: {
       globals: {
@@ -19,12 +19,12 @@ export default config(
     rules: {},
   },
   {
-    files: ['**/*.ts'],
+    files: ["**/*.ts"],
     extends: [
       eslint.configs.recommended,
       ...tsConfigs.strictTypeChecked,
       ...tsConfigs.stylisticTypeChecked,
-      ...ngConfigs.tsAll,
+      ...ngConfigs.tsRecommended,
       prettierConfig,
     ],
     languageOptions: {
@@ -35,42 +35,43 @@ export default config(
     },
     processor: processInlineTemplates,
     rules: {
-      '@angular-eslint/directive-selector': [
-        'error',
+      "@angular-eslint/directive-selector": [
+        "error",
         {
-          type: 'attribute',
-          prefix: 'app',
-          style: 'camelCase',
+          type: "attribute",
+          prefix: "app",
+          style: "camelCase",
         },
       ],
-      '@angular-eslint/component-selector': [
-        'error',
+      "@angular-eslint/component-selector": [
+        "error",
         {
-          type: 'element',
-          prefix: 'app',
-          style: 'kebab-case',
+          type: "element",
+          prefix: "app",
+          style: "kebab-case",
         },
       ],
-      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
     },
   },
   {
-    files: ['**/*.html'],
-    extends: [...ngConfigs.templateAll, ...ngConfigs.templateAccessibility],
-    rules: {
-      '@angular-eslint/template/i18n': 'off',
-    },
-  },
-  {
-    files: ['**/*.json'],
+    files: ["**/*.html"],
     extends: [
-      ...jsoncConfigs['flat/recommended-with-jsonc'],
-      ...jsoncConfigs['flat/prettier'],
+      ...ngConfigs.templateRecommended,
+      ...ngConfigs.templateAccessibility,
+      prettierConfig,
     ],
     rules: {},
   },
   {
-    files: ['src/**/*.spec.ts'],
+    files: ["**/*.json"],
+    extends: [
+      ...jsoncConfigs["flat/recommended-with-jsonc"],
+      ...jsoncConfigs["flat/prettier"],
+    ],
+    rules: {},
+  },
+  {
+    files: ["src/**/*.spec.ts"],
     extends: [jasminePlugin.configs.recommended, prettierConfig],
     languageOptions: {
       globals: {
