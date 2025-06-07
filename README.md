@@ -354,39 +354,27 @@ These are tips and tricks that are too opinionated or situational to include in 
 
 ### Custom Formatting
 
-To customize the indentation and line width, change the indent_size property in [.editorconfig](.editorconfig):
+To customize the indentation, set the indent_size property in [.editorconfig](.editorconfig):
 
 ```ini
-[*.{js,ts,css,scss,sh,html,json}]
+[*]
 indent_size = 2
 ```
 
-And then add the tabWidth and printWidth properties in [.prettierrc.json](.prettierrc.json):
+To customizethe line width, set the printWidth property in [.prettierrc.json](.prettierrc.json):
 
 ```json
 {
-  "tabWidth": 2,
   "printWidth": 80
 }
 ```
 
-To use double quotes for JS/TS files, change these properties in [.editorconfig](.editorconfig):
+To use double quotes for TS files, set these properties in [.editorconfig](.editorconfig):
 
 ```ini
 [*.ts]
 quote_type = single
 ij_typescript_use_double_quotes = false
-
-[*.{js,cjs}]
-quote_type = single
-```
-
-And then set the singleQuote property to false in [.prettierrc.json](.prettierrc.json):
-
-```json
-{
-  "singleQuote": false
-}
 ```
 
 Finally, run `npm run format` to re-format all files, and check the result.
