@@ -1,9 +1,13 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 3000,
+
   "css.validate": false,
   "scss.validate": false,
-  "stylelint.validate": ["css", "scss"]
+  "stylelint.validate": ["css", "scss"],
+
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
