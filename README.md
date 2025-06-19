@@ -2,28 +2,31 @@
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE DEV TOOLS TO WORK TOGETHER'](https://github.com/user-attachments/assets/b7e3a75f-a082-465b-a9cd-7557732b0589)
 
-Extreme Angular is pre-configured with a strict and opinionated set of development tools that enforce best practices, ensure consistent code quality, and promote accessibility while remaining fully compatible with the [official Angular documentation](https://angular.dev/overview).
+Extreme Angular is a pre-configured Angular starter template with strict development tools that enforce best practices, ensure consistent code quality, and promote accessibility. It remains fully compatible with the [official Angular documentation](https://angular.dev/overview).
 
-However, Extreme Angular is not a fully-featured dashboard or a component library. It contains no custom application logic, components, or complex modifications. Instead, it offers a clean, strict base for your Angular project. The underlining Angular project was generated with:
+The underlying Angular project was generated with:
 
 ```
 ng new --strict --style=scss --ssr=false
 ```
 
-For additional utility like Angular Material, Server-side & hybrid rendering (SSR, SSG, Hydration), Internationalization (i18n), or End to End testing (e2e) check out the [Optional Angular Schematics](#optional-angular-schematics) section.
+## Why Use Extreme Angular
 
-## Contributions, Issues, & Suggestions
+- **Skip weeks of setup** — ESLint, Prettier, Stylelint, CSpell, Git hooks, and CI work out of the box
+- **Zero configuration conflicts** — all tools are tested to work together seamlessly
+- **Focus on what matters** — discuss logic and architecture instead of arguing about formatting
+- **Consistent quality** — automatic code standards and accessibility checks across your team
+- **Clean foundation** — no custom code or complex workarounds needed
 
-If you have a suggestion or run into any issues then first search through the [issues](https://github.com/joematthews/extreme-angular/issues), and then create a new one if necessary! :mega:
+## Contributing
 
-To contribute, [fork the repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo), check out a new branch, make your changes, and then [submit a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). :octopus:
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to get started.
 
-Thank you for your contributions!
+Found an issue? Check the [existing issues](https://github.com/joematthews/extreme-angular/issues) first, then create a new one if needed.
 
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-  - [License Considerations](#license-considerations)
 - [Dev Tools Implemented](#dev-tools-implemented)
   - [TypeScript](#typescript)
   - [ESLint](#eslint)
@@ -31,23 +34,22 @@ Thank you for your contributions!
   - [Stylelint](#stylelint)
   - [Prettier](#prettier)
   - [CSpell](#cspell)
-  - [VSCode](#vscode)
+  - [VS Code](#vs-code)
   - [Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)](#husky-commitlint-tsc-files-and-lint-staged-git-hooks)
   - [Shove Progress](#shove-progress)
   - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
-- [Optional Angular Schematics](#optional-angular-schematics)
-  - [Angular Material & Angular CDK](#angular-material--angular-cdk)
-  - [Server-side & hybrid rendering (SSR, SSG, Hydration)](#server-side--hybrid-rendering-ssr-ssg-hydration)
+- [Optional Configuration](#optional-configuration)
   - [Internationalization (i18n)](#internationalization-i18n)
   - [End to End Testing (e2e)](#end-to-end-testing-e2e)
 - [Tips & Tricks](#tips--tricks)
   - [Custom Formatting](#custom-formatting)
   - [Git Config](#git-config)
-  - [Inlay Hints in VSCode](#inlay-hints-in-vscode)
+  - [Inlay Hints in VS Code](#inlay-hints-in-vs-code)
   - [Font Ligatures](#font-ligatures)
   - [Shell Configuration Frameworks](#shell-configuration-frameworks)
   - [JetBrains IDEs](#jetbrains-ides)
 - [Updating](#updating)
+- [License Considerations](#license-considerations)
 
 ## Getting Started
 
@@ -66,33 +68,20 @@ cd new_project_name
 npm install
 ```
 
-Use the shortcut `CTRL+SHIFT+H` in VSCode to search and replace `extreme-angular` with your chosen project name.
+**Customize your project:**
+Use `CTRL+SHIFT+H` in VS Code to search and replace `extreme-angular` with your chosen project name.
 
-To start the development server run `npm start`.
+**Start developing:**
 
-> [!TIP]  
-> If you're using [VSCode](https://code.visualstudio.com/) and [Chrome](https://www.google.com/chrome/), then press `F5` on the keyboard to start the app in debug mode. For more information check out: [TypeScript in Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript).
+```sh
+npm start
+```
+
+> [!TIP]
+> If you're using [VS Code](https://code.visualstudio.com/) and [Chrome](https://www.google.com/chrome/), then press `F5` on the keyboard to start the app in debug mode. For more information check out: [TypeScript in Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript).
 
 > [!TIP]
 > The "Dev Tools Implemented" section below is project-agnostic -- consider adding it to your project's README.md or CONTRIBUTING.md!
-
-### License Considerations
-
-The documentation and configuration files in this project are licensed under the [MIT license](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide).
-
-I keep the copyright from [Angular's license](https://angular.dev/license) and add my own copyright.
-
-If your project also uses the MIT license, then please consider adding a new copyright line to [LICENSE.txt](LICENSE.txt):
-
-```txt
-Copyright (c) 2010-2025 Google LLC. https://angular.dev/license
-
-Copyright (c) 2024-2025 Joe Matthews, et al. https://github.com/joematthews/extreme-angular
-
-Copyright (c) 2025 Your Name or Company
-```
-
-If your project is [closed source](https://simple.wikipedia.org/wiki/Closed_source) or uses a [different license](https://opensource.org/licenses), then please consider renaming the file to `LICENSE-Angular.txt`.
 
 ## Dev Tools Implemented
 
@@ -109,32 +98,22 @@ npm run lint:all
 
 ### TypeScript
 
-In addition to setting `"strict": true`, Angular's template checking is set to 'Strict Mode' in [tsconfig.json](tsconfig.json).
+Beyond Angular's default strict mode, this template enables additional TypeScript strictness in [tsconfig.json](tsconfig.json) to catch more potential issues at compile time:
 
-These compiler options have also been added to ensure strict type-checking for optional properties, eliminate unused variables
-and parameters to reduce clutter, and enforce explicit handling of potentially undefined values in arrays or objects:
+**Enhanced compiler options:**
 
-- [exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
-- [noUnusedLocals](https://www.typescriptlang.org/tsconfig#noUnusedLocals)
-- [noUnusedParameters](https://www.typescriptlang.org/tsconfig#noUnusedParameters)
-- [noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess)
+- **[exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)** — Prevents assigning `undefined` to optional properties, ensuring type safety when properties are explicitly optional vs. potentially undefined
+- **[noUnusedLocals](https://www.typescriptlang.org/tsconfig#noUnusedLocals)** — Reports errors for unused local variables, helping keep your code clean and reducing bundle size
+- **[noUnusedParameters](https://www.typescriptlang.org/tsconfig#noUnusedParameters)** — Reports errors for unused function parameters, encouraging cleaner function signatures and better code maintainability
+- **[noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess)** — Adds `undefined` to array access and object property access, forcing explicit checks and preventing runtime errors
+- **[useUnknownInCatchVariables](https://www.typescriptlang.org/tsconfig#useUnknownInCatchVariables)** — Changes catch clause variables from `any` to `unknown`, requiring explicit type checking for better error handling safety
 
-To check for errors in \*.ts app files:
+**Type checking commands:**
 
-```
-npm run lint:tsc:app
-```
-
-To check for errors in \*.spec.ts test files:
-
-```
-npm run lint:tsc:spec
-```
-
-To check for errors in all TypeScript files:
-
-```
-npm run lint:tsc:all
+```sh
+npm run lint:tsc:app  # Check app files (*.ts)
+npm run lint:tsc:spec # Check test files (*.spec.ts)
+npm run lint:tsc:all  # Check all TypeScript files
 ```
 
 ### ESLint
@@ -188,7 +167,7 @@ The [Accessibility in Angular guide](https://angular.dev/best-practices/a11y) is
 
 [Stylelint](https://stylelint.io/) is used to lint CSS and SCSS files in the project. It is configured with the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) and [stylelint-config-standard-scss](https://github.com/stylelint-scss/stylelint-config-standard-scss) configurations.
 
-Rules for linting are applied separately to `.css` and `.scss` files, and can be customized in [.stylelintrc.json](./.stylelintrc.json).
+Rules for linting are applied separately to `.css` and `.scss` files, and they can be customized in [.stylelintrc.json](./.stylelintrc.json).
 
 To lint all CSS and SCSS files:
 
@@ -229,9 +208,9 @@ npm run lint:format
 
 To add project-specific words, update [.cspell.json](.cspell.json).
 
-The [Code Spell Checker Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) allows you to quickly add misspelled words to the configuration by selecting "Add to config: .cspell.json" from the 'Quick Fix' menu.
+The [Code Spell Checker Extension for VS Code](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) allows you to quickly add misspelled words to the configuration by selecting "Add to config: .cspell.json" from the 'Quick Fix' menu.
 
-The following dictionaries have been enabled: bash, companies, cpp, csharp, css, filetypes, fonts, go, html, latex, misc, node,npm, php, powershell, python,softwareTerms, and typescript.
+The following dictionaries have been enabled: bash, companies, cpp, csharp, css, filetypes, fonts, go, html, latex, misc, node, npm, php, powershell, python, softwareTerms, and typescript.
 
 To find misspelled words in all files within the project:
 
@@ -239,9 +218,9 @@ To find misspelled words in all files within the project:
 npm run lint:spelling
 ```
 
-### VSCode
+### VS Code
 
-The following VSCode extensions will be recommended when opening the project ([.vscode/extensions.json](.vscode/extensions.json)):
+The following VS Code extensions will be recommended when opening the project ([.vscode/extensions.json](.vscode/extensions.json)):
 
 - [Angular](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
 - [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
@@ -250,12 +229,12 @@ The following VSCode extensions will be recommended when opening the project ([.
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 
-The following VSCode settings have been set in [.vscode/settings.json](.vscode/settings.json):
+The following VS Code settings have been set in [.vscode/settings.json](.vscode/settings.json):
 
 - Set Prettier as default formatter.
 - Turn on format on save
 - Turn on auto-save and set delay for 3 seconds (does not format).
-- [Disable VSCode linter for CSS/SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#disable-vs-codes-built-in-linters-optional).
+- [Disable VS Code linter for CSS/SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#disable-vs-codes-built-in-linters-optional).
 - [Enable Stylelint linter CSS & SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#%EF%B8%8F-only-css-and-postcss-are-validated-by-default).
 - Switch to workspace version of TypeScript for IntelliSense
 
@@ -295,25 +274,7 @@ To execute these checks and tests locally:
 npm run ci:all
 ```
 
-## Optional Angular Schematics
-
-### Angular Material & Angular CDK
-
-Looking for an a11y-friendly, MIT-licensed, Angular component library that strictly adheres to the [Material Design language](https://m3.material.io/) and integrates well with Angular's core libraries, and comes with animations? Then check out [Angular Material](https://material.angular.io/).
-
-The Angular Material documentation is very good and covers many topics including [Supporting Light and Dark Mode](https://material.angular.io/guide/theming#supporting-light-and-dark-mode)
-
-For design-agnostic template utilities, consider installing the [Angular CDK](https://material.angular.io/cdk/categories):
-
-```sh
-ng add @angular/cdk
-```
-
-To add animations to your own components, check out [Introduction to Angular animations](https://angular.dev/guide/animations)
-
-### Server-side & hybrid rendering (SSR, SSG, Hydration)
-
-Consider enabling [Server-side & hybrid rendering](https://angular.dev/guide/performance) to improve SEO and user experience (at the cost of increased deployment complexity).
+## Optional Configuration
 
 ### Internationalization (i18n)
 
@@ -321,7 +282,7 @@ Angular has powerful [Internationalization](https://angular.dev/guide/i18n) capa
 
 If you plan to implement internationalization in the future, adding i18n attributes early on can make the process easier to scale naturally.
 
-To enable the i18n ESLint rule, simply add the following rule from the \*.html section of [eslint.config.js](./eslint.config.js):
+To enable the i18n ESLint rule, simply add the following rule to the \*.html section of [eslint.config.js](./eslint.config.js):
 
 ```js
 "@angular-eslint/template/i18n": "error",
@@ -364,7 +325,7 @@ To customize the indentation, set the indent_size property in [.editorconfig](.e
 indent_size = 2
 ```
 
-To customizethe line width, set the printWidth property in [.prettierrc.json](.prettierrc.json):
+To customize the line width, set the printWidth property in [.prettierrc.json](.prettierrc.json):
 
 ```json
 {
@@ -397,7 +358,7 @@ To automatically set the remote branch name to match the local branch name on pu
 git config push.autoSetupRemote true
 ```
 
-You can use VSCode to edit commit messages when using commands like `git commit`, `git rebase`, and `git commit --amend`. This will only work if the [code command](https://code.visualstudio.com/docs/editor/command-line) in the PATH. Follow these [instructions to set up the vscode cli on macOS](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) if it is not already set up. Run this command to set it up:
+You can use VS Code to edit commit messages when using commands like `git commit`, `git rebase`, and `git commit --amend`. This will only work if the [code command](https://code.visualstudio.com/docs/editor/command-line) in the PATH. Follow these [instructions to set up the VS Code cli on macOS](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) if it is not already set up. Run this command to set it up:
 
 ```
 git config core.editor "code --wait"
@@ -406,17 +367,17 @@ git config core.editor "code --wait"
 If you use GitHub, and you'd prefer to not show your email in public commits, set your email to the one found on your GitHub account settings under the 'Email' tab. This is the same email used by GitHub Desktop, and when edits are made directly on the GitHub site.
 
 ```
-git config user.email "14097616+joematthews@users.noreply.github.com
+git config user.email "14097616+joematthews@users.noreply.github.com"
 ```
 
 > [!TIP]
 > You can add the `--global` flag to these commands to make them the default for all new projects.
 
-### Inlay Hints in VSCode
+### Inlay Hints in VS Code
 
-I _highly_ recommend enabling [inlay hints in vscode](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They give me the confidence to use TypeScript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
+I _highly_ recommend enabling [inlay hints in VS Code](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They give me the confidence to use TypeScript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
 
-Add the following to the vscode user settings to enable all inlay hints for JavaScript & TypeScript:
+Add the following to the VS Code user settings to enable all inlay hints for JavaScript & TypeScript:
 
 ```json
 {
@@ -445,11 +406,11 @@ To temporarily disable inlay hints use `CTRL + ALT` (or `CTRL + OPTION` on Mac) 
 
 ### Font Ligatures
 
-VSCode is capable of using 'font ligatures' -- not everyone likes font ligatures, but I really enjoy them.
+VS Code is capable of using 'font ligatures' -- not everyone likes font ligatures, but I really enjoy them.
 
 The two most popular fonts that support font ligatures are [Fira Code](https://github.com/tonsky/FiraCode) and [Jet Brains Mono](https://www.jetbrains.com/lp/mono/). I typically use the 'Regular' `*.ttf` variant of each font.
 
-After downloading and installing the font of choice, add the font to the `fontFamily` and enable font `fontLigatures` in the vscode user settings:
+After downloading and installing the font of choice, add the font to the `fontFamily` and enable `fontLigatures` in the VS Code user settings:
 
 ```json
 {
@@ -458,7 +419,7 @@ After downloading and installing the font of choice, add the font to the `fontFa
 }
 ```
 
-The fira code repository maintains [a list of alternative fonts with ligatures](https://github.com/tonsky/FiraCode#alternatives).
+The Fira Code repository maintains [a list of alternative fonts with ligatures](https://github.com/tonsky/FiraCode#alternatives).
 
 ### Shell Configuration Frameworks
 
@@ -483,7 +444,7 @@ Here are some tips for configuring the dev tools for this project in JetBrains I
   - Set configuration to 'Automatic' for each and match the file extensions that are found in scripts section of [package.json](./package.json).
   - (Optional) Set "Run on save" for each plugin if preferred.
 - Install the "CSpell Check" plugin to reduce conflicts with JetBrains' built-in spell-checking.
-- (Optional) Set keymap to 'VSCode' or 'VSCode (macOS)' for an easier transition
+- (Optional) Set keymap to 'VS Code' or 'VS Code (macOS)' for an easier transition
 - (Optional) Search for 'ligatures' in the settings to enable font ligatures. JetBrainsMono is capable of displaying ligatures and is installed with the IDE
 
 ## Updating
@@ -508,3 +469,21 @@ There may be [merge conflicts](https://code.visualstudio.com/docs/sourcecontrol/
 npm install
 npm run ci:all
 ```
+
+## License Considerations
+
+The documentation and configuration files in this project are licensed under the [MIT license](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide).
+
+I keep the copyright from [Angular's license](https://angular.dev/license) and add my own copyright.
+
+If your project also uses the MIT license, then please consider adding a new copyright line to [LICENSE.txt](LICENSE.txt):
+
+```txt
+Copyright (c) 2010-2025 Google LLC. https://angular.dev/license
+
+Copyright (c) 2024-2025 Joe Matthews, et al. https://github.com/joematthews/extreme-angular
+
+Copyright (c) 2025 Your Name or Company
+```
+
+If your project is [closed source](https://simple.wikipedia.org/wiki/Closed_source) or uses a [different license](https://opensource.org/licenses), then please consider renaming the file to `LICENSE-Angular.txt`.
