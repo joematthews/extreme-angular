@@ -220,6 +220,9 @@ To check if all files are properly formatted:
 npm run lint:format
 ```
 
+> [!IMPORTANT]  
+> Angular v20 dropped the `.component` suffix from component templates, so an override has been setup in [.prettierrc.json](.prettierrc.json) to parse `["src/app/*.html"]` using the Angular parser. If you add additional Angular applications to the project, make sure to update the overrides array to include their HTML file paths (e.g., `'src/new-app/*.html'`) so Prettier can properly parse those template files.
+
 ### CSpell
 
 [CSpell](https://github.com/streetsidesoftware/cspell) is used for spell checking for all project files.
