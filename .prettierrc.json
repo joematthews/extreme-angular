@@ -4,5 +4,13 @@
     "prettier-plugin-css-order",
     "prettier-plugin-organize-imports",
     "prettier-plugin-sh"
+  ],
+  "overrides": [
+    {
+      "files": ["src/app/*.html"],
+      "options": {
+        "parser": "angular"
+      }
+    }
   ]
 }
