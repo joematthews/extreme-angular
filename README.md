@@ -35,6 +35,7 @@ Found an issue? Check the [existing issues](https://github.com/joematthews/extre
   - [Stylelint](#stylelint)
   - [Prettier](#prettier)
   - [CSpell](#cspell)
+  - [Testing](#testing)
   - [VS Code](#vs-code)
   - [Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)](#husky-commitlint-tsc-files-and-lint-staged-git-hooks)
   - [Shove Progress](#shove-progress)
@@ -130,9 +131,9 @@ To ensure effective linting for all project files, the following ESLint plugins 
 - [@typescript-eslint](https://typescript-eslint.io/)
   - Uses both [strict-type-checked](https://typescript-eslint.io/linting/configs#strict-type-checked) and [stylistic-type-checked](https://typescript-eslint.io/linting/configs#stylistic-type-checked) rule sets.
   - [typescript-eslint rules configuration matrix](https://typescript-eslint.io/rules/).
-- [eslint-plugin-jasmine](https://github.com/tlvince/eslint-plugin-jasmine)
-  - Uses `recommended` rule set.
-  - [eslint-plugin-jasmine rules configuration matrix](https://typescript-eslint.io/rules/).
+- [@vitest/eslint-plugin](https://github.com/vitest-dev/eslint-plugin-vitest)
+  - Uses `recommended` rule set for Vitest test files.
+  - [@vitest/eslint-plugin rules](https://github.com/vitest-dev/eslint-plugin-vitest#rules).
 - [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc)
   - Uses `recommended` rule set.
   - [eslint-plugin-jsonc rules configuration matrix](https://ota-meshi.github.io/eslint-plugin-jsonc/rules/).
@@ -218,6 +219,28 @@ To find misspelled words in all files within the project:
 ```sh
 npm run lint:spelling
 ```
+
+### Testing
+
+[Vitest](https://vitest.dev/) is the default unit test runner for Angular 21, replacing Karma. Tests run in Node.js using [jsdom](https://github.com/jsdom/jsdom) to simulate the DOM, providing fast test execution without browser overhead.
+
+To run tests in watch mode:
+
+```sh
+npm test
+```
+
+To run tests once (for CI):
+
+```sh
+npm run test:ci
+```
+
+> [!NOTE]
+> Vitest with jsdom is significantly faster than Karma with a real browser. For most unit tests, jsdom provides sufficient DOM simulation. If you need real browser testing, Angular supports running Vitest with Playwright — see the [Angular testing documentation](https://angular.dev/guide/testing).
+
+> [!TIP]
+> For end-to-end testing, see the [End to End Testing (e2e)](#end-to-end-testing-e2e) section under Optional Configuration.
 
 ### VS Code
 

@@ -1,7 +1,7 @@
 import eslint from "@eslint/js";
+import vitest from "@vitest/eslint-plugin";
 import { configs as ngConfigs, processInlineTemplates } from "angular-eslint";
 import prettierConfig from "eslint-config-prettier";
-import jasminePlugin from "eslint-plugin-jasmine";
 import { configs as jsoncConfigs } from "eslint-plugin-jsonc";
 import globals from "globals";
 import { config, configs as tsConfigs } from "typescript-eslint";
@@ -20,6 +20,7 @@ export default config(
   },
   {
     files: ["**/*.ts"],
+    ignores: ["**/*.spec.ts"],
     extends: [
       eslint.configs.recommended,
       ...tsConfigs.strictTypeChecked,
@@ -72,13 +73,25 @@ export default config(
   },
   {
     files: ["src/**/*.spec.ts"],
-    extends: [jasminePlugin.configs.recommended, prettierConfig],
+    extends: [
+      eslint.configs.recommended,
+      ...tsConfigs.strictTypeChecked,
+      ...tsConfigs.stylisticTypeChecked,
+      vitest.configs.recommended,
+      prettierConfig,
+    ],
     languageOptions: {
-      globals: {
-        ...globals.jasmine,
+      globals: vitest.environments.env.globals,
+      parserOptions: {
+        project: "./tsconfig.spec.json",
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-    plugins: { jasmine: jasminePlugin },
+    settings: {
+      vitest: {
+        typecheck: true,
+      },
+    },
     rules: {},
   },
 );
