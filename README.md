@@ -236,6 +236,11 @@ To run tests once (for CI):
 npm run test:ci
 ```
 
+**VS Code Test Explorer:** The [Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) provides Test Explorer integration. Tests are automatically rebuilt when source files change, so you can edit tests and immediately run them from the Test Explorer sidebar.
+
+> [!IMPORTANT]
+> The `vitest.config.ts` and `vitest.setup.ts` files are a **temporary workaround** to enable IDE integration. Angular's unit-test builder doesn't yet expose Vitest directly, so these files proxy source files to Angular's pre-compiled output. This will become obsolete when [Angular adds native Vitest support](https://github.com/angular/angular-cli/issues/31734).
+
 > [!NOTE]
 > Vitest with jsdom is significantly faster than Karma with a real browser. For most unit tests, jsdom provides sufficient DOM simulation. If you need real browser testing, Angular supports running Vitest with Playwright — see the [Angular testing documentation](https://angular.dev/guide/testing).
 
@@ -252,6 +257,7 @@ The following VS Code extensions will be recommended when opening the project ([
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- [Vitest](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) — Run and debug tests from the Test Explorer sidebar
 
 The following VS Code settings have been set in [.vscode/settings.json](.vscode/settings.json):
 

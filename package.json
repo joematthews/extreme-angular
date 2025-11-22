@@ -11,6 +11,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --watch=false",
+    "test:build": "ng test --watch=false --dump-virtual-files",
     "format:base": "prettier --log-level warn --ignore-path=./.gitignore  \"**/*.{js,ts,css,scss,sh,html,md,json,yaml,yml}\"",
     "format": "npm run format:base -- --write",
     "lint": "eslint -f mo \"**/*.{js,ts,html,json}\"",
