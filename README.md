@@ -17,6 +17,7 @@ ng new --strict --style=scss --ssr=false
 - **Focus on what matters** — discuss logic and architecture instead of arguing about formatting
 - **Consistent quality** — automatic code standards and accessibility checks across your team
 - **Clean foundation** — no custom code or complex workarounds needed
+- **Zoneless by default** — smaller bundle size and better performance with Angular 21's zoneless change detection
 
 ## Contributing
 
