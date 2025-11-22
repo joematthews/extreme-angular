@@ -1,4 +1,4 @@
-# Extreme Angular 20: A Stricter Starter Template
+# Extreme Angular 21: A Stricter Starter Template
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE DEV TOOLS TO WORK TOGETHER'](https://github.com/user-attachments/assets/b7e3a75f-a082-465b-a9cd-7557732b0589)
 

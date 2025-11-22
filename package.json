@@ -27,20 +27,21 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^20.0.4",
-    "@angular/compiler": "^20.0.4",
-    "@angular/core": "^20.0.4",
-    "@angular/forms": "^20.0.4",
-    "@angular/platform-browser": "^20.0.4",
-    "@angular/router": "^20.0.4",
+    "@angular/common": "^21.0.0",
+    "@angular/compiler": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@angular/forms": "^21.0.0",
+    "@angular/platform-browser": "^21.0.0",
+    "@angular/router": "^21.0.0",
+    "@standard-schema/spec": "^1.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^20.0.3",
-    "@angular/cli": "^20.0.3",
-    "@angular/compiler-cli": "^20.0.4",
+    "@angular/build": "^21.0.0",
+    "@angular/cli": "^21.0.0",
+    "@angular/compiler-cli": "^21.0.0",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@types/jasmine": "~5.1.0",
@@ -51,6 +52,7 @@
     "eslint-formatter-mo": "^2.3.0",
     "eslint-plugin-jasmine": "^4.2.2",
     "eslint-plugin-jsonc": "^2.20.1",
+    "globals": "^16.5.0",
     "husky": "^9.1.7",
     "jasmine-core": "~5.7.0",
     "karma": "~6.4.0",
@@ -67,7 +69,7 @@
     "stylelint-config-standard": "^38.0.0",
     "stylelint-config-standard-scss": "^15.0.1",
     "tsc-files": "^1.1.4",
-    "typescript": "~5.8.2",
-    "typescript-eslint": "8.33.1"
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.47.0"
   }
 }
