@@ -96,6 +96,11 @@ function rebuildTests(): void {
 /**
  * Maps source spec file paths to their compiled equivalents in Angular's cache.
  * Example: src/app/app.spec.ts -> .angular/cache/.../spec-app-app.js
+ *
+ * WINDOWS BUG WORKAROUND: Angular's test-discovery.js has a bug where testFiles are
+ * converted to POSIX paths but the roots array is not, causing removePrefix to fail
+ * and fall back to basename only (e.g., spec-app.js instead of spec-app-app.js).
+ * See: node_modules/@angular/build/src/builders/unit-test/test-discovery.js
  */
 function sourceToCompiledPath(
   sourcePath: string,
@@ -123,6 +128,33 @@ function sourceToCompiledPath(
   if (existsSync(compiledPath)) {
     return compiledPath;
   }
+
+  // Windows uses different naming - try alternative patterns
+  if (process.platform === 'win32') {
+    const segments = withoutExt.split('/');
+
+    // Try shortened names that Windows/Angular might use
+    const lastSegment = segments.at(-1) ?? '';
+    const fallbacks = [
+      `spec-${lastSegment}.js`, // Just filename: spec-app.js
+    ];
+
+    // If path has duplicates like app/app, try without duplication
+    if (
+      segments.length >= 2 &&
+      segments[segments.length - 1] === segments[segments.length - 2]
+    ) {
+      fallbacks.push(`spec-${segments.slice(0, -1).join('-')}.js`);
+    }
+
+    for (const fallback of fallbacks) {
+      const fallbackPath = join(outputDir, fallback);
+      if (existsSync(fallbackPath)) {
+        return fallbackPath;
+      }
+    }
+  }
+
   return null;
 }
 
