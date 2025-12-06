@@ -354,14 +354,16 @@ These are tips and tricks that are too opinionated or situational to include in 
 
 ### Custom Formatting
 
-To customize the indentation, set the indent_size property in [.editorconfig](.editorconfig):
+This project uses Angular 21's formatting defaults: 2 space indentation, 100 character line width, and single quotes. Here's how to customize if needed:
+
+**Indentation** — set indent_size in [.editorconfig](.editorconfig):
 
 ```ini
 [*]
-indent_size = 2
+indent_size = 4
 ```
 
-To customize the line width, set the printWidth property in [.prettierrc.json](.prettierrc.json):
+**Line width** — set printWidth in [.prettierrc.json](.prettierrc.json):
 
 ```json
 {
@@ -369,22 +371,27 @@ To customize the line width, set the printWidth property in [.prettierrc.json](.
 }
 ```
 
-To use double quotes for TS files, set these properties in [.editorconfig](.editorconfig):
+**Double quotes** — set singleQuote in [.prettierrc.json](.prettierrc.json) and update [.editorconfig](.editorconfig) for IDE support:
+
+```json
+{
+  "singleQuote": false
+}
+```
 
 ```ini
 [*.ts]
-quote_type = single
-ij_typescript_use_double_quotes = false
+quote_type = double
+ij_typescript_use_double_quotes = true
 ```
 
-Finally, run `npm run format` to re-format all files, and check the result.
+After making changes, run `npm run format` to re-format all files.
 
-Here are some reasons for not changing the indentation, line width, and quote style:
+Here are some reasons for sticking with the defaults:
 
-- The Angular documentation and libraries use 2 space indentation and single quotes.
-- [2 space indentation is traditional for various reasons](https://www.google.com/search?q=why+use+2+space+indentation+in+typescript).
-- 4 space indentation can look pretty bad in JS/TS with an 80 character line limit.
-- Changing the line width can make it more difficult to view editors side-by-side.
+- Angular's documentation and libraries use 2 space indentation and single quotes.
+- 4 space indentation can look cramped with a 100 character line width.
+- 100 characters balances readability with side-by-side editor layouts on modern displays.
 
 ### Git Config
 
