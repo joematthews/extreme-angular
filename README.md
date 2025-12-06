@@ -191,9 +191,11 @@ npm run lint:style
 
 [Prettier](https://prettier.io/) is used to enforce consistent code formatting, reducing diffs by minimizing formatting changes.
 
-In [.prettierrc.json](./.prettierrc.json), the `htmlWhitespaceSensitivity` option is set to `ignore` to better format templates. This setting trims unnecessary whitespace around and inside HTML elements. Use `&nbsp;` (non-breaking space) when you need to explicitly maintain spacing between inline elements.
+The base settings in [.prettierrc.json](./.prettierrc.json) (`printWidth: 100`, `singleQuote: true`) match Angular 21 defaults. This template adds the following enhancements:
 
-The following Prettier plugins are used:
+**htmlWhitespaceSensitivity: "ignore"** — Trims unnecessary whitespace around and inside HTML elements for cleaner templates. Use `&nbsp;` (non-breaking space) when you need to explicitly maintain spacing between inline elements.
+
+**Plugins:**
 
 - [prettier-plugin-sh](https://github.com/un-ts/prettier/tree/master/packages/sh): Formats shell scripts, such as Git hooks.
 - [prettier-plugin-css-order](https://github.com/Siilwyn/prettier-plugin-css-order): Automatically organizes SCSS/CSS properties using [concentric-css](https://github.com/brandon-rhodes/Concentric-CSS)
@@ -335,7 +337,7 @@ Angular has schematics available for several end to end testing frameworks. The 
 The [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) package has rules for the popular [Playwright](https://playwright.dev/) framework. To incorporate these rules, import the plugin in the [eslint.config.js](eslint.config.js) file and then add a new config object that targets `e2e/**/*.spec.ts` files:
 
 ```js
-import { playwright } from "eslint-plugin-playwright";
+import { playwright } from 'eslint-plugin-playwright';
 ```
 
 ```js
