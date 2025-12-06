@@ -7,7 +7,7 @@ Extreme Angular is a pre-configured Angular starter template with strict develop
 The underlying Angular project was generated with:
 
 ```
-ng new --strict --style=scss --ssr=false
+ng new --strict --zoneless --style=scss --ssr=false
 ```
 
 ## Why Use Extreme Angular
@@ -37,7 +37,7 @@ Found an issue? Check the [existing issues](https://github.com/joematthews/extre
   - [CSpell](#cspell)
   - [Testing](#testing)
   - [VS Code](#vs-code)
-  - [Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)](#husky-commitlint-tsc-files-and-lint-staged-git-hooks)
+  - [Husky, Commitlint, and Lint-Staged (Git hooks)](#husky-commitlint-and-lint-staged-git-hooks)
   - [Shove Progress](#shove-progress)
   - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
 - [Optional Configuration](#optional-configuration)
@@ -117,6 +117,16 @@ npm run lint:tsc:app  # Check app files (*.ts)
 npm run lint:tsc:spec # Check test files (*.spec.ts)
 npm run lint:tsc:all  # Check all TypeScript files
 ```
+
+**Project structure:**
+
+The project uses [TypeScript project references](https://www.typescriptlang.org/docs/handbook/project-references.html) with separate configs for different contexts:
+
+- [tsconfig.app.json](tsconfig.app.json) — Application code (`src/**/*.ts`)
+- [tsconfig.spec.json](tsconfig.spec.json) — Test files (`src/**/*.spec.ts`)
+- [tsconfig.node.json](tsconfig.node.json) — Root config files (`*.ts`)
+
+All extend [tsconfig.json](tsconfig.json) to share the same strict settings.
 
 ### ESLint
 
@@ -236,11 +246,6 @@ To run tests once (for CI):
 npm run test:ci
 ```
 
-**VS Code Test Explorer:** The [Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) provides Test Explorer integration. Tests are automatically rebuilt when source files change, so you can edit tests and immediately run them from the Test Explorer sidebar.
-
-> [!IMPORTANT]
-> The `vitest.config.ts` and `vitest.setup.ts` files are a **temporary workaround** to enable IDE integration. Angular's unit-test builder doesn't yet expose Vitest directly, so these files proxy source files to Angular's pre-compiled output. This will become obsolete when [Angular adds native Vitest support](https://github.com/angular/angular-cli/issues/31734).
-
 > [!NOTE]
 > Vitest with jsdom is significantly faster than Karma with a real browser. For most unit tests, jsdom provides sufficient DOM simulation. If you need real browser testing, Angular supports running Vitest with Playwright — see the [Angular testing documentation](https://angular.dev/guide/testing).
 
@@ -257,7 +262,6 @@ The following VS Code extensions will be recommended when opening the project ([
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
-- [Vitest](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) — Run and debug tests from the Test Explorer sidebar
 
 The following VS Code settings have been set in [.vscode/settings.json](.vscode/settings.json):
 
@@ -268,13 +272,13 @@ The following VS Code settings have been set in [.vscode/settings.json](.vscode/
 - [Enable Stylelint linter CSS & SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#%EF%B8%8F-only-css-and-postcss-are-validated-by-default).
 - Switch to workspace version of TypeScript for IntelliSense
 
-### Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)
+### Husky, Commitlint, and Lint-Staged (Git hooks)
 
 [Husky](https://typicode.github.io/husky/) is used to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), and [commit-msg](.husky/commit-msg) git hooks.
 
 [Commitlint](https://commitlint.js.org/#/) is used to enforce good commit messages according to the [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint) configuration in the commit-msg git hook. Additional Commitlint configuration is kept in [commitlint.config.js](./commitlint.config.js).
 
-[Lint-staged](https://github.com/lint-staged/lint-staged) is used to run Prettier, ESLint, Stylelint, CSpell, and [tsc-files](https://github.com/gustavopch/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
+[Lint-staged](https://github.com/lint-staged/lint-staged) is used to run Prettier, ESLint, Stylelint, and CSpell in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
 
 ### Shove Progress
 
@@ -294,7 +298,7 @@ The shove script will stage all files, commit with the commit message `wip: shov
 
 ### Continuous Integration (CI) Using GitHub Actions
 
-The [on-pull-request.yml](.github/workflows/on-pull-request.yml) action checks all files and run tests when a branch is pushed that is associated with a GitHub pull request.
+The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow triggers [validate-code.yml](.github/workflows/validate-code.yml) to check all files and run tests when a pull request is opened or updated.
 
 Pull requests on GitHub cannot be merged until all checks and tests pass. The output of these workflows can found in the 'Actions' tab on the GitHub repository.
 
