@@ -1,3 +1,34 @@
+# VS Code Vitest Extension Workaround
+
+> **Status:** Experimental and unsupported
+> **Tracking issue:** [angular/angular-cli#31734](https://github.com/angular/angular-cli/issues/31734)
+
+Angular 21 uses Vitest for unit testing through its `@angular/build:unit-test` builder. However, the [VS Code Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) doesn't work out of the box because it expects a `vitest.config.ts` file to hook into.
+
+This guide explains how to add a workaround that enables Test Explorer integration in VS Code. **This is not officially supported** and may break with future Angular updates.
+
+## How It Works
+
+The workaround:
+
+1. Runs `ng test --dump-virtual-files` to compile tests to `.angular/cache`
+2. Creates a Vite plugin that proxies your source `.spec.ts` files to Angular's compiled output
+3. Auto-rebuilds when source files are newer than compiled output
+
+This lets VS Code's Test Explorer show your source files while actually running Angular's pre-compiled test bundles.
+
+## Prerequisites
+
+- Angular 21 project with Vitest (default for `ng new`)
+- VS Code with the [Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer)
+
+## Implementation
+
+### Step 1: Add vitest.config.ts
+
+Create `vitest.config.ts` in your project root:
+
+```ts
 /// <reference types="vitest" />
 /**
  * WORKAROUND: Vitest + Angular 21 integration for IDEs.
@@ -102,10 +133,7 @@ function rebuildTests(): void {
  * and fall back to basename only (e.g., spec-app.js instead of spec-app-app.js).
  * See: node_modules/@angular/build/src/builders/unit-test/test-discovery.js
  */
-function sourceToCompiledPath(
-  sourcePath: string,
-  outputDir: string,
-): string | null {
+function sourceToCompiledPath(sourcePath: string, outputDir: string): string | null {
   // Handle both absolute and relative paths
   const normalizedPath = sourcePath.replace(/\\/g, '/');
   let relativePath: string | undefined;
@@ -140,10 +168,7 @@ function sourceToCompiledPath(
     ];
 
     // If path has duplicates like app/app, try without duplication
-    if (
-      segments.length >= 2 &&
-      segments[segments.length - 1] === segments[segments.length - 2]
-    ) {
+    if (segments.length >= 2 && segments[segments.length - 1] === segments[segments.length - 2]) {
       fallbacks.push(`spec-${segments.slice(0, -1).join('-')}.js`);
     }
 
@@ -241,3 +266,177 @@ export default defineConfig({
     cache: false, // Disable file system caching
   },
 });
+```
+
+### Step 2: Add vitest.setup.ts
+
+Create `vitest.setup.ts` in your project root:
+
+```ts
+/**
+ * WORKAROUND: Vitest + Angular 21 integration for IDEs.
+ * see comment in vitest.config.ts for more details.
+ */
+import { execSync } from 'node:child_process';
+import { existsSync, readdirSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+
+function findTestOutputDir(): string | null {
+  const angularCacheBase = '.angular/cache';
+  if (!existsSync(angularCacheBase)) return null;
+
+  // Find version directory (e.g., "21.0.0")
+  const version = readdirSync(angularCacheBase)
+    .filter((f) => /^\d+\.\d+\.\d+$/.test(f))
+    .sort()
+    .reverse()[0];
+  if (!version) return null;
+
+  // Find project directory
+  const versionDir = join(angularCacheBase, version);
+  const project = readdirSync(versionDir).find(
+    (f) => f !== 'angular-webpack' && f !== 'babel-webpack',
+  );
+  if (!project) return null;
+
+  const outputDir = join(versionDir, project, 'unit-test', 'output-files');
+  if (!existsSync(outputDir)) return null;
+  return outputDir;
+}
+
+function needsRebuild(outputDir: string): boolean {
+  const initTestbed = join(outputDir, 'init-testbed.js');
+  if (!existsSync(initTestbed)) return true;
+
+  const compiledTime = statSync(initTestbed).mtimeMs;
+
+  function checkDir(dir: string): boolean {
+    if (!existsSync(dir)) return false;
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const fullPath = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (checkDir(fullPath)) return true;
+      } else if (
+        entry.name.endsWith('.ts') ||
+        entry.name.endsWith('.html') ||
+        entry.name.endsWith('.scss') ||
+        entry.name.endsWith('.css')
+      ) {
+        if (statSync(fullPath).mtimeMs > compiledTime) return true;
+      }
+    }
+    return false;
+  }
+
+  return checkDir('src');
+}
+
+// Run rebuild check
+const outputDir = findTestOutputDir();
+if (!outputDir || needsRebuild(outputDir)) {
+  console.log('\x1b[36m[vitest] Source changed, rebuilding...\x1b[0m');
+  try {
+    execSync('npx ng test --watch=false --dump-virtual-files', {
+      stdio: 'inherit',
+      timeout: 120000,
+    });
+  } catch {
+    // ng test exits with error if tests fail, but files are still dumped
+  }
+}
+```
+
+### Step 3: Update tsconfig.json
+
+Add `vitest/globals` types to the root `tsconfig.json` to help VS Code recognize test globals like `describe` and `it`:
+
+```json
+{
+  "compilerOptions": {
+    "types": ["vitest/globals"]
+  }
+}
+```
+
+This should be added to the `compilerOptions` object in your root `tsconfig.json` file — not `tsconfig.spec.json`. Even though `tsconfig.spec.json` already includes these types for `ng test`, VS Code needs them in the root config for editor support when using this workaround.
+
+### Step 4: Add VS Code extension recommendation
+
+Update `.vscode/extensions.json`:
+
+```json
+{
+  "recommendations": ["vitest.explorer"]
+}
+```
+
+### Step 5: Build tests initially
+
+Run the test build once to populate the cache:
+
+```sh
+npm run test:build
+```
+
+Or if you don't have that script:
+
+```sh
+npx ng test --watch=false --dump-virtual-files
+```
+
+### Step 6: Verify
+
+1. Open VS Code
+2. Install the Vitest extension if prompted
+3. Open the Testing sidebar (beaker icon)
+4. You should see your test files listed
+5. Click the play button to run tests
+
+## Known Limitations
+
+- **Performance at scale:** The workaround may be slow with large test suites since it checks file timestamps on every load.
+- **Windows path issues:** Angular has a bug where compiled test filenames differ on Windows. The workaround includes fallback logic, but edge cases may occur.
+- **Cache invalidation:** If tests behave unexpectedly, try deleting `.angular/cache` and rebuilding.
+- **No watch mode sync:** The VS Code extension won't automatically detect when `ng test --watch` rebuilds files.
+
+## Reverting the Workaround
+
+To remove this workaround and return to the default Angular setup:
+
+### Step 1: Delete the config files
+
+```sh
+rm vitest.config.ts vitest.setup.ts
+```
+
+### Step 2: Remove types from tsconfig.json
+
+If you added `"types": ["vitest/globals"]` to your root `tsconfig.json`, remove it. The types in `tsconfig.spec.json` are sufficient for `ng test`.
+
+### Step 3: Remove extension recommendation
+
+Edit `.vscode/extensions.json` and remove `"vitest.explorer"` from the recommendations array.
+
+### Step 4: Clear the cache (optional)
+
+```sh
+rm -rf .angular/cache
+```
+
+### Step 5: Verify
+
+Run tests to confirm everything still works:
+
+```sh
+npm test
+```
+
+Tests will continue to run via Angular's `@angular/build:unit-test` builder — you just won't have Test Explorer integration in VS Code.
+
+## Future
+
+This workaround should become unnecessary when Angular adds native IDE integration for Vitest. Track progress at [angular/angular-cli#31734](https://github.com/angular/angular-cli/issues/31734).
+
+---
+
+_Credit: This workaround was developed by [@replete](https://github.com/replete) in [PR #71](https://github.com/joematthews/extreme-angular/pull/71)._

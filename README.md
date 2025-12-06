@@ -7,7 +7,7 @@ Extreme Angular is a pre-configured Angular starter template with strict develop
 The underlying Angular project was generated with:
 
 ```
-ng new --strict --style=scss --ssr=false
+ng new --strict --zoneless --style=scss --ssr=false
 ```
 
 ## Why Use Extreme Angular
@@ -37,7 +37,7 @@ Found an issue? Check the [existing issues](https://github.com/joematthews/extre
   - [CSpell](#cspell)
   - [Testing](#testing)
   - [VS Code](#vs-code)
-  - [Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)](#husky-commitlint-tsc-files-and-lint-staged-git-hooks)
+  - [Husky, Commitlint, and Lint-Staged (Git hooks)](#husky-commitlint-and-lint-staged-git-hooks)
   - [Shove Progress](#shove-progress)
   - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
 - [Optional Configuration](#optional-configuration)
@@ -118,6 +118,16 @@ npm run lint:tsc:spec # Check test files (*.spec.ts)
 npm run lint:tsc:all  # Check all TypeScript files
 ```
 
+**Project structure:**
+
+The project uses [TypeScript project references](https://www.typescriptlang.org/docs/handbook/project-references.html) with separate configs for different contexts:
+
+- [tsconfig.app.json](tsconfig.app.json) — Application code (`src/**/*.ts`)
+- [tsconfig.spec.json](tsconfig.spec.json) — Test files (`src/**/*.spec.ts`)
+- [tsconfig.node.json](tsconfig.node.json) — Root config files (`*.ts`)
+
+All extend [tsconfig.json](tsconfig.json) to share the same strict settings.
+
 ### ESLint
 
 [ESLint](https://eslint.org/) is used for linting JavaScript, TypeScript, HTML, and JSON files in the project. The linting configuration is set in [eslint.config.js](./eslint.config.js), with specific overrides for the following file types: `*.js`, `*.ts`, `*.spec.ts`, `*.html`, and `*.json`.
@@ -181,9 +191,11 @@ npm run lint:style
 
 [Prettier](https://prettier.io/) is used to enforce consistent code formatting, reducing diffs by minimizing formatting changes.
 
-In [.prettierrc.json](./.prettierrc.json), the `htmlWhitespaceSensitivity` option is set to `ignore` to better format templates. This setting trims unnecessary whitespace around and inside HTML elements. Use `&nbsp;` (non-breaking space) when you need to explicitly maintain spacing between inline elements.
+The base settings in [.prettierrc.json](./.prettierrc.json) (`printWidth: 100`, `singleQuote: true`) match Angular 21 defaults. This template adds the following enhancements:
 
-The following Prettier plugins are used:
+**htmlWhitespaceSensitivity: "ignore"** — Trims unnecessary whitespace around and inside HTML elements for cleaner templates. Use `&nbsp;` (non-breaking space) when you need to explicitly maintain spacing between inline elements.
+
+**Plugins:**
 
 - [prettier-plugin-sh](https://github.com/un-ts/prettier/tree/master/packages/sh): Formats shell scripts, such as Git hooks.
 - [prettier-plugin-css-order](https://github.com/Siilwyn/prettier-plugin-css-order): Automatically organizes SCSS/CSS properties using [concentric-css](https://github.com/brandon-rhodes/Concentric-CSS)
@@ -236,16 +248,14 @@ To run tests once (for CI):
 npm run test:ci
 ```
 
-**VS Code Test Explorer:** The [Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) provides Test Explorer integration. Tests are automatically rebuilt when source files change, so you can edit tests and immediately run them from the Test Explorer sidebar.
-
-> [!IMPORTANT]
-> The `vitest.config.ts` and `vitest.setup.ts` files are a **temporary workaround** to enable IDE integration. Angular's unit-test builder doesn't yet expose Vitest directly, so these files proxy source files to Angular's pre-compiled output. This will become obsolete when [Angular adds native Vitest support](https://github.com/angular/angular-cli/issues/31734).
-
 > [!NOTE]
 > Vitest with jsdom is significantly faster than Karma with a real browser. For most unit tests, jsdom provides sufficient DOM simulation. If you need real browser testing, Angular supports running Vitest with Playwright — see the [Angular testing documentation](https://angular.dev/guide/testing).
 
 > [!TIP]
 > For end-to-end testing, see the [End to End Testing (e2e)](#end-to-end-testing-e2e) section under Optional Configuration.
+
+> [!TIP]
+> Want VS Code Test Explorer integration? See the [experimental workaround](docs/vitest-ide-workaround.md). Note: this is unsupported and may break with future Angular updates.
 
 ### VS Code
 
@@ -257,7 +267,6 @@ The following VS Code extensions will be recommended when opening the project ([
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
-- [Vitest](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) — Run and debug tests from the Test Explorer sidebar
 
 The following VS Code settings have been set in [.vscode/settings.json](.vscode/settings.json):
 
@@ -268,13 +277,13 @@ The following VS Code settings have been set in [.vscode/settings.json](.vscode/
 - [Enable Stylelint linter CSS & SCSS](https://github.com/stylelint/vscode-stylelint?tab=readme-ov-file#%EF%B8%8F-only-css-and-postcss-are-validated-by-default).
 - Switch to workspace version of TypeScript for IntelliSense
 
-### Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)
+### Husky, Commitlint, and Lint-Staged (Git hooks)
 
 [Husky](https://typicode.github.io/husky/) is used to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), and [commit-msg](.husky/commit-msg) git hooks.
 
 [Commitlint](https://commitlint.js.org/#/) is used to enforce good commit messages according to the [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint) configuration in the commit-msg git hook. Additional Commitlint configuration is kept in [commitlint.config.js](./commitlint.config.js).
 
-[Lint-staged](https://github.com/lint-staged/lint-staged) is used to run Prettier, ESLint, Stylelint, CSpell, and [tsc-files](https://github.com/gustavopch/tsc-files) in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
+[Lint-staged](https://github.com/lint-staged/lint-staged) is used to run Prettier, ESLint, Stylelint, and CSpell in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
 
 ### Shove Progress
 
@@ -294,7 +303,7 @@ The shove script will stage all files, commit with the commit message `wip: shov
 
 ### Continuous Integration (CI) Using GitHub Actions
 
-The [on-pull-request.yml](.github/workflows/on-pull-request.yml) action checks all files and run tests when a branch is pushed that is associated with a GitHub pull request.
+The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow triggers [validate-code.yml](.github/workflows/validate-code.yml) to check all files and run tests when a pull request is opened or updated.
 
 Pull requests on GitHub cannot be merged until all checks and tests pass. The output of these workflows can found in the 'Actions' tab on the GitHub repository.
 
@@ -331,7 +340,7 @@ Angular has schematics available for several end to end testing frameworks. The 
 The [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) package has rules for the popular [Playwright](https://playwright.dev/) framework. To incorporate these rules, import the plugin in the [eslint.config.js](eslint.config.js) file and then add a new config object that targets `e2e/**/*.spec.ts` files:
 
 ```js
-import { playwright } from "eslint-plugin-playwright";
+import { playwright } from 'eslint-plugin-playwright';
 ```
 
 ```js
@@ -348,14 +357,16 @@ These are tips and tricks that are too opinionated or situational to include in 
 
 ### Custom Formatting
 
-To customize the indentation, set the indent_size property in [.editorconfig](.editorconfig):
+This project uses Angular 21's formatting defaults: 2 space indentation, 100 character line width, and single quotes. Here's how to customize if needed:
+
+**Indentation** — set indent_size in [.editorconfig](.editorconfig):
 
 ```ini
 [*]
-indent_size = 2
+indent_size = 4
 ```
 
-To customize the line width, set the printWidth property in [.prettierrc.json](.prettierrc.json):
+**Line width** — set printWidth in [.prettierrc.json](.prettierrc.json):
 
 ```json
 {
@@ -363,22 +374,27 @@ To customize the line width, set the printWidth property in [.prettierrc.json](.
 }
 ```
 
-To use double quotes for TS files, set these properties in [.editorconfig](.editorconfig):
+**Double quotes** — set singleQuote in [.prettierrc.json](.prettierrc.json) and update [.editorconfig](.editorconfig) for IDE support:
+
+```json
+{
+  "singleQuote": false
+}
+```
 
 ```ini
 [*.ts]
-quote_type = single
-ij_typescript_use_double_quotes = false
+quote_type = double
+ij_typescript_use_double_quotes = true
 ```
 
-Finally, run `npm run format` to re-format all files, and check the result.
+After making changes, run `npm run format` to re-format all files.
 
-Here are some reasons for not changing the indentation, line width, and quote style:
+Here are some reasons for sticking with the defaults:
 
-- The Angular documentation and libraries use 2 space indentation and single quotes.
-- [2 space indentation is traditional for various reasons](https://www.google.com/search?q=why+use+2+space+indentation+in+typescript).
-- 4 space indentation can look pretty bad in JS/TS with an 80 character line limit.
-- Changing the line width can make it more difficult to view editors side-by-side.
+- Angular's documentation and libraries use 2 space indentation and single quotes.
+- 4 space indentation can look cramped with a 100 character line width.
+- 100 characters balances readability with side-by-side editor layouts on modern displays.
 
 ### Git Config
 

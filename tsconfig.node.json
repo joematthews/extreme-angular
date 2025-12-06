@@ -1,0 +1,9 @@
+/* TypeScript configuration for root-level config files (vitest.config.ts, etc.) */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/node",
+    "types": ["node"]
+  },
+  "include": ["*.ts"]
+}
