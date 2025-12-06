@@ -254,6 +254,9 @@ npm run test:ci
 > [!TIP]
 > For end-to-end testing, see the [End to End Testing (e2e)](#end-to-end-testing-e2e) section under Optional Configuration.
 
+> [!TIP]
+> Want VS Code Test Explorer integration? See the [experimental workaround](docs/vitest-ide-workaround.md). Note: this is unsupported and may break with future Angular updates.
+
 ### VS Code
 
 The following VS Code extensions will be recommended when opening the project ([.vscode/extensions.json](.vscode/extensions.json)):
