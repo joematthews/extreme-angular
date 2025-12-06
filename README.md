@@ -1,4 +1,4 @@
-# Extreme Angular 20: A Stricter Starter Template
+# Extreme Angular 21: A Stricter Starter Template
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE DEV TOOLS TO WORK TOGETHER'](https://github.com/user-attachments/assets/b7e3a75f-a082-465b-a9cd-7557732b0589)
 
@@ -17,6 +17,7 @@ ng new --strict --style=scss --ssr=false
 - **Focus on what matters** — discuss logic and architecture instead of arguing about formatting
 - **Consistent quality** — automatic code standards and accessibility checks across your team
 - **Clean foundation** — no custom code or complex workarounds needed
+- **Zoneless by default** — smaller bundle size and better performance with Angular 21's zoneless change detection
 
 ## Contributing
 
@@ -34,6 +35,7 @@ Found an issue? Check the [existing issues](https://github.com/joematthews/extre
   - [Stylelint](#stylelint)
   - [Prettier](#prettier)
   - [CSpell](#cspell)
+  - [Testing](#testing)
   - [VS Code](#vs-code)
   - [Husky, Commitlint, tsc-files, and Lint-Staged (Git hooks)](#husky-commitlint-tsc-files-and-lint-staged-git-hooks)
   - [Shove Progress](#shove-progress)
@@ -129,9 +131,9 @@ To ensure effective linting for all project files, the following ESLint plugins 
 - [@typescript-eslint](https://typescript-eslint.io/)
   - Uses both [strict-type-checked](https://typescript-eslint.io/linting/configs#strict-type-checked) and [stylistic-type-checked](https://typescript-eslint.io/linting/configs#stylistic-type-checked) rule sets.
   - [typescript-eslint rules configuration matrix](https://typescript-eslint.io/rules/).
-- [eslint-plugin-jasmine](https://github.com/tlvince/eslint-plugin-jasmine)
-  - Uses `recommended` rule set.
-  - [eslint-plugin-jasmine rules configuration matrix](https://typescript-eslint.io/rules/).
+- [@vitest/eslint-plugin](https://github.com/vitest-dev/eslint-plugin-vitest)
+  - Uses `recommended` rule set for Vitest test files.
+  - [@vitest/eslint-plugin rules](https://github.com/vitest-dev/eslint-plugin-vitest#rules).
 - [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc)
   - Uses `recommended` rule set.
   - [eslint-plugin-jsonc rules configuration matrix](https://ota-meshi.github.io/eslint-plugin-jsonc/rules/).
@@ -218,6 +220,33 @@ To find misspelled words in all files within the project:
 npm run lint:spelling
 ```
 
+### Testing
+
+[Vitest](https://vitest.dev/) is the default unit test runner for Angular 21, replacing Karma. Tests run in Node.js using [jsdom](https://github.com/jsdom/jsdom) to simulate the DOM, providing fast test execution without browser overhead.
+
+To run tests in watch mode:
+
+```sh
+npm test
+```
+
+To run tests once (for CI):
+
+```sh
+npm run test:ci
+```
+
+**VS Code Test Explorer:** The [Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) provides Test Explorer integration. Tests are automatically rebuilt when source files change, so you can edit tests and immediately run them from the Test Explorer sidebar.
+
+> [!IMPORTANT]
+> The `vitest.config.ts` and `vitest.setup.ts` files are a **temporary workaround** to enable IDE integration. Angular's unit-test builder doesn't yet expose Vitest directly, so these files proxy source files to Angular's pre-compiled output. This will become obsolete when [Angular adds native Vitest support](https://github.com/angular/angular-cli/issues/31734).
+
+> [!NOTE]
+> Vitest with jsdom is significantly faster than Karma with a real browser. For most unit tests, jsdom provides sufficient DOM simulation. If you need real browser testing, Angular supports running Vitest with Playwright — see the [Angular testing documentation](https://angular.dev/guide/testing).
+
+> [!TIP]
+> For end-to-end testing, see the [End to End Testing (e2e)](#end-to-end-testing-e2e) section under Optional Configuration.
+
 ### VS Code
 
 The following VS Code extensions will be recommended when opening the project ([.vscode/extensions.json](.vscode/extensions.json)):
@@ -228,6 +257,7 @@ The following VS Code extensions will be recommended when opening the project ([
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- [Vitest](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) — Run and debug tests from the Test Explorer sidebar
 
 The following VS Code settings have been set in [.vscode/settings.json](.vscode/settings.json):
 

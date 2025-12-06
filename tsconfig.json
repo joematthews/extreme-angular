@@ -3,6 +3,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types": ["vitest/globals"] /* mitigates VSCode editor ReferenceErrors */,
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "noUnusedLocals": true,
