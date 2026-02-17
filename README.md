@@ -1,8 +1,8 @@
-# Extreme Angular 21: A Stricter Starter Template
+# Extreme Angular: A Stricter Starter Template
 
 ![Meme showing Iron Man wearing the Nano Gauntlet before saving Earth. The caption reads, 'WHEN YOU FINALLY GET ALL THE DEV TOOLS TO WORK TOGETHER'](https://github.com/user-attachments/assets/b7e3a75f-a082-465b-a9cd-7557732b0589)
 
-Extreme Angular is a pre-configured Angular starter template with strict development tools that enforce best practices, ensure consistent code quality, and promote accessibility. It remains fully compatible with the [official Angular documentation](https://angular.dev/overview).
+Extreme Angular adds strict development tooling to a standard Angular project. Use it as a starter template or as a reference for configuring these tools in an existing project.
 
 The underlying Angular project was generated with:
 
@@ -12,12 +12,18 @@ ng new --strict --zoneless --style=scss --ssr=false
 
 ## Why Use Extreme Angular
 
-- **Skip weeks of setup** — ESLint, Prettier, Stylelint, CSpell, Git hooks, and CI work out of the box
-- **Zero configuration conflicts** — all tools are tested to work together seamlessly
-- **Focus on what matters** — discuss logic and architecture instead of arguing about formatting
-- **Consistent quality** — automatic code standards and accessibility checks across your team
-- **Clean foundation** — no custom code or complex workarounds needed
-- **Zoneless by default** — smaller bundle size and better performance with Angular 21's zoneless change detection
+Starting a new Angular project with `ng new` gives you a working app, but not the tooling layer that teams typically add over time. Extreme Angular bridges that gap:
+
+- **ESLint** with angular-eslint, typescript-eslint (strict + stylistic), accessibility rules, and JSON linting
+- **Prettier** with plugins for import sorting, CSS property ordering, and shell script formatting
+- **Stylelint** for CSS and SCSS
+- **CSpell** for spell checking
+- **Husky + lint-staged** for pre-commit linting and pre-push validation
+- **Commitlint** for conventional commit messages
+- **GitHub Actions CI** for pull request validation
+- **Strict TypeScript and Angular compiler settings** beyond Angular's default strict mode
+
+These tools are configured to work together without conflicts. Nothing here deviates from standard Angular — the [official Angular documentation](https://angular.dev/overview) applies without modification.
 
 ## Contributing
 
@@ -51,39 +57,33 @@ Found an issue? Check the [existing issues](https://github.com/joematthews/extre
   - [Shell Configuration Frameworks](#shell-configuration-frameworks)
   - [JetBrains IDEs](#jetbrains-ides)
 - [Updating](#updating)
-- [License Considerations](#license-considerations)
 
 ## Getting Started
 
-If you have a GitHub account, an easy way to get started is to select "Use this template" in the top right corner of the [GitHub page for Extreme Angular](https://github.com/joematthews/extreme-angular) and then select "Create a new repository". This will allow you to rename your repository and set it to private.
-
-Alternatively, if you do not have a GitHub account, I recommend cloning only the most recent commit and renaming the remote branch to 'upstream'. (Replace `new_project_name` with the name of _your_ project):
+Clone the repository and install dependencies (replace `my-project` with your project name):
 
 ```sh
-git clone --depth=1 --origin=upstream https://github.com/joematthews/extreme-angular.git new_project_name
-```
-
-Change to the new project directory and install the dependencies:
-
-```sh
-cd new_project_name
+git clone --depth=1 --origin=upstream https://github.com/joematthews/extreme-angular.git my-project
+cd my-project
 npm install
 ```
 
-**Customize your project:**
-Use `CTRL+SHIFT+H` in VS Code to search and replace `extreme-angular` with your chosen project name.
+Using `--origin=upstream` names the remote `upstream` instead of `origin`, making it possible to [pull in updates](#updating) later.
 
-**Start developing:**
+> [!TIP]
+> You can also select "Use this template" on the [GitHub page](https://github.com/joematthews/extreme-angular) to create a new repository. Note that template repositories don't maintain a connection to the original, so pulling in updates requires [additional setup](#updating).
+
+Search and replace `extreme-angular` with your project name across the codebase, then start developing:
 
 ```sh
 npm start
 ```
 
 > [!TIP]
-> If you're using [VS Code](https://code.visualstudio.com/) and [Chrome](https://www.google.com/chrome/), then press `F5` on the keyboard to start the app in debug mode. For more information check out: [TypeScript in Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript).
+> If you're using [VS Code](https://code.visualstudio.com/) and [Chrome](https://www.google.com/chrome/), press `F5` to start the app in debug mode. For more information check out: [TypeScript in Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript).
 
 > [!TIP]
-> The "Dev Tools Implemented" section below is project-agnostic -- consider adding it to your project's README.md or CONTRIBUTING.md!
+> The "Dev Tools Implemented" section below is project-agnostic — consider adding it to your project's README.md or CONTRIBUTING.md!
 
 ## Dev Tools Implemented
 
@@ -156,11 +156,7 @@ To lint all relevant files in the project (not just those in src/):
 npm run lint
 ```
 
-ESLint output is formatted using [eslint-formatter-mo](https://github.com/fengzilong/eslint-formatter-mo). To use normal formatting, remove the `-f mo` option from the `lint` script in [package.json](package.json):
-
-```json
-"lint": "eslint -f mo \"**/*.{js,ts,html,json}\"",
-```
+ESLint output is formatted using [eslint-formatter-mo](https://github.com/fengzilong/eslint-formatter-mo). To use default formatting, remove `-f mo` from the `lint` script in [package.json](package.json).
 
 > [!TIP]
 > Suppress the urge to immediately set rules to "off" or "warn". First, look up the rule and the problem it is correcting for and discuss the rule with other developers on the project.
@@ -191,7 +187,7 @@ npm run lint:style
 
 [Prettier](https://prettier.io/) is used to enforce consistent code formatting, reducing diffs by minimizing formatting changes.
 
-The base settings in [.prettierrc.json](./.prettierrc.json) (`printWidth: 100`, `singleQuote: true`) match Angular 21 defaults. This template adds the following enhancements:
+The base settings in [.prettierrc.json](./.prettierrc.json) (`printWidth: 100`, `singleQuote: true`) match Angular defaults. This template adds the following enhancements:
 
 **htmlWhitespaceSensitivity: "ignore"** — Trims unnecessary whitespace around and inside HTML elements for cleaner templates. Use `&nbsp;` (non-breaking space) when you need to explicitly maintain spacing between inline elements.
 
@@ -234,7 +230,7 @@ npm run lint:spelling
 
 ### Testing
 
-[Vitest](https://vitest.dev/) is the default unit test runner for Angular 21, replacing Karma. Tests run in Node.js using [jsdom](https://github.com/jsdom/jsdom) to simulate the DOM, providing fast test execution without browser overhead.
+[Vitest](https://vitest.dev/) is the default unit test runner for Angular, replacing Karma. Tests run in Node.js using [jsdom](https://github.com/jsdom/jsdom) to simulate the DOM, providing fast test execution without browser overhead.
 
 To run tests in watch mode:
 
@@ -305,7 +301,7 @@ The shove script will stage all files, commit with the commit message `wip: shov
 
 The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow triggers [validate-code.yml](.github/workflows/validate-code.yml) to check all files and run tests when a pull request is opened or updated.
 
-Pull requests on GitHub cannot be merged until all checks and tests pass. The output of these workflows can found in the 'Actions' tab on the GitHub repository.
+Pull requests on GitHub cannot be merged until all checks and tests pass. The output of these workflows can be found in the 'Actions' tab on the GitHub repository.
 
 To execute these checks and tests locally:
 
@@ -321,7 +317,7 @@ Angular has powerful [Internationalization](https://angular.dev/guide/i18n) capa
 
 If you plan to implement internationalization in the future, adding i18n attributes early on can make the process easier to scale naturally.
 
-To enable the i18n ESLint rule, simply add the following rule to the \*.html section of [eslint.config.js](./eslint.config.js):
+To enable the i18n ESLint rule, add the following rule to the \*.html section of [eslint.config.js](./eslint.config.js):
 
 ```js
 "@angular-eslint/template/i18n": "error",
@@ -333,7 +329,7 @@ To enable the i18n ESLint rule, simply add the following rule to the \*.html sec
 > [!TIP]
 > Using `eslint --fix` can automatically add i18n tags in many cases.
 
-## End to End Testing (e2e)
+### End to End Testing (e2e)
 
 Angular has schematics available for several end to end testing frameworks. The [Angular End to End Testing guide](https://angular.dev/tools/cli/end-to-end) will walk you through the steps to set one up.
 
@@ -357,7 +353,7 @@ These are tips and tricks that are too opinionated or situational to include in 
 
 ### Custom Formatting
 
-This project uses Angular 21's formatting defaults: 2 space indentation, 100 character line width, and single quotes. Here's how to customize if needed:
+This project uses Angular's formatting defaults: 2 space indentation, 100 character line width, and single quotes. Here's how to customize if needed:
 
 **Indentation** — set indent_size in [.editorconfig](.editorconfig):
 
@@ -421,7 +417,7 @@ git config user.email "14097616+joematthews@users.noreply.github.com"
 
 ### Inlay Hints in VS Code
 
-I _highly_ recommend enabling [inlay hints in VS Code](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They give me the confidence to use TypeScript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need specify types 'for visibility'.
+Consider enabling [inlay hints in VS Code](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They make it easier to rely on TypeScript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need to specify types 'for visibility'.
 
 Add the following to the VS Code user settings to enable all inlay hints for JavaScript & TypeScript:
 
@@ -452,9 +448,9 @@ To temporarily disable inlay hints use `CTRL + ALT` (or `CTRL + OPTION` on Mac) 
 
 ### Font Ligatures
 
-VS Code is capable of using 'font ligatures' -- not everyone likes font ligatures, but I really enjoy them.
+VS Code is capable of using 'font ligatures' -- they are worth trying if you haven't already.
 
-The two most popular fonts that support font ligatures are [Fira Code](https://github.com/tonsky/FiraCode) and [Jet Brains Mono](https://www.jetbrains.com/lp/mono/). I typically use the 'Regular' `*.ttf` variant of each font.
+The two most popular fonts that support font ligatures are [Fira Code](https://github.com/tonsky/FiraCode) and [Jet Brains Mono](https://www.jetbrains.com/lp/mono/). The 'Regular' `*.ttf` variant of each font is a good starting point.
 
 After downloading and installing the font of choice, add the font to the `fontFamily` and enable `fontLigatures` in the VS Code user settings:
 
@@ -496,9 +492,15 @@ Here are some tips for configuring the dev tools for this project in JetBrains I
 ## Updating
 
 > [!WARNING]
-> Depending on the maturity of the project, it may be better to look at the current configuration files for extreme-angular & [release notes](https://github.com/joematthews/extreme-angular/releases) and then manually make changes instead of merging. If the Angular version has changed, then follow the [guide to update Angular](https://angular.dev/update) first before attempting to merge or make changes.
+> If the Angular version has changed, follow the [Angular update guide](https://angular.dev/update) before merging. For mature projects with heavy customization, reviewing the [release notes](https://github.com/joematthews/extreme-angular/releases) and applying changes manually may be safer than merging.
 
-To pull in the latest changes, check out an 'update' branch and merging the latest changes from `upstream/main`:
+If you don't have an `upstream` remote (e.g., you used "Use this template"), add one:
+
+```sh
+git remote add upstream https://github.com/joematthews/extreme-angular.git
+```
+
+Create a branch and merge the latest changes:
 
 ```sh
 git checkout main && git pull
@@ -506,30 +508,9 @@ git checkout -b update
 git merge upstream/main
 ```
 
-> [!NOTE]
-> The name of the remote may not be `upstream` depending on how this project was cloned.
-
-There may be [merge conflicts](https://code.visualstudio.com/docs/sourcecontrol/overview#_merge-conflicts) that need to be resolved. After a successful merge, install dependencies and then format, lint, test, and fix any new errors for all files:
+Resolve any [merge conflicts](https://code.visualstudio.com/docs/sourcecontrol/overview#_merge-conflicts), then install dependencies and validate:
 
 ```sh
 npm install
 npm run ci:all
 ```
-
-## License Considerations
-
-The documentation and configuration files in this project are licensed under the [MIT license](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide).
-
-I keep the copyright from [Angular's license](https://angular.dev/license) and add my own copyright.
-
-If your project also uses the MIT license, then please consider adding a new copyright line to [LICENSE.txt](LICENSE.txt):
-
-```txt
-Copyright (c) 2010-2025 Google LLC. https://angular.dev/license
-
-Copyright (c) 2024-2025 Joe Matthews, et al. https://github.com/joematthews/extreme-angular
-
-Copyright (c) 2025 Your Name or Company
-```
-
-If your project is [closed source](https://simple.wikipedia.org/wiki/Closed_source) or uses a [different license](https://opensource.org/licenses), then please consider renaming the file to `LICENSE-Angular.txt`.
