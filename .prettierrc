@@ -9,7 +9,7 @@
   ],
   "overrides": [
     {
-      "files": ["src/app/*.html"],
+      "files": "*.html",
       "options": {
         "parser": "angular"
       }

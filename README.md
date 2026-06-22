@@ -10,6 +10,8 @@ The underlying Angular project was generated with:
 ng new --strict --zoneless --style=scss --ssr=false
 ```
 
+Everything else is an additive tooling layer on top of the Angular CLI defaults.
+
 ## Why Use Extreme Angular
 
 Starting a new Angular project with `ng new` gives you a working app, but not the tooling layer that teams typically add over time. Extreme Angular bridges that gap:
@@ -21,7 +23,7 @@ Starting a new Angular project with `ng new` gives you a working app, but not th
 - **Husky + lint-staged** for pre-commit linting and pre-push validation
 - **Commitlint** for conventional commit messages
 - **GitHub Actions CI** for pull request validation
-- **Strict TypeScript and Angular compiler settings** beyond Angular's default strict mode
+- **Stricter TypeScript** via an extra compiler flag and fully type-checked linting
 
 These tools are configured to work together without conflicts. Nothing here deviates from standard Angular — the [official Angular documentation](https://angular.dev/overview) applies without modification.
 
@@ -30,33 +32,6 @@ These tools are configured to work together without conflicts. Nothing here devi
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to get started.
 
 Found an issue? Check the [existing issues](https://github.com/joematthews/extreme-angular/issues) first, then create a new one if needed.
-
-## Table of Contents
-
-- [Getting Started](#getting-started)
-- [Dev Tools Implemented](#dev-tools-implemented)
-  - [TypeScript](#typescript)
-  - [ESLint](#eslint)
-    - [Accessibility (a11y)](#accessibility-a11y) :accessibility:
-  - [Stylelint](#stylelint)
-  - [Prettier](#prettier)
-  - [CSpell](#cspell)
-  - [Testing](#testing)
-  - [VS Code](#vs-code)
-  - [Husky, Commitlint, and Lint-Staged (Git hooks)](#husky-commitlint-and-lint-staged-git-hooks)
-  - [Shove Progress](#shove-progress)
-  - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
-- [Optional Configuration](#optional-configuration)
-  - [Internationalization (i18n)](#internationalization-i18n)
-  - [End to End Testing (e2e)](#end-to-end-testing-e2e)
-- [Tips & Tricks](#tips--tricks)
-  - [Custom Formatting](#custom-formatting)
-  - [Git Config](#git-config)
-  - [Inlay Hints in VS Code](#inlay-hints-in-vs-code)
-  - [Font Ligatures](#font-ligatures)
-  - [Shell Configuration Frameworks](#shell-configuration-frameworks)
-  - [JetBrains IDEs](#jetbrains-ides)
-- [Updating](#updating)
 
 ## Getting Started
 
@@ -87,7 +62,7 @@ npm start
 
 ## Dev Tools Implemented
 
-This section outlines how each tool is configured, and how they can be leveraged to ensure clean and maintainable code.
+How each tool is configured, and how to get the most out of it.
 
 Use this script to run all checks against all project files:
 
@@ -100,15 +75,9 @@ npm run lint:all
 
 ### TypeScript
 
-Beyond Angular's default strict mode, this template enables additional TypeScript strictness in [tsconfig.json](tsconfig.json) to catch more potential issues at compile time:
+TypeScript's `strict` mode and Angular's `strictTemplates` are both enabled by default, so this template relies on those defaults rather than setting them explicitly. On top of them, [tsconfig.json](tsconfig.json) adds one high-value compiler flag that ESLint cannot replicate: [`noUncheckedIndexedAccess`](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess), which adds `undefined` to array and object index access so the compiler forces explicit checks and prevents a common class of runtime errors.
 
-**Enhanced compiler options:**
-
-- **[exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)** — Prevents assigning `undefined` to optional properties, ensuring type safety when properties are explicitly optional vs. potentially undefined
-- **[noUnusedLocals](https://www.typescriptlang.org/tsconfig#noUnusedLocals)** — Reports errors for unused local variables, helping keep your code clean and reducing bundle size
-- **[noUnusedParameters](https://www.typescriptlang.org/tsconfig#noUnusedParameters)** — Reports errors for unused function parameters, encouraging cleaner function signatures and better code maintainability
-- **[noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess)** — Adds `undefined` to array access and object property access, forcing explicit checks and preventing runtime errors
-- **[useUnknownInCatchVariables](https://www.typescriptlang.org/tsconfig#useUnknownInCatchVariables)** — Changes catch clause variables from `any` to `unknown`, requiring explicit type checking for better error handling safety
+Unused locals and parameters are intentionally left to ESLint's [`@typescript-eslint/no-unused-vars`](https://typescript-eslint.io/rules/no-unused-vars/) rule rather than the `noUnusedLocals`/`noUnusedParameters` compiler options, so an unused import while refactoring doesn't break `ng build` or `ng serve`.
 
 **Type checking commands:**
 
@@ -141,9 +110,9 @@ To ensure effective linting for all project files, the following ESLint plugins 
 - [@typescript-eslint](https://typescript-eslint.io/)
   - Uses both [strict-type-checked](https://typescript-eslint.io/linting/configs#strict-type-checked) and [stylistic-type-checked](https://typescript-eslint.io/linting/configs#stylistic-type-checked) rule sets.
   - [typescript-eslint rules configuration matrix](https://typescript-eslint.io/rules/).
-- [@vitest/eslint-plugin](https://github.com/vitest-dev/eslint-plugin-vitest)
+- [@vitest/eslint-plugin](https://github.com/vitest-dev/eslint-plugin)
   - Uses `recommended` rule set for Vitest test files.
-  - [@vitest/eslint-plugin rules](https://github.com/vitest-dev/eslint-plugin-vitest#rules).
+  - [@vitest/eslint-plugin rules](https://github.com/vitest-dev/eslint-plugin#rules).
 - [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc)
   - Uses `recommended` rule set.
   - [eslint-plugin-jsonc rules configuration matrix](https://ota-meshi.github.io/eslint-plugin-jsonc/rules/).
@@ -187,7 +156,7 @@ npm run lint:style
 
 [Prettier](https://prettier.io/) is used to enforce consistent code formatting, reducing diffs by minimizing formatting changes.
 
-The base settings in [.prettierrc.json](./.prettierrc.json) (`printWidth: 100`, `singleQuote: true`) match Angular defaults. This template adds the following enhancements:
+The base settings in [.prettierrc](./.prettierrc) (`printWidth: 100`, `singleQuote: true`, plus the `*.html` Angular-parser override) match what `ng new` generates. This template adds the following enhancements:
 
 **htmlWhitespaceSensitivity: "ignore"** — Trims unnecessary whitespace around and inside HTML elements for cleaner templates. Use `&nbsp;` (non-breaking space) when you need to explicitly maintain spacing between inline elements.
 
@@ -209,8 +178,8 @@ To check if all files are properly formatted:
 npm run lint:format
 ```
 
-> [!IMPORTANT]  
-> Angular v20 dropped the `.component` suffix from component templates, so an override has been setup in [.prettierrc.json](.prettierrc.json) to parse `["src/app/*.html"]` using the Angular parser. If you add additional Angular applications to the project, make sure to update the overrides array to include their HTML file paths (e.g., `'src/new-app/*.html'`) so Prettier can properly parse those template files.
+> [!NOTE]  
+> The `*.html` override in [.prettierrc](.prettierrc) (generated by `ng new`) tells Prettier to use the Angular parser for HTML, so component templates are formatted correctly.
 
 ### CSpell
 
@@ -230,7 +199,7 @@ npm run lint:spelling
 
 ### Testing
 
-[Vitest](https://vitest.dev/) is the default unit test runner for Angular, replacing Karma. Tests run in Node.js using [jsdom](https://github.com/jsdom/jsdom) to simulate the DOM, providing fast test execution without browser overhead.
+[Vitest](https://vitest.dev/) is the default unit test runner for Angular. Tests run in Node.js using [jsdom](https://github.com/jsdom/jsdom) to simulate the DOM, providing fast test execution without browser overhead.
 
 To run tests in watch mode:
 
@@ -245,7 +214,7 @@ npm run test:ci
 ```
 
 > [!NOTE]
-> Vitest with jsdom is significantly faster than Karma with a real browser. For most unit tests, jsdom provides sufficient DOM simulation. If you need real browser testing, Angular supports running Vitest with Playwright — see the [Angular testing documentation](https://angular.dev/guide/testing).
+> jsdom simulates the DOM in Node.js without launching a real browser, which keeps the test suite fast. For most unit tests this is sufficient; if you need real browser testing, Angular supports running Vitest with Playwright — see the [Angular testing documentation](https://angular.dev/guide/testing).
 
 > [!TIP]
 > For end-to-end testing, see the [End to End Testing (e2e)](#end-to-end-testing-e2e) section under Optional Configuration.
@@ -281,6 +250,13 @@ The following VS Code settings have been set in [.vscode/settings.json](.vscode/
 
 [Lint-staged](https://github.com/lint-staged/lint-staged) is used to run Prettier, ESLint, Stylelint, and CSpell in the pre-commit git hook against all staged files. Lint-staged configuration is kept in [.lintstagedrc.json](.lintstagedrc.json)
 
+The two hooks are tuned for different speeds and scopes:
+
+- **pre-commit** runs lint-staged against only the staged files, giving fast feedback on every commit.
+- **pre-push** runs the full `npm run ci:all` (type-checking, every linter, and the tests), so a complete validation happens before any code leaves your machine.
+
+Running the entire suite on push is intentional. It mirrors the GitHub Actions checks locally, and it is the primary safety net for anyone pushing to a remote that has no CI of its own, such as a self-hosted or bare SSH repository. Because pushes happen far less often than commits, the extra time is rarely noticeable, and the [Shove Progress](#shove-progress) escape hatch is there for the moments it is.
+
 ### Shove Progress
 
 You can bypass the git hooks using `git commit --no-verify` and `git push --no-verify`. Or, use the `shove` script in emergencies when progress needs to be backed up quickly:
@@ -301,7 +277,7 @@ The shove script will stage all files, commit with the commit message `wip: shov
 
 The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow triggers [validate-code.yml](.github/workflows/validate-code.yml) to check all files and run tests when a pull request is opened or updated.
 
-Pull requests on GitHub cannot be merged until all checks and tests pass. The output of these workflows can be found in the 'Actions' tab on the GitHub repository.
+The output of these workflows can be found in the 'Actions' tab on the GitHub repository. To block merges until they pass, add a [branch protection rule](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) (or ruleset) that requires the `validate-code / called-workflow` status check — new repositories start unprotected.
 
 To execute these checks and tests locally:
 
@@ -362,7 +338,7 @@ This project uses Angular's formatting defaults: 2 space indentation, 100 charac
 indent_size = 4
 ```
 
-**Line width** — set printWidth in [.prettierrc.json](.prettierrc.json):
+**Line width** — set printWidth in [.prettierrc](.prettierrc):
 
 ```json
 {
@@ -370,7 +346,7 @@ indent_size = 4
 }
 ```
 
-**Double quotes** — set singleQuote in [.prettierrc.json](.prettierrc.json) and update [.editorconfig](.editorconfig) for IDE support:
+**Double quotes** — set singleQuote in [.prettierrc](.prettierrc) and update [.editorconfig](.editorconfig) for IDE support:
 
 ```json
 {
@@ -417,51 +393,11 @@ git config user.email "14097616+joematthews@users.noreply.github.com"
 
 ### Inlay Hints in VS Code
 
-Consider enabling [inlay hints in VS Code](https://code.visualstudio.com/Docs/editor/editingevolved#_inlay-hints). They make it easier to rely on TypeScript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need to specify types 'for visibility'.
-
-Add the following to the VS Code user settings to enable all inlay hints for JavaScript & TypeScript:
-
-```json
-{
-  "editor.inlayHints.enabled": "onUnlessPressed",
-  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "javascript.inlayHints.parameterNames.enabled": "literals",
-  "javascript.inlayHints.parameterTypes.enabled": true,
-  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
-  "javascript.inlayHints.variableTypes.enabled": true,
-  "typescript.inlayHints.enumMemberValues.enabled": true,
-  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
-  "typescript.inlayHints.parameterTypes.enabled": true,
-  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-  "typescript.inlayHints.variableTypes.enabled": true
-}
-```
-
-To temporarily disable inlay hints use `CTRL + ALT` (or `CTRL + OPTION` on Mac) -- Or, to reverse this behavior use:
-
-```json
-{
-  "editor.inlayHints.enabled": "offUnlessPressed"
-}
-```
+Consider enabling [inlay hints](https://code.visualstudio.com/docs/typescript/typescript-editing#_inlay-hints) for JavaScript and TypeScript in VS Code. They make it easier to rely on TypeScript's [type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html) without feeling the need to specify types 'for visibility'. The linked VS Code docs cover the available `javascript.inlayHints.*` and `typescript.inlayHints.*` settings.
 
 ### Font Ligatures
 
-VS Code is capable of using 'font ligatures' -- they are worth trying if you haven't already.
-
-The two most popular fonts that support font ligatures are [Fira Code](https://github.com/tonsky/FiraCode) and [Jet Brains Mono](https://www.jetbrains.com/lp/mono/). The 'Regular' `*.ttf` variant of each font is a good starting point.
-
-After downloading and installing the font of choice, add the font to the `fontFamily` and enable `fontLigatures` in the VS Code user settings:
-
-```json
-{
-  "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": true
-}
-```
-
-The Fira Code repository maintains [a list of alternative fonts with ligatures](https://github.com/tonsky/FiraCode#alternatives).
+VS Code supports 'font ligatures', which render multi-character operators like `=>` and `!==` as single glyphs. Popular code fonts that include them are [Fira Code](https://github.com/tonsky/FiraCode) and [JetBrains Mono](https://www.jetbrains.com/lp/mono/). To install a font and turn ligatures on, follow [Fira Code's VS Code instructions](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions) (the same steps work for any ligature font).
 
 ### Shell Configuration Frameworks
 
@@ -480,10 +416,9 @@ Shell configuration frameworks are a quick way to add git branch & status inform
 
 Here are some tips for configuring the dev tools for this project in JetBrains IDEs:
 
-- ESLint, Stylelint, Prettier
-  - Search for each name in the settings to easily find all relevant configuration.
+- ESLint, Stylelint, Prettier — follow JetBrains' guides for [ESLint](https://www.jetbrains.com/help/webstorm/eslint.html) and [Prettier](https://www.jetbrains.com/help/webstorm/prettier.html); Stylelint is set up the same way.
   - Double check all three plugins are installed.
-  - Set configuration to 'Automatic' for each and match the file extensions that are found in scripts section of [package.json](./package.json).
+  - Set configuration to 'Automatic' for each and match the file extensions found in the scripts section of [package.json](./package.json).
   - (Optional) Set "Run on save" for each plugin if preferred.
 - Install the "CSpell Check" plugin to reduce conflicts with JetBrains' built-in spell-checking.
 - (Optional) Set keymap to 'VS Code' or 'VS Code (macOS)' for an easier transition
@@ -499,6 +434,9 @@ If you don't have an `upstream` remote (e.g., you used "Use this template"), add
 ```sh
 git remote add upstream https://github.com/joematthews/extreme-angular.git
 ```
+
+> [!NOTE]
+> The `--depth=1` clone in [Getting Started](#getting-started) is shallow and lacks the history needed to merge. Run `git fetch --unshallow` once before your first update.
 
 Create a branch and merge the latest changes:
 
