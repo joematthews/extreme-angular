@@ -3,9 +3,20 @@
 > **Status:** Experimental and unsupported
 > **Tracking issue:** [angular/angular-cli#31734](https://github.com/angular/angular-cli/issues/31734)
 
-Angular 21 uses Vitest for unit testing through its `@angular/build:unit-test` builder. However, the [VS Code Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) doesn't work out of the box because it expects a `vitest.config.ts` file to hook into.
+Angular 22 uses Vitest for unit testing through its `@angular/build:unit-test` builder. However, the [VS Code Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) doesn't work out of the box because it expects a `vitest.config.ts` file to hook into.
 
 This guide explains how to add a workaround that enables Test Explorer integration in VS Code. **This is not officially supported** and may break with future Angular updates.
+
+## Status and Alternatives
+
+Native IDE support is still an open feature request upstream ([angular/angular-cli#31734](https://github.com/angular/angular-cli/issues/31734)), so as of Angular 22 the gap this workaround fills has not been closed.
+
+A couple of related options exist, but neither replaces this workaround for IDE integration:
+
+- **`runnerConfig`** — Angular's unit-test builder accepts a `runnerConfig` option in `angular.json` that points at a `vitest.config.ts` (or auto-discovers a `vitest-base.config.*`). It customizes how tests _run_, but it does not make the VS Code Vitest extension work: the CLI overrides properties such as `test.projects` and `test.include`, and the Angular team does not support the config's contents. See [Migrating from Karma to Vitest](https://angular.dev/guide/testing/migrating-to-vitest).
+- **[AnalogJS](https://analogjs.org/docs/features/testing/vitest)** (`@analogjs/vitest-angular`) — provides a standalone Vitest config that IDE extensions can read, so it does enable in-editor runs. It is a heavier, different toolchain choice rather than a small addition to a stock Angular project.
+
+If you want Test Explorer integration today without changing your toolchain, the workaround below remains the lightest path.
 
 ## How It Works
 
@@ -19,7 +30,7 @@ This lets VS Code's Test Explorer show your source files while actually running 
 
 ## Prerequisites
 
-- Angular 21 project with Vitest (default for `ng new`)
+- Angular 22 project with Vitest (default for `ng new`)
 - VS Code with the [Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer)
 
 ## Implementation
@@ -31,7 +42,7 @@ Create `vitest.config.ts` in your project root:
 ```ts
 /// <reference types="vitest" />
 /**
- * WORKAROUND: Vitest + Angular 21 integration for IDEs.
+ * WORKAROUND: Vitest + Angular 22 integration for IDEs.
  *
  * Angular's unit-test builder doesn't yet support running Vitest directly,
  * preventing IDE vitest tooling from working as expected.
@@ -57,7 +68,7 @@ function findTestOutputDir(): string | null {
   const angularCacheBase = '.angular/cache';
   if (!existsSync(angularCacheBase)) return null;
 
-  // Find version directory (e.g., "21.0.0")
+  // Find version directory (e.g., "22.0.0")
   const version = readdirSync(angularCacheBase)
     .filter((f) => /^\d+\.\d+\.\d+$/.test(f))
     .sort()
@@ -274,7 +285,7 @@ Create `vitest.setup.ts` in your project root:
 
 ```ts
 /**
- * WORKAROUND: Vitest + Angular 21 integration for IDEs.
+ * WORKAROUND: Vitest + Angular 22 integration for IDEs.
  * see comment in vitest.config.ts for more details.
  */
 import { execSync } from 'node:child_process';
@@ -285,7 +296,7 @@ function findTestOutputDir(): string | null {
   const angularCacheBase = '.angular/cache';
   if (!existsSync(angularCacheBase)) return null;
 
-  // Find version directory (e.g., "21.0.0")
+  // Find version directory (e.g., "22.0.0")
   const version = readdirSync(angularCacheBase)
     .filter((f) => /^\d+\.\d+\.\d+$/.test(f))
     .sort()

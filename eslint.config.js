@@ -1,13 +1,15 @@
-import eslint from '@eslint/js';
-import vitest from '@vitest/eslint-plugin';
-import { configs as ngConfigs, processInlineTemplates } from 'angular-eslint';
-import prettierConfig from 'eslint-config-prettier';
-import { configs as jsoncConfigs } from 'eslint-plugin-jsonc';
-import globals from 'globals';
-import { config, configs as tsConfigs } from 'typescript-eslint';
+// @ts-check
+const eslint = require('@eslint/js');
+const { defineConfig } = require('eslint/config');
+const tseslint = require('typescript-eslint');
+const angular = require('angular-eslint');
+const vitest = require('@vitest/eslint-plugin');
+const jsonc = require('eslint-plugin-jsonc');
+const prettierConfig = require('eslint-config-prettier');
+const globals = require('globals');
 
-export default config(
-  { ignores: ['.angular/*', 'dist/*'] },
+module.exports = defineConfig([
+  { ignores: ['.angular/', 'dist/'] },
   {
     files: ['**/*.js'],
     extends: [eslint.configs.recommended, prettierConfig],
@@ -23,18 +25,18 @@ export default config(
     ignores: ['**/*.spec.ts'],
     extends: [
       eslint.configs.recommended,
-      ...tsConfigs.strictTypeChecked,
-      ...tsConfigs.stylisticTypeChecked,
-      ...ngConfigs.tsRecommended,
+      tseslint.configs.strictTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
+      angular.configs.tsRecommended,
       prettierConfig,
     ],
     languageOptions: {
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+        tsconfigRootDir: __dirname,
       },
     },
-    processor: processInlineTemplates,
+    processor: angular.processInlineTemplates,
     rules: {
       '@angular-eslint/directive-selector': [
         'error',
@@ -56,20 +58,24 @@ export default config(
   },
   {
     files: ['**/*.html'],
-    extends: [...ngConfigs.templateRecommended, ...ngConfigs.templateAccessibility, prettierConfig],
+    extends: [
+      angular.configs.templateRecommended,
+      angular.configs.templateAccessibility,
+      prettierConfig,
+    ],
     rules: {},
   },
   {
     files: ['**/*.json'],
-    extends: [...jsoncConfigs['flat/recommended-with-jsonc'], ...jsoncConfigs['flat/prettier']],
+    extends: [...jsonc.configs['flat/recommended-with-jsonc'], ...jsonc.configs['flat/prettier']],
     rules: {},
   },
   {
     files: ['src/**/*.spec.ts'],
     extends: [
       eslint.configs.recommended,
-      ...tsConfigs.strictTypeChecked,
-      ...tsConfigs.stylisticTypeChecked,
+      tseslint.configs.strictTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
       vitest.configs.recommended,
       prettierConfig,
     ],
@@ -77,7 +83,7 @@ export default config(
       globals: vitest.environments.env.globals,
       parserOptions: {
         project: './tsconfig.spec.json',
-        tsconfigRootDir: import.meta.dirname,
+        tsconfigRootDir: __dirname,
       },
     },
     settings: {
@@ -87,4 +93,4 @@ export default config(
     },
     rules: {},
   },
-);
+]);
