@@ -80,9 +80,8 @@ module.exports = defineConfig([
       prettierConfig,
     ],
     languageOptions: {
-      globals: vitest.environments.env.globals,
       parserOptions: {
-        project: './tsconfig.spec.json',
+        projectService: true,
         tsconfigRootDir: __dirname,
       },
     },
