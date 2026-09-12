@@ -7,14 +7,24 @@ Angular 22 uses Vitest for unit testing through its `@angular/build:unit-test` b
 
 This guide explains how to add a workaround that enables Test Explorer integration in VS Code. **This is not officially supported** and may break with future Angular updates.
 
+## Table of Contents
+
+- [Status and Alternatives](#status-and-alternatives)
+- [How It Works](#how-it-works)
+- [Prerequisites](#prerequisites)
+- [Setup Workaround](#setup-workaround)
+- [Known Limitations](#known-limitations)
+- [Reverting the Workaround](#reverting-the-workaround)
+- [Future](#future)
+
 ## Status and Alternatives
 
 Native IDE support is still an open feature request upstream ([angular/angular-cli#31734](https://github.com/angular/angular-cli/issues/31734)), so as of Angular 22 the gap this workaround fills has not been closed.
 
 A couple of related options exist, but neither replaces this workaround for IDE integration:
 
-- **`runnerConfig`** — Angular's unit-test builder accepts a `runnerConfig` option in `angular.json` that points at a `vitest.config.ts` (or auto-discovers a `vitest-base.config.*`). It customizes how tests _run_, but it does not make the VS Code Vitest extension work: the CLI overrides properties such as `test.projects` and `test.include`, and the Angular team does not support the config's contents. See [Migrating from Karma to Vitest](https://angular.dev/guide/testing/migrating-to-vitest).
-- **[AnalogJS](https://analogjs.org/docs/features/testing/vitest)** (`@analogjs/vitest-angular`) — provides a standalone Vitest config that IDE extensions can read, so it does enable in-editor runs. It is a heavier, different toolchain choice rather than a small addition to a stock Angular project.
+- **`runnerConfig`**: Angular's unit-test builder accepts a `runnerConfig` option in `angular.json` that points at a `vitest.config.ts` (or auto-discovers a `vitest-base.config.*`). It customizes how tests _run_, but it does not make the VS Code Vitest extension work: the CLI overrides properties such as `test.projects` and `test.include`, and the Angular team does not support the config's contents. See [Migrating from Karma to Vitest](https://angular.dev/guide/testing/migrating-to-vitest).
+- **[AnalogJS](https://analogjs.org/docs/features/testing/vitest)** (`@analogjs/vitest-angular`): provides a standalone Vitest config that IDE extensions can read, so it does enable in-editor runs. It is a heavier, different toolchain choice rather than a small addition to a stock Angular project.
 
 If you want Test Explorer integration today without changing your toolchain, the workaround below remains the lightest path.
 
@@ -33,7 +43,7 @@ This lets VS Code's Test Explorer show your source files while actually running 
 - Angular 22 project with Vitest (default for `ng new`)
 - VS Code with the [Vitest extension](https://marketplace.visualstudio.com/items?itemName=vitest.explorer)
 
-## Implementation
+## Setup Workaround
 
 ### Step 1: Add vitest.config.ts
 
@@ -357,7 +367,31 @@ if (!outputDir || needsRebuild(outputDir)) {
 }
 ```
 
-### Step 3: Update tsconfig.json
+### Step 3: Add tsconfig.node.json
+
+Type-checks the two files above. Install `@types/node`, add the file, and reference it from `tsconfig.json`:
+
+```sh
+npm install -D @types/node
+```
+
+```json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["*.ts"]
+}
+```
+
+```json
+{
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+```
+
+### Step 4: Update tsconfig.json
 
 Add `vitest/globals` types to the root `tsconfig.json` to help VS Code recognize test globals like `describe` and `it`:
 
@@ -369,9 +403,9 @@ Add `vitest/globals` types to the root `tsconfig.json` to help VS Code recognize
 }
 ```
 
-This should be added to the `compilerOptions` object in your root `tsconfig.json` file — not `tsconfig.spec.json`. Even though `tsconfig.spec.json` already includes these types for `ng test`, VS Code needs them in the root config for editor support when using this workaround.
+This should be added to the `compilerOptions` object in your root `tsconfig.json` file, not `tsconfig.spec.json`. Even though `tsconfig.spec.json` already includes these types for `ng test`, VS Code needs them in the root config for editor support when using this workaround.
 
-### Step 4: Add VS Code extension recommendation
+### Step 5: Add VS Code extension recommendation
 
 Update `.vscode/extensions.json`:
 
@@ -381,7 +415,7 @@ Update `.vscode/extensions.json`:
 }
 ```
 
-### Step 5: Build tests initially
+### Step 6: Build tests initially
 
 Run the test build once to populate the cache:
 
@@ -395,7 +429,7 @@ Or if you don't have that script:
 npx ng test --watch=false --dump-virtual-files
 ```
 
-### Step 6: Verify
+### Step 7: Verify
 
 1. Open VS Code
 2. Install the Vitest extension if prompted
@@ -417,8 +451,11 @@ To remove this workaround and return to the default Angular setup:
 ### Step 1: Delete the config files
 
 ```sh
-rm vitest.config.ts vitest.setup.ts
+rm vitest.config.ts vitest.setup.ts tsconfig.node.json
+npm uninstall @types/node
 ```
+
+Remove the `tsconfig.node.json` entry from `references` in `tsconfig.json`.
 
 ### Step 2: Remove types from tsconfig.json
 
@@ -442,7 +479,7 @@ Run tests to confirm everything still works:
 npm test
 ```
 
-Tests will continue to run via Angular's `@angular/build:unit-test` builder — you just won't have Test Explorer integration in VS Code.
+Tests will continue to run via Angular's `@angular/build:unit-test` builder. You just won't have Test Explorer integration in VS Code.
 
 ## Future
 

@@ -10,7 +10,35 @@ The underlying Angular project was generated with:
 ng new --strict --zoneless --style=scss --ssr=false
 ```
 
-Everything else is an additive tooling layer on top of the Angular CLI defaults.
+## Table of Contents
+
+- [Why Use Extreme Angular](#why-use-extreme-angular)
+- [Contributing](#contributing)
+- [Getting Started](#getting-started)
+- [Dev Tools Implemented](#dev-tools-implemented)
+  - [Node.js, npm, and Angular CLI](#nodejs-npm-and-angular-cli)
+  - [TypeScript](#typescript)
+  - [ESLint](#eslint)
+    - [Accessibility (a11y)](#accessibility-a11y) :accessibility:
+  - [Stylelint](#stylelint)
+  - [Prettier](#prettier)
+  - [CSpell](#cspell)
+  - [Testing](#testing)
+  - [VS Code](#vs-code)
+  - [Husky, Commitlint, and Lint-Staged (Git hooks)](#husky-commitlint-and-lint-staged-git-hooks)
+  - [Shove Progress](#shove-progress)
+  - [Continuous Integration (CI) Using GitHub Actions](#continuous-integration-ci-using-github-actions)
+- [Optional Configuration](#optional-configuration)
+  - [Internationalization (i18n)](#internationalization-i18n)
+  - [End to End Testing (e2e)](#end-to-end-testing-e2e)
+- [Tips & Tricks](#tips--tricks)
+  - [Custom Formatting](#custom-formatting)
+  - [Git Config](#git-config)
+  - [Inlay Hints in VS Code](#inlay-hints-in-vs-code)
+  - [Font Ligatures](#font-ligatures)
+  - [Shell Configuration Frameworks](#shell-configuration-frameworks)
+  - [JetBrains IDEs](#jetbrains-ides)
+- [Updating](#updating)
 
 ## Why Use Extreme Angular
 
@@ -25,7 +53,7 @@ Starting a new Angular project with `ng new` gives you a working app, but not th
 - **GitHub Actions CI** for pull request validation
 - **Stricter TypeScript** via an extra compiler flag and fully type-checked linting
 
-These tools are configured to work together without conflicts. Nothing here deviates from standard Angular — the [official Angular documentation](https://angular.dev/overview) applies without modification.
+These tools are configured to work together without conflicts. Nothing here deviates from standard Angular, so the [official Angular documentation](https://angular.dev/overview) applies without modification.
 
 ## Contributing
 
@@ -58,7 +86,7 @@ npm start
 > If you're using [VS Code](https://code.visualstudio.com/) and [Chrome](https://www.google.com/chrome/), press `F5` to start the app in debug mode. For more information check out: [TypeScript in Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript).
 
 > [!TIP]
-> The "Dev Tools Implemented" section below is project-agnostic — consider adding it to your project's README.md or CONTRIBUTING.md!
+> The "Dev Tools Implemented" section below is project-agnostic. Consider adding it to your project's README.md or CONTRIBUTING.md!
 
 ## Dev Tools Implemented
 
@@ -72,6 +100,13 @@ npm run lint:all
 
 > [!CAUTION]
 > These tools are not perfect and they are not a substitute for learning and utilizing the best practices outlined in the Angular guides for [Style](https://angular.dev/style-guide), [Security](https://angular.dev/best-practices/security), [Accessibility](https://angular.dev/best-practices/a11y), and [Performance](https://angular.dev/best-practices/runtime-performance).
+
+### Node.js, npm, and Angular CLI
+
+- [.nvmrc](.nvmrc): Node.js major version for `nvm use` and CI.
+- `engines` in [package.json](package.json): supported Node.js LTS lines. Matches Angular's range.
+- `allowScripts` in [package.json](package.json): dependency install scripts npm may run. Lists the native build steps of Angular's toolchain: `esbuild`, `lmdb`, `msgpackr-extract`, `@parcel/watcher`, `fsevents`. Review new ones with `npm install-scripts ls`, allow with `npm install-scripts approve <pkg>`.
+- `"analytics": false` in [angular.json](angular.json): no Angular CLI usage-data prompt.
 
 ### TypeScript
 
@@ -91,9 +126,8 @@ npm run lint:tsc:all  # Check all TypeScript files
 
 The project uses [TypeScript project references](https://www.typescriptlang.org/docs/handbook/project-references.html) with separate configs for different contexts:
 
-- [tsconfig.app.json](tsconfig.app.json) — Application code (`src/**/*.ts`)
-- [tsconfig.spec.json](tsconfig.spec.json) — Test files (`src/**/*.spec.ts`)
-- [tsconfig.node.json](tsconfig.node.json) — Root config files (`*.ts`)
+- [tsconfig.app.json](tsconfig.app.json): Application code (`src/**/*.ts`)
+- [tsconfig.spec.json](tsconfig.spec.json): Test files (`src/**/*.spec.ts`)
 
 All extend [tsconfig.json](tsconfig.json) to share the same strict settings.
 
@@ -110,11 +144,11 @@ To ensure effective linting for all project files, the following ESLint plugins 
 - [@typescript-eslint](https://typescript-eslint.io/)
   - Uses both [strict-type-checked](https://typescript-eslint.io/linting/configs#strict-type-checked) and [stylistic-type-checked](https://typescript-eslint.io/linting/configs#stylistic-type-checked) rule sets.
   - [typescript-eslint rules configuration matrix](https://typescript-eslint.io/rules/).
-- [@vitest/eslint-plugin](https://github.com/vitest-dev/eslint-plugin)
+- [@vitest/eslint-plugin](https://github.com/vitest-dev/eslint-plugin-vitest)
   - Uses `recommended` rule set for Vitest test files.
-  - [@vitest/eslint-plugin rules](https://github.com/vitest-dev/eslint-plugin#rules).
+  - [@vitest/eslint-plugin rules](https://github.com/vitest-dev/eslint-plugin-vitest#rules).
 - [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc)
-  - Uses `recommended` rule set.
+  - Uses `flat/recommended-with-jsonc` and `flat/prettier` rule sets.
   - [eslint-plugin-jsonc rules configuration matrix](https://ota-meshi.github.io/eslint-plugin-jsonc/rules/).
 - [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)
   - Disables rules that may conflict with Prettier formatting.
@@ -124,6 +158,10 @@ To lint all relevant files in the project (not just those in src/):
 ```sh
 npm run lint
 ```
+
+`ng lint` also works. The `lint` target in [angular.json](angular.json) uses `@angular-eslint/builder` against `src/**/*.ts` and `src/**/*.html`.
+
+`schematicCollections` in [angular.json](angular.json) lists `angular-eslint` first. Its collection extends Angular's, so `ng generate` behaves as documented, and `ng generate application` or `library` adds ESLint config to the new project.
 
 ESLint output is formatted using [eslint-formatter-mo](https://github.com/fengzilong/eslint-formatter-mo). To use default formatting, remove `-f mo` from the `lint` script in [package.json](package.json).
 
@@ -146,6 +184,11 @@ The [Accessibility in Angular guide](https://angular.dev/best-practices/a11y) is
 
 Rules for linting are applied separately to `.css` and `.scss` files, and they can be customized in [.stylelintrc.json](./.stylelintrc.json).
 
+Three rules are turned off in [.stylelintrc.json](./.stylelintrc.json):
+
+- `no-empty-source`: `ng new` generates an empty `app.scss`.
+- `scss/at-mixin-argumentless-call-parentheses` and `scss/double-slash-comment-empty-line-before`: Prettier's output violates both.
+
 To lint all CSS and SCSS files:
 
 ```sh
@@ -158,13 +201,13 @@ npm run lint:style
 
 The base settings in [.prettierrc](./.prettierrc) (`printWidth: 100`, `singleQuote: true`, plus the `*.html` Angular-parser override) match what `ng new` generates. This template adds the following enhancements:
 
-**htmlWhitespaceSensitivity: "ignore"** — Trims unnecessary whitespace around and inside HTML elements for cleaner templates. Use `&nbsp;` (non-breaking space) when you need to explicitly maintain spacing between inline elements.
+**htmlWhitespaceSensitivity: "ignore"**: Trims unnecessary whitespace around and inside HTML elements for cleaner templates. Use `&nbsp;` (non-breaking space) when you need to explicitly maintain spacing between inline elements.
 
 **Plugins:**
 
 - [prettier-plugin-sh](https://github.com/un-ts/prettier/tree/master/packages/sh): Formats shell scripts, such as Git hooks.
 - [prettier-plugin-css-order](https://github.com/Siilwyn/prettier-plugin-css-order): Automatically organizes SCSS/CSS properties using [concentric-css](https://github.com/brandon-rhodes/Concentric-CSS)
-- [prettier-plugin-organize-imports](https://github.com/trivago/prettier-plugin-sort-imports): Automatically organizes, arranges, and removes unused imports.
+- [prettier-plugin-organize-imports](https://github.com/simonhaenisch/prettier-plugin-organize-imports): Automatically organizes, arranges, and removes unused imports.
 
 To format files within the project:
 
@@ -183,13 +226,36 @@ npm run lint:format
 
 ### CSpell
 
-[CSpell](https://github.com/streetsidesoftware/cspell) is used for spell checking for all project files.
+[CSpell](https://github.com/streetsidesoftware/cspell) spell checks every file not ignored by [.gitignore](.gitignore), except JSON and YAML (`ignorePaths` in [.cspell.json](.cspell.json)).
 
 To add project-specific words, update [.cspell.json](.cspell.json).
 
-The [Code Spell Checker Extension for VS Code](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) allows you to quickly add misspelled words to the configuration by selecting "Add to config: .cspell.json" from the 'Quick Fix' menu.
+**Language:**
 
-The following dictionaries have been enabled: bash, companies, cpp, csharp, css, filetypes, fonts, go, html, latex, misc, node, npm, php, powershell, python, softwareTerms, and typescript.
+The `language` field in [.cspell.json](.cspell.json) selects the natural-language dictionaries. cspell bundles two locales:
+
+- `en-US`: American English (the current setting)
+- `en-GB`: British English
+
+Combine them with a comma to accept both: `"language": "en-US,en-GB"`.
+
+Other languages are separate packages, such as [@cspell/dict-de-de](https://www.npmjs.com/package/@cspell/dict-de-de) or [@cspell/dict-fr-fr](https://www.npmjs.com/package/@cspell/dict-fr-fr). Install one, then import it and add its locale:
+
+```json
+{
+  "import": ["@cspell/dict-de-de/cspell-ext.json"],
+  "language": "en-US,de-DE"
+}
+```
+
+In Markdown files, two patterns are ignored so that file paths and URLs are not split into fragments and flagged as misspellings:
+
+- Links whose text contains no spaces, such as `[.lintstagedrc.json](.lintstagedrc.json)`. Text without spaces is a filename, path, or identifier rather than prose.
+- The target of every link, such as the `(https://angular.dev)` portion of `[Angular](https://angular.dev)`.
+
+Link text that reads as prose is still checked. Inline code, fenced code blocks, and source files are checked in full, including identifiers.
+
+The [Code Spell Checker Extension for VS Code](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) allows you to quickly add misspelled words to the configuration by selecting "Add to config: .cspell.json" from the 'Quick Fix' menu.
 
 To find misspelled words in all files within the project:
 
@@ -214,13 +280,13 @@ npm run test:ci
 ```
 
 > [!NOTE]
-> jsdom simulates the DOM in Node.js without launching a real browser, which keeps the test suite fast. For most unit tests this is sufficient; if you need real browser testing, Angular supports running Vitest with Playwright — see the [Angular testing documentation](https://angular.dev/guide/testing).
+> jsdom simulates the DOM in Node.js without launching a real browser, which keeps the test suite fast. For most unit tests this is sufficient; if you need real browser testing, Angular supports running Vitest with Playwright. See the [Angular testing documentation](https://angular.dev/guide/testing).
 
 > [!TIP]
 > For end-to-end testing, see the [End to End Testing (e2e)](#end-to-end-testing-e2e) section under Optional Configuration.
 
 > [!TIP]
-> Want VS Code Test Explorer integration? See the [experimental workaround](docs/vitest-ide-workaround.md). Note: this is unsupported and may break with future Angular updates.
+> Want VS Code Test Explorer integration? See the [experimental workaround](docs/vitest-ide-workaround.md). Note: this is unsupported and may break with future Angular updates. The `npm run test:build` script exists for that workaround: it compiles the tests to `.angular/cache` without running them.
 
 ### VS Code
 
@@ -244,7 +310,7 @@ The following VS Code settings have been set in [.vscode/settings.json](.vscode/
 
 ### Husky, Commitlint, and Lint-Staged (Git hooks)
 
-[Husky](https://typicode.github.io/husky/) is used to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), and [commit-msg](.husky/commit-msg) git hooks.
+[Husky](https://typicode.github.io/husky/) is used to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), and [commit-msg](.husky/commit-msg) git hooks. Husky installs on `npm install` via the `prepare` script, and its runtime directory `.husky/_` is in [.gitignore](.gitignore).
 
 [Commitlint](https://commitlint.js.org/#/) is used to enforce good commit messages according to the [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint) configuration in the commit-msg git hook. Additional Commitlint configuration is kept in [commitlint.config.js](./commitlint.config.js).
 
@@ -277,13 +343,15 @@ The shove script will stage all files, commit with the commit message `wip: shov
 
 The [on-pull-request.yml](.github/workflows/on-pull-request.yml) workflow triggers [validate-code.yml](.github/workflows/validate-code.yml) to check all files and run tests when a pull request is opened or updated.
 
-The output of these workflows can be found in the 'Actions' tab on the GitHub repository. To block merges until they pass, add a [branch protection rule](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) (or ruleset) that requires the `validate-code / called-workflow` status check — new repositories start unprotected.
+The output of these workflows can be found in the 'Actions' tab on the GitHub repository. To block merges until they pass, add a [branch protection rule](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) (or ruleset) that requires the `validate-code / called-workflow` status check. New repositories start unprotected.
 
 To execute these checks and tests locally:
 
 ```sh
 npm run ci:all
 ```
+
+[dependabot.yml](.github/dependabot.yml) opens a pull request when a GitHub Action used by the workflows has a new version. It does not watch npm packages.
 
 ## Optional Configuration
 
@@ -312,14 +380,13 @@ Angular has schematics available for several end to end testing frameworks. The 
 The [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) package has rules for the popular [Playwright](https://playwright.dev/) framework. To incorporate these rules, import the plugin in the [eslint.config.js](eslint.config.js) file and then add a new config object that targets `e2e/**/*.spec.ts` files:
 
 ```js
-import { playwright } from 'eslint-plugin-playwright';
+const playwright = require('eslint-plugin-playwright');
 ```
 
 ```js
   {
     files: ['e2e/**/*.spec.ts'],
-    extends: [...playwright.configs['flat/recommended'], prettierConfig],
-    rules: { ...playwright.configs['flat/recommended'].rules },
+    extends: [playwright.configs['flat/recommended'], prettierConfig],
   },
 ```
 
@@ -331,14 +398,14 @@ These are tips and tricks that are too opinionated or situational to include in 
 
 This project uses Angular's formatting defaults: 2 space indentation, 100 character line width, and single quotes. Here's how to customize if needed:
 
-**Indentation** — set indent_size in [.editorconfig](.editorconfig):
+**Indentation**: set indent_size in [.editorconfig](.editorconfig):
 
 ```ini
 [*]
 indent_size = 4
 ```
 
-**Line width** — set printWidth in [.prettierrc](.prettierrc):
+**Line width**: set printWidth in [.prettierrc](.prettierrc):
 
 ```json
 {
@@ -346,7 +413,7 @@ indent_size = 4
 }
 ```
 
-**Double quotes** — set singleQuote in [.prettierrc](.prettierrc) and update [.editorconfig](.editorconfig) for IDE support:
+**Double quotes**: set singleQuote in [.prettierrc](.prettierrc) and update [.editorconfig](.editorconfig) for IDE support:
 
 ```json
 {
@@ -416,7 +483,7 @@ Shell configuration frameworks are a quick way to add git branch & status inform
 
 Here are some tips for configuring the dev tools for this project in JetBrains IDEs:
 
-- ESLint, Stylelint, Prettier — follow JetBrains' guides for [ESLint](https://www.jetbrains.com/help/webstorm/eslint.html) and [Prettier](https://www.jetbrains.com/help/webstorm/prettier.html); Stylelint is set up the same way.
+- ESLint, Stylelint, Prettier: follow JetBrains' guides for [ESLint](https://www.jetbrains.com/help/webstorm/eslint.html) and [Prettier](https://www.jetbrains.com/help/webstorm/prettier.html); Stylelint is set up the same way.
   - Double check all three plugins are installed.
   - Set configuration to 'Automatic' for each and match the file extensions found in the scripts section of [package.json](./package.json).
   - (Optional) Set "Run on save" for each plugin if preferred.

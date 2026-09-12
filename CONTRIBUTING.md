@@ -18,12 +18,12 @@ First search the [existing issues](https://github.com/joematthews/extreme-angula
 
 ## Contribution Ideas
 
-- **Documentation improvements** — Fix typos, clarify instructions, add examples
-- **Tool integrations** — Add support for new development tools
-- **Configuration enhancements** — Improve existing tool configurations
-- **CI/CD improvements** — Enhance GitHub Actions workflows
-- **Bug fixes** — Resolve configuration conflicts or compatibility issues
-- **Performance optimizations** — Improve build times or tooling efficiency
+- **Documentation improvements**: Fix typos, clarify instructions, add examples
+- **Tool integrations**: Add support for new development tools
+- **Configuration enhancements**: Improve existing tool configurations
+- **CI/CD improvements**: Enhance GitHub Actions workflows
+- **Bug fixes**: Resolve configuration conflicts or compatibility issues
+- **Performance optimizations**: Improve build times or tooling efficiency
 
 ## Development Guidelines
 
@@ -31,7 +31,7 @@ First search the [existing issues](https://github.com/joematthews/extreme-angula
 
 1. **Check existing issues** to avoid duplicate work
 2. **Create an issue** for significant changes to discuss the approach
-3. **Keep changes focused** — one feature or fix per pull request
+3. **Keep changes focused**: one feature or fix per pull request
 
 ### Setting Up Your Development Environment
 
